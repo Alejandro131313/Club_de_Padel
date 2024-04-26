@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<div class="row" th:insert="~{menu :: menuSuperior}"></div>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="mt-5">Equipos</h1>
+            <p th:if="${#lists.isEmpty(equipos)}">No hay equipos añadidos</p>
+            <table class="table table-hover" th:unless="${#lists.isEmpty(equipos)}">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Premios</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="equipo : ${equipos}">
+                    <th scope="row" th:text="${equipo.id_equipo}">1</th>
+					  <td>
+					   <a th:href="@{/equipo/{id}(id=${equipo.id_equipo})}">
+					       <span th:text="${equipo.nombre_equipo}">Nombre Jugador</span>
+					   </a>
+					</td>
+					
+					
+					
+					
+					
+                    <td th:text="${equipo.premios}">Premios Equipo</td>
+                    <td>
+                        <a th:href="@{/equipo/edit/{id}(id=${equipo.id_equipo})}" class="btn btn-sm btn-primary">Editar</a>
+                        <a th:href="@{/equipo/delete/{id}(id=${equipo.id_equipo})}" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de que quieres eliminar este equipo?')">Eliminar</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <a th:href="@{/equipo/add}" class="btn btn-primary">Añadir Equipo</a>
+</div>
+</body>
+</html>
