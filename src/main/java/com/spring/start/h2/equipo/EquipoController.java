@@ -6,13 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.start.h2.jugador.Jugador;
 import com.spring.start.h2.jugador.JugadorDAO;
+import com.spring.start.h2.torneos.Torneo;
+import com.spring.start.h2.torneos.TorneoDAO;
 
 import jakarta.validation.Valid;
 
@@ -28,7 +32,9 @@ public class EquipoController {
     JugadorDAO jugadorDAO;
     
     
-    
+    @Autowired
+    TorneoDAO torneoDAO;
+
     
     @GetMapping("/equipos")
     public ModelAndView equipos() {
@@ -95,18 +101,33 @@ public class EquipoController {
     @GetMapping("/equipo/add")
     public ModelAndView addEquipo() {
         ModelAndView modelAndView = new ModelAndView();
+        
         modelAndView.setViewName("formequipo");
         modelAndView.addObject("equipo", new Equipo());
+        modelAndView.addObject("torneos", torneoDAO.findAll());
+        
         return modelAndView;
     }
+
+
 
     @GetMapping("/equipo/edit/{id}")
     public ModelAndView editEquipo(@PathVariable long id) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("formequipo");
-        modelAndView.addObject("equipo", equipoDAO.findById(id).orElse(null));
+        Optional<Equipo> equipoOptional = equipoDAO.findById(id);
+        if (equipoOptional.isPresent()) {
+            Equipo equipo = equipoOptional.get();
+            modelAndView.addObject("equipo", equipo);
+            modelAndView.addObject("torneos", torneoDAO.findAll());
+            modelAndView.addObject("equipoActual", equipo.getJugadores());
+            
+            modelAndView.setViewName("formequipo");
+        } else {
+            modelAndView.setViewName("redirect:/equipos");
+        }
         return modelAndView;
     }
+
 
     @PostMapping("/equipo/save")
     public ModelAndView saveEquipo(@ModelAttribute("equipo") @Valid Equipo equipo, BindingResult bindingResult) {
@@ -123,7 +144,8 @@ public class EquipoController {
 
     
     
-    
+   
+
     
 
 

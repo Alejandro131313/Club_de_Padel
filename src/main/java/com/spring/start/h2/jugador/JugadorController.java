@@ -69,7 +69,9 @@ public class JugadorController {
         //Agregar nombre usuario para mostrarlo
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String nombreUsuario = auth.getName();
+        
         modelAndView.addObject("nombreUsuario", nombreUsuario);
+        
         modelAndView.setViewName("formjugador");
         modelAndView.addObject("jugador", new Jugador());
         modelAndView.addObject("equipos", equipoDAO.findAll());

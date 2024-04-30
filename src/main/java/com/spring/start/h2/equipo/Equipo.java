@@ -82,6 +82,16 @@ public class Equipo {
 	}
 
 
+	public Torneo getTorneo() {
+		return torneo;
+	}
+
+
+	public void setTorneo(Torneo torneo) {
+		this.torneo = torneo;
+	}
+
+
 	@Override
 	public String toString() {
 	    return "Equipo [id_equipo=" + id_equipo + ", Premios=" + Premios + ", Nombre_equipo=" + Nombre_equipo + "]";

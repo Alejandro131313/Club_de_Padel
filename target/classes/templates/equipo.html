@@ -27,51 +27,38 @@
                             <li class="list-group-item list-group-item-action list-group-item-warning list-group-item d-flex justify-content-between align-items-center">
                                 Premios: <span th:text="${equipo.premios}" ></span>
                             </li>
-							
-							
-							
-							
-							
 							<div class="card">
-							 <div class="card-header">Jugadores en esta equipo</div>
+								<div class="card-header">Torneo</div>
+								<div class="card-body">
+									<span th:if="${equipo.torneo != null}" th:text="${'Torneo: ' + equipo.torneo.nombre}">Sin torneo asignado</span>
+									<span th:if="${equipo.torneo == null}">Sin torneo asignado</span>
+								</div>
+							</div>
+							<div class="card">
+								<div class="card-header">Jugadores en este equipo</div>
                                     <ul class="list-group list-group-flush">
                                         <th:block th:if="${jugadores.empty}">
-                                            <li class="list-group-item">En este equipo no hay jugadores todavia.</li>
+                                            <li class="list-group-item">En este equipo no hay jugadores todavía.</li>
                                         </th:block>
                                         <th:block th:each="jugador : ${jugadores}">
                                             <li class="list-group-item">
                                                 <span th:text="${jugador.nombre}"></span> - <span th:text="${jugador.edad}"></span> años
-												
-												
-												<a th:href="@{'/jugador/remove-equipo-jugador/' + ${jugador.id}}" 	class="btn btn-sm btn-danger" 	onclick="return confirm('¿Estás seguro de que quieres eliminar este equipo?')">Eliminar Jugador</a>
-										
-                                           
-											
-											
-											 </li>
+												<a th:href="@{'/jugador/remove-equipo-jugador/' + ${jugador.id}}" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de que quieres eliminar este equipo?')">Eliminar Jugador</a>
+                                            </li>
                                         </th:block>
                                     </ul>
-                                </div>
-                            </li>
+                            </div>
                         </ul>
                     </p>
                 </div>
             </div>
 			<div class="col col-md-7 d-flex justify-content-between align-items-left">
 				<p><a th:href="@{/equipos}" class="btn btn-primary btn-sm" >Volver</a></p>
-					<p> <a th:href="@{/equipo/edit/{id}(id=${equipo.id_equipo})}" class="btn btn-outline-primary btn-sm">Editar</a></p>  
-				   </div>
-				   
-        
-        </div> 
-	
-					
-		  
-	
-        
+				<p><a th:href="@{/equipo/edit/{id}(id=${equipo.id_equipo})}" class="btn btn-outline-primary btn-sm">Editar</a></p>
+			</div>
+		</div> 
     </div>
 </div>
 
 </body>
 </html>
-

@@ -19,23 +19,23 @@
                     <th scope="col">#</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Premios</th>
+                    <th scope="col">Torneo</th>
                     <th scope="col">Acciones</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="equipo : ${equipos}">
                     <th scope="row" th:text="${equipo.id_equipo}">1</th>
-					  <td>
-					   <a th:href="@{/equipo/{id}(id=${equipo.id_equipo})}">
-					       <span th:text="${equipo.nombre_equipo}">Nombre Jugador</span>
-					   </a>
-					</td>
-					
-					
-					
-					
-					
+                    <td>
+                        <a th:href="@{/equipo/{id}(id=${equipo.id_equipo})}">
+                            <span th:text="${equipo.nombre_equipo}">Nombre Jugador</span>
+                        </a>
+                    </td>
                     <td th:text="${equipo.premios}">Premios Equipo</td>
+                    <td>
+                        <span th:if="${equipo.torneo != null}" th:text="${'Torneo: ' + equipo.torneo.nombre}">Sin torneo asignado</span>
+                        <span th:if="${equipo.torneo == null}">Sin torneo asignado</span>
+                    </td>
                     <td>
                         <a th:href="@{/equipo/edit/{id}(id=${equipo.id_equipo})}" class="btn btn-sm btn-primary">Editar</a>
                         <a th:href="@{/equipo/delete/{id}(id=${equipo.id_equipo})}" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de que quieres eliminar este equipo?')">Eliminar</a>

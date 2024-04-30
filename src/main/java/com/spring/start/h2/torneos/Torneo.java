@@ -20,6 +20,7 @@ public class Torneo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id_torneo;
 	
+	private String Nombre;
 	private Date Fecha;
 	private double Premio;
 	
@@ -27,6 +28,13 @@ public class Torneo {
 	@OneToMany(targetEntity=Equipo.class,mappedBy="torneo",cascade = CascadeType.ALL)
 	private List<Equipo> equipos;
 	
+	
+	public String getNombre() {
+		return Nombre;
+	}
+	public void setNombre(String nombre) {
+		Nombre = nombre;
+	}
 	public long getId_torneo() {
 		return id_torneo;
 	}
@@ -48,11 +56,21 @@ public class Torneo {
 	
 	
 	
+	
+	public List<Equipo> getEquipos() {
+		return equipos;
+	}
+	public void setEquipos(List<Equipo> equipos) {
+		this.equipos = equipos;
+	}
 	@Override
 	public String toString() {
-		return "torneo [id_torneo=" + id_torneo + ", Fecha=" + Fecha + ", Premio=" + Premio + "]";
+		return "Torneo [id_torneo=" + id_torneo + ", Nombre=" + Nombre + ", Fecha=" + Fecha + ", Premio=" + Premio
+				+ ", equipos=" + equipos + "]";
 	}
-	
+
+
+
 	
 	
 	
