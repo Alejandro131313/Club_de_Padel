@@ -1,9 +1,8 @@
 package com.spring.start.h2.torneos;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -69,14 +68,16 @@ public class TorneoController {
     }
 
 
-
+//Crear otro html para crear 
     @GetMapping("/torneo/add")
     public ModelAndView addTorneo() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("formtorneos");
         modelAndView.addObject("torneo", new Torneo());
+        modelAndView.addObject("equipos", equipoDAO.findAll());
         return modelAndView;
     }
+
 
     @GetMapping("/torneo/edit/{id}")
     public ModelAndView editTorneo(@PathVariable long id) {
@@ -88,7 +89,8 @@ public class TorneoController {
         return modelAndView;
     }
 
-    @PostMapping("/torneo/save")
+
+    @PostMapping("/torsneo/save")
     public ModelAndView saveTorneo(@ModelAttribute("torneo") @Valid Torneo torneo, BindingResult bindingResult,
             HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
@@ -99,11 +101,16 @@ public class TorneoController {
         
         String[] equiposSeleccionados = request.getParameterValues("equiposSeleccionados");
         if (equiposSeleccionados != null) {
-            List<Long> equiposIds = Arrays.stream(equiposSeleccionados)
-                                        .map(Long::valueOf)
-                                        .collect(Collectors.toList());
-            List<Equipo> equipos = (List<Equipo>) equipoDAO.findAllById(equiposIds);
-            torneo.setEquipos(equipos);
+            List<Equipo> equiposSeleccionadosList = new ArrayList<>();
+            for (String equipoId : equiposSeleccionados) {
+                Long id = Long.valueOf(equipoId);
+                Optional<Equipo> equipoOptional = equipoDAO.findById(id);
+                equipoOptional.ifPresent(equipo -> {
+                    equipo.setTorneo(torneo);
+                    equiposSeleccionadosList.add(equipo);
+                });
+            }
+            torneo.setEquipos(equiposSeleccionadosList);
         }
         
         torneoDAO.save(torneo);

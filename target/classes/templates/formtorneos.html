@@ -48,7 +48,8 @@
 				                        <tr>
 				                            <td th:text="${equipo.id_equipo}"></td>
 				                            <td th:text="${equipo.nombre_equipo}"></td>
-				                            <td><input type="checkbox" th:id="'equipo' + ${equipoIndex.index}" th:value="${equipo.id_equipo}" name="equiposSeleccionados"></td>
+				                            <!-- Marcar como seleccionado si el equipo está asociado al torneo -->
+				                            <td><input type="checkbox" th:id="'equipo' + ${equipoIndex.index}" th:value="${equipo.id_equipo}" name="equiposSeleccionados" th:checked="${torneo.equipos.contains(equipo)}"></td>
 				                        </tr>
 				                    </th:block>
 				                </tbody>
@@ -58,9 +59,10 @@
 				</div>
 
 
+
 				
                 <button type="submit" class="btn btn-primary">Guardar</button>
-                <a th:href="@{/torneos}" class="btn btn-secondary">Cancelar</a>
+                <a th:href="@{/torneos}"  class="btn btn-secondary">Cancelar</a>
             </form>
         </div>
     </div>
