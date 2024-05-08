@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear/Editar Equipo</title>
+    <title>Editar Equipo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <div class="row" th:insert="~{menu :: menuSuperior}"></div>
@@ -11,8 +11,8 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <h1 class="mt-5">Crear/Editar Equipo</h1>
-            <form th:action="@{/equipo/save}" th:object="${equipo}" method="post">
+            <h1 class="mt-5">Editar Equipo</h1>
+            <form th:action="@{/equipo/saveEdit}" th:object="${equipo}" method="post">
                 <input type="hidden" th:field="*{id_equipo}" />
                 <div class="mb-3">
                     <label for="nombre_equipo" class="form-label">Nombre del Equipo</label>
@@ -31,9 +31,47 @@
 				    <select class="form-select" id="torneo" th:field="*{torneo}">
 				        <option value="">Seleccione un torneo</option>
 				        <option th:each="torneo : ${torneos}" th:value="${torneo.id_torneo}" th:text="${torneo.nombre}"></option>
-				    </select>
+				    </select>	
 				</div>
 
+				
+				
+				
+				<div class="mb-3">
+				    <label for="jugadoresSeleccionados" class="form-label">Jugadores Disponibles</label>
+				    <div class="row">
+				        <div class="col">
+				            <table class="table">
+				                <thead>
+				                    <tr>
+				                        <th>#</th>
+				                        <th>Nombre del Jugador</th>
+				                        <th>Edad</th>
+				                        <th>Nivel</th>
+				                        <th>Seleccionar</th>
+				                    </tr>
+				                </thead>
+				                <tbody>
+				                    <th:block th:each="jugador, jugadorIndex : ${jugadores}">
+				                        <tr>
+				                            <td th:text="${jugador.id}"></td>
+				                            <td th:text="${jugador.nombre}"></td>
+				                            <td th:text="${jugador.edad}"></td>
+				                            <td th:text="${jugador.nivel}"></td>
+				                            <!-- Marcar como seleccionado si el jugador está asociado al equipo -->
+				                            <td><input type="checkbox" th:id="'jugador' + ${jugadorIndex.index}" th:value="${jugador.id}" name="jugadoresSeleccionados" th:checked="${equipo.jugadores.contains(jugador)}"></td>
+				                        </tr>
+				                    </th:block>
+				                </tbody>
+				            </table>
+				        </div>
+				    </div>
+				</div>
+
+				
+				
+				
+				
 				
 
                 <button type="submit" class="btn btn-primary">Guardar</button>

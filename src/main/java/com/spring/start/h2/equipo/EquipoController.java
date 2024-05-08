@@ -1,5 +1,7 @@
 package com.spring.start.h2.equipo;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.start.h2.jugador.Jugador;
 import com.spring.start.h2.jugador.JugadorDAO;
-import com.spring.start.h2.torneos.Torneo;
 import com.spring.start.h2.torneos.TorneoDAO;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 @Controller
@@ -80,6 +82,78 @@ public class EquipoController {
 
     
     
+
+    
+    
+    @GetMapping("/equipo/add")
+    public ModelAndView addEquipoNuevo() {
+        ModelAndView modelAndView = new ModelAndView();
+        
+        modelAndView.setViewName("crearequipo");
+        modelAndView.addObject("equipo", new Equipo());
+        modelAndView.addObject("torneos", torneoDAO.findAll());
+        
+        return modelAndView;
+    }
+
+
+    @PostMapping("/equipo/save")
+    public ModelAndView saveEquipoNuevo(@ModelAttribute("equipo") @Valid Equipo equipo, BindingResult bindingResult) {
+        ModelAndView modelAndView = new ModelAndView();
+        if (bindingResult.hasErrors()) {
+            modelAndView.setViewName("crearequipo");
+            modelAndView.addObject("torneos", torneoDAO.findAll());
+            return modelAndView;
+        }
+        equipoDAO.save(equipo);
+        modelAndView.setViewName("redirect:/equipos");
+        return modelAndView;
+    }
+
+    
+    
+    
+    @GetMapping("/equipo/edit/{id}")
+    public ModelAndView editEquipo(@PathVariable long id) {
+    	   ModelAndView modelAndView = new ModelAndView();
+           modelAndView.setViewName("formequipo");
+           modelAndView.addObject("equipo", equipoDAO.findById(id).orElse(null));
+           Equipo equipo = equipoDAO.findById(id).orElse(null);
+           modelAndView.addObject("torneos", torneoDAO.findAll());
+           modelAndView.addObject("jugadores",jugadorDAO.findAll() ); 
+           return modelAndView;
+    }
+
+
+    @PostMapping("/equipo/saveEdit")
+    public ModelAndView saveEditEquipo(@ModelAttribute("equipo") @Valid Equipo equipo, BindingResult bindingResult, HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        String[] jugadoresSeleccionados = request.getParameterValues("jugadoresSeleccionados");
+
+        if (jugadoresSeleccionados != null) {
+            List<Jugador> jugadoresSeleccionadosList = new ArrayList<>();
+
+            for (String jugadorId : jugadoresSeleccionados) {
+                Long id = Long.valueOf(jugadorId);
+                Optional<Jugador> jugadorOptional = jugadorDAO.findById(id);
+                jugadorOptional.ifPresent(jugador -> {
+                    jugador.setEquipo(equipo);
+                    jugadoresSeleccionadosList.add(jugador);
+                });
+            }
+            equipo.setJugadores(jugadoresSeleccionadosList);
+        }
+
+        equipoDAO.save(equipo);
+        modelAndView.setViewName("redirect:/equipos");
+        return modelAndView;
+    }
+
+
+    
+    
+   
     
     @GetMapping("/jugador/remove-equipo-jugador/{jugadorId}")
     public ModelAndView removeEquipoJugador(@PathVariable long jugadorId) {
@@ -96,57 +170,6 @@ public class EquipoController {
         }
     } 
     
-    
-    
-    @GetMapping("/equipo/add")
-    public ModelAndView addEquipo() {
-        ModelAndView modelAndView = new ModelAndView();
-        
-        modelAndView.setViewName("formequipo");
-        modelAndView.addObject("equipo", new Equipo());
-        modelAndView.addObject("torneos", torneoDAO.findAll());
-        
-        return modelAndView;
-    }
-
-
-
-    @GetMapping("/equipo/edit/{id}")
-    public ModelAndView editEquipo(@PathVariable long id) {
-        ModelAndView modelAndView = new ModelAndView();
-        Optional<Equipo> equipoOptional = equipoDAO.findById(id);
-        if (equipoOptional.isPresent()) {
-            Equipo equipo = equipoOptional.get();
-            modelAndView.addObject("equipo", equipo);
-            modelAndView.addObject("torneos", torneoDAO.findAll());
-            modelAndView.addObject("equipoActual", equipo.getJugadores());
-            
-            modelAndView.setViewName("formequipo");
-        } else {
-            modelAndView.setViewName("redirect:/equipos");
-        }
-        return modelAndView;
-    }
-
-
-    @PostMapping("/equipo/save")
-    public ModelAndView saveEquipo(@ModelAttribute("equipo") @Valid Equipo equipo, BindingResult bindingResult) {
-        ModelAndView modelAndView = new ModelAndView();
-        if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("formequipo");
-            modelAndView.addObject("torneos", torneoDAO.findAll());
-            return modelAndView;
-        }
-        equipoDAO.save(equipo);
-        modelAndView.setViewName("redirect:/equipos");
-        return modelAndView;
-    }
-
-
-    
-    
-   
-
     
 
 
