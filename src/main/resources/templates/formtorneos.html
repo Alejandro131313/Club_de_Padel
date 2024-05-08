@@ -11,8 +11,8 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <h1 class="mt-5">Crear/Editar Torneo</h1>
-            <form th:action="@{/torneo/save}" th:object="${torneo}" method="post">
+            <h1 class="mt-5">Editar Torneo</h1>
+            <form th:action="@{/torneo/saveEdit}" th:object="${torneo}" method="post">
                 <input type="hidden" th:field="*{id_torneo}" />
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre del Torneo</label>
@@ -30,6 +30,37 @@
                     <p th:if="${#fields.hasErrors('Premio')}" th:errors="*{Premio}">Introduce una cantidad válida</p>
                 </div>
 				
+				
+				
+				
+				<div class="mb-3">
+								    <label for="equiposSeleccionados" class="form-label">Equipos Disponibles</label>
+								    <div class="row">
+								        <div class="col">
+								            <table class="table">
+								                <thead>
+								                    <tr>
+								                        <th>#</th>
+								                        <th>Nombre del Equipo</th>
+								                        <th>Seleccionar</th>
+								                    </tr>
+								                </thead>
+								                <tbody>
+								                    <th:block th:each="equipo, equipoIndex : ${equipos}">
+								                        <tr>
+								                            <td th:text="${equipo.id_equipo}"></td>
+								                            <td th:text="${equipo.nombre_equipo}"></td>
+								                            <!-- Marcar como seleccionado si el equipo está asociado al torneo -->
+								                            <td><input type="checkbox" th:id="'equipo' + ${equipoIndex.index}" th:value="${equipo.id_equipo}" name="equiposSeleccionados" th:checked="${torneo.equipos.contains(equipo)}"></td>
+								                        </tr>
+								                    </th:block>
+								                </tbody>
+
+				  
+								            </table>
+								        </div>
+								    </div>
+								</div>
 
 
 

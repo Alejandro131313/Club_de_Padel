@@ -67,18 +67,32 @@ public class TorneoController {
         return model;
     }
 
-
-//Crear otro html para crear 
+    
     @GetMapping("/torneo/add")
-    public ModelAndView addTorneo() {
+    public ModelAndView addTorneoNuevo() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("formtorneos");
+        modelAndView.setViewName("creartorneo");
         modelAndView.addObject("torneo", new Torneo());
-        modelAndView.addObject("equipos", equipoDAO.findAll());
         return modelAndView;
     }
 
 
+    @PostMapping("/torneo/save")
+    public ModelAndView guardarTorneoNuevo(@ModelAttribute("torneo") Torneo torneo, BindingResult result) {
+    	  ModelAndView modelAndView = new ModelAndView();
+    	modelAndView.setViewName("formtorneo");
+    	
+    	if (result.hasErrors()) {
+    		modelAndView.setViewName("formtorneo");
+    		   return modelAndView;
+        }
+        torneoDAO.save(torneo);
+        modelAndView.setViewName("redirect:/torneos");
+        return modelAndView;
+    
+    }
+    
+    
     @GetMapping("/torneo/edit/{id}")
     public ModelAndView editTorneo(@PathVariable long id) {
         ModelAndView modelAndView = new ModelAndView();
@@ -90,9 +104,39 @@ public class TorneoController {
     }
 
 
+    @PostMapping("/torneo/saveEdit")
+    public ModelAndView saveEditTorneo(@ModelAttribute("torneo") @Valid Torneo torneo, BindingResult bindingResult, HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView();
+        
+        
+        String[] equiposSeleccionados = request.getParameterValues("equiposSeleccionados");
+        
+        if (equiposSeleccionados != null) {
+        	
+            List<Equipo> equiposSeleccionadosList = new ArrayList<>();
+            
+            for (String equipoId : equiposSeleccionados) {
+            	
+                Long id = Long.valueOf(equipoId);
+                Optional<Equipo> equipoOptional = equipoDAO.findById(id);
+                equipoOptional.ifPresent(equipo -> {
+                    equipo.setTorneo(torneo);
+                    equiposSeleccionadosList.add(equipo);
+                });
+            }
+            torneo.setEquipos(equiposSeleccionadosList);
+        }
 
+        torneoDAO.save(torneo);
+        modelAndView.setViewName("redirect:/torneos");
+        return modelAndView;
+    }
     
 
+    
+    
+    
+    
     @GetMapping("/torneo/remove-equipo/{torneoId}/{equipoId}")
     public ModelAndView removeEquipoTorneo(@PathVariable long torneoId, @PathVariable long equipoId) {
         Optional<Torneo> torneoOptional = torneoDAO.findById(torneoId);
