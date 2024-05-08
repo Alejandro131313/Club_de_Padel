@@ -113,6 +113,7 @@ public class JugadorController {
         if (bindingResult.hasErrors()) {
    
             modelAndView.setViewName("formjugador");
+            modelAndView.addObject("equipos", equipoDAO.findAll());
             return modelAndView;
         }
         // Verificar si el jugador ya existe 

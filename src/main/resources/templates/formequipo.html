@@ -28,7 +28,7 @@
 				
 				<div class="mb-3">
 				    <label for="torneo" class="form-label">Torneo</label>
-				    <select class="form-select" id="torneo" th:field="*{torneo}" required>
+				    <select class="form-select" id="torneo" th:field="*{torneo}">
 				        <option value="">Seleccione un torneo</option>
 				        <option th:each="torneo : ${torneos}" th:value="${torneo.id_torneo}" th:text="${torneo.nombre}"></option>
 				    </select>

@@ -90,34 +90,6 @@ public class TorneoController {
     }
 
 
-    @PostMapping("/torsneo/save")
-    public ModelAndView saveTorneo(@ModelAttribute("torneo") @Valid Torneo torneo, BindingResult bindingResult,
-            HttpServletRequest request) {
-        ModelAndView modelAndView = new ModelAndView();
-        if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("formtorneos");
-            return modelAndView;
-        }
-        
-        String[] equiposSeleccionados = request.getParameterValues("equiposSeleccionados");
-        if (equiposSeleccionados != null) {
-            List<Equipo> equiposSeleccionadosList = new ArrayList<>();
-            for (String equipoId : equiposSeleccionados) {
-                Long id = Long.valueOf(equipoId);
-                Optional<Equipo> equipoOptional = equipoDAO.findById(id);
-                equipoOptional.ifPresent(equipo -> {
-                    equipo.setTorneo(torneo);
-                    equiposSeleccionadosList.add(equipo);
-                });
-            }
-            torneo.setEquipos(equiposSeleccionadosList);
-        }
-        
-        torneoDAO.save(torneo);
-        modelAndView.setViewName("redirect:/torneos");
-        return modelAndView;
-    }
-
 
     
 

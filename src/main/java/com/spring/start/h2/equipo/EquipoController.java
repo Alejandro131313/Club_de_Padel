@@ -134,6 +134,7 @@ public class EquipoController {
         ModelAndView modelAndView = new ModelAndView();
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("formequipo");
+            modelAndView.addObject("torneos", torneoDAO.findAll());
             return modelAndView;
         }
         equipoDAO.save(equipo);
