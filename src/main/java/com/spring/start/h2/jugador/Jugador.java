@@ -4,6 +4,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.spring.start.h2.Enmarca.Enmarca;
+import com.spring.start.h2.Usuarios.Usuario;
 import com.spring.start.h2.equipo.Equipo;
 
 import jakarta.persistence.CascadeType;
@@ -15,6 +16,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Pattern;
@@ -43,6 +45,10 @@ public class Jugador {
 	@OneToMany(targetEntity = Enmarca.class, mappedBy = "jugador",cascade = CascadeType.ALL)
 	@JsonBackReference
 	private Set<Enmarca> Enmarca;
+	
+	
+	 @OneToOne(mappedBy = "jugador", fetch = FetchType.EAGER)
+	    private Usuario usuario;
 
 
 	public long getId() {

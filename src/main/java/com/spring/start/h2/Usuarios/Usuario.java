@@ -8,15 +8,29 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.spring.start.h2.jugador.Jugador;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Usuario implements UserDetails {
 
 	@Id
 	private String usuario;
-	private String password;	
+	private String password;
+	
+	
+	
+	 @OneToOne(fetch = FetchType.EAGER)
+	    @JoinColumn(name = "jugador_id")
+	    private Jugador jugador;
+	 
+	 
+	 
 
 	public String getUsuario() {
 		return usuario;
@@ -74,6 +88,13 @@ public class Usuario implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
+	public Jugador getJugador() {
+		return jugador;
+	}
+	public void setJugador(Jugador jugador) {
+		this.jugador = jugador;
+	}
+
 
 
 }

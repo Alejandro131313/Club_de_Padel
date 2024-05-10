@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Información del Usuario</title>
+</head>
+<body>
+    <h1>Información del Usuario</h1>
+    <p>Nombre de usuario: <span th:text="${usuario.usuario}"></span></p>
+    <p>Nombre del jugador: <span th:text="${jugador.nombre}"></span></p>
+    <p>Edad del jugador: <span th:text="${jugador.edad}"></span></p>
+    <p>Nivel del jugador: <span th:text="${jugador.nivel}"></span></p>
+
+	<p>Equipo del jugador:
+	        <span th:if="${jugador.equipo != null}" th:text="${jugador.equipo.Nombre_equipo}"></span>
+	        <span th:if="${jugador.equipo == null}">Sin Equipo</span>
+	    </p>
+	   
+	</body>
+	</html>
