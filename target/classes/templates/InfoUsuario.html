@@ -1,20 +1,40 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>Información del Usuario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Información del Usuario</h1>
-    <p>Nombre de usuario: <span th:text="${usuario.usuario}"></span></p>
-    <p>Nombre del jugador: <span th:text="${jugador.nombre}"></span></p>
-    <p>Edad del jugador: <span th:text="${jugador.edad}"></span></p>
-    <p>Nivel del jugador: <span th:text="${jugador.nivel}"></span></p>
+    <div class="container">
+        <div class="card">   
+			<div class="card-header">Información del Usuario</div> 
+            <div class="card-body">	
+                <p>Nombre de usuario: <span th:text="${usuario.usuario}"></span></p>
+                <p>Nombre del jugador: <span th:text="${jugador.nombre}"></span></p>
+                <p>Edad del jugador: <span th:text="${jugador.edad}"></span></p>
+                <p>Nivel del jugador: <span th:text="${jugador.nivel}"></span></p>
+                <p>Equipo del jugador:
+                    <span th:if="${jugador.equipo != null}" th:text="${jugador.equipo.Nombre_equipo}"></span>
+                    <span th:if="${jugador.equipo == null}">Sin Equipo</span>
+                </p>  
+            </div>
+			<div class="card-header">Clases:</div>
+            <div class="card-body">
+			
+				<ul>
+				                    <th:block th:each="enmarca : ${jugador.enmarca}">
+				                        <li>
+				                             <span th:text="${enmarca.clase.dia}"></span> a las <span th:text="${enmarca.clase.hora}"></span>
+				                        </li>
+				                    </th:block>
+				                </ul>
+            </div>
+        </div>
+		<a href="#" class="btn btn-primary">Clases</a>
+		<a href="#" class="btn btn-success">Equipo</a>
+    </div>
 
-	<p>Equipo del jugador:
-	        <span th:if="${jugador.equipo != null}" th:text="${jugador.equipo.Nombre_equipo}"></span>
-	        <span th:if="${jugador.equipo == null}">Sin Equipo</span>
-	    </p>
-	   
-	</body>
-	</html>
+  
+</body>
+</html>

@@ -13,21 +13,54 @@ insert into Jugador (Nombre, Edad, Nivel, FK_Equipo) values ('Pablo', 15, 'Alto'
 insert into Jugador (Nombre, Edad, Nivel, FK_Equipo) values ('David', 18, 'Alto', 1);
 insert into Jugador (Nombre, Edad, Nivel, FK_Equipo) values ('Alberto', 25, 'Alto', 2);
 insert into Jugador (Nombre, Edad, Nivel, FK_Equipo) values ('Maria', 25, 'Alto', 3);
-insert into Jugador (Nombre, Edad, Nivel, FK_Equipo) values ('AAA', 25, 'Alto',3);
-insert into Jugador (Nombre, Edad, Nivel, FK_Equipo) values ('BBB', 25, 'Alto',1);
+insert into Jugador (Nombre, Edad, Nivel, FK_Equipo) values ('AAAAAA', 25, 'Alto',3);
+insert into Jugador (Nombre, Edad, Nivel, FK_Equipo) values ('BBBBBBB', 25, 'Alto',1);
 
 insert into Clase (dia, hora) values ('Lunes', '16:30');
+insert into Clase (dia, hora) values ('Lunes', '18:30');
+insert into Clase (dia, hora) values ('Lunes', '19:30');
+insert into Clase (dia, hora) values ('Lunes', '20:30');
+
 insert into Clase (dia, hora) values ('Martes', '16:30');
+insert into Clase (dia, hora) values ('Martes', '17:30');
+insert into Clase (dia, hora) values ('Martes', '18:30');
+insert into Clase (dia, hora) values ('Martes', '19:30');
+
 insert into Clase (dia, hora) values ('Miércoles', '18:30');
+insert into Clase (dia, hora) values ('Miércoles', '19:30');
+insert into Clase (dia, hora) values ('Miércoles', '20:30');
+
+insert into Clase (dia, hora) values ('Jueves', '18:30');
+insert into Clase (dia, hora) values ('Jueves', '19:30');
+insert into Clase (dia, hora) values ('Jueves', '20:30');
+insert into Clase (dia, hora) values ('Jueves', '21:30');
+
+insert into Clase (dia, hora) values ('Viernes', '16:30');
+insert into Clase (dia, hora) values ('Viernes', '18:30');
+insert into Clase (dia, hora) values ('Viernes', '20:30');
+
 
 insert into Enmarca (jugador_id, clase_id) values (1, 1);
+insert into Enmarca (jugador_id, clase_id) values (1, 5);
+insert into Enmarca (jugador_id, clase_id) values (1, 8);
+insert into Enmarca (jugador_id, clase_id) values (1, 15);
+insert into Enmarca (jugador_id, clase_id) values (1, 17);
+
+
 insert into Enmarca (jugador_id, clase_id) values (2, 1);
+insert into Enmarca (jugador_id, clase_id) values (2, 5);
+insert into Enmarca (jugador_id, clase_id) values (2, 9);
+insert into Enmarca (jugador_id, clase_id) values (2, 12);
 insert into Enmarca (jugador_id, clase_id) values (3, 1);
-insert into Enmarca (jugador_id, clase_id) values (4, 1);
-insert into Enmarca (jugador_id, clase_id) values (1, 2);
 insert into Enmarca (jugador_id, clase_id) values (3, 3);
-insert into Enmarca (jugador_id, clase_id) values (4, 2);
-insert into Enmarca (jugador_id, clase_id) values (5, 3);
+insert into Enmarca (jugador_id, clase_id) values (3, 8);
+insert into Enmarca (jugador_id, clase_id) values (3, 10);
+insert into Enmarca (jugador_id, clase_id) values (3, 6);
+insert into Enmarca (jugador_id, clase_id) values (4, 1);
+insert into Enmarca (jugador_id, clase_id) values (4, 5);
+insert into Enmarca (jugador_id, clase_id) values (5, 8);
+
+
 
 
 
