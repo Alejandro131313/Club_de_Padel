@@ -1,13 +1,20 @@
 package com.spring.start.h2.jugador;
 
+import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
 import com.spring.start.h2.Enmarca.EnmarcaDAO;
 import com.spring.start.h2.equipo.EquipoDAO;
 
@@ -31,17 +38,26 @@ public class JugadorController {
     
     
     @GetMapping("/jugadores")
-    public ModelAndView jugadores() {
+    public ModelAndView jugadores(@RequestParam(value = "orden", required = false) String orden) {
         ModelAndView modelAndView = new ModelAndView();
-      //Agregar nombre usuario para mostrarlo
+
+        // Obtener el nombre de usuario para mostrarlo
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String nombreUsuario = auth.getName();
-        
         modelAndView.addObject("nombreUsuario", nombreUsuario);
-        
-        modelAndView.setViewName("jugadores");
 
-        modelAndView.addObject("jugadores", jugadorDAO.findAll());
+        // Obtener la lista de jugadores ordenados según el parámetro "orden"
+        List<Jugador> jugadores;
+        if ("edad".equalsIgnoreCase(orden)) {
+            jugadores = jugadorDAO.findAllOrderByEdadAsc();
+        } else if ("nombre".equalsIgnoreCase(orden)) {
+            jugadores = jugadorDAO.findAllOrderByNombreAsc();
+        } else {
+            jugadores = (List<Jugador>) jugadorDAO.findAll();
+        }
+
+        modelAndView.addObject("jugadores", jugadores);
+        modelAndView.setViewName("jugadores");
 
         return modelAndView;
     }

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<div class="row" th:insert="~{menu :: menuSuperior}"></div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estadísticas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007bff;
+        }
+        h2 {
+            margin-top: 20px;
+            color: #6c757d;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <h1 class="mt-5">Estadísticas</h1>
+
+    <div class="container">
+        <h1 class="mt-5">Estadísticas de Jugadores: </h1>
+
+        <div class="container">
+            <h2>Jugador con más clases: </h2>
+            <p th:each="jugador : ${jugadoresConMasClases}">
+                <span th:text="${jugador.nombre}"></span> -
+                <span th:text="${#lists.size(jugador.enmarca)}"></span> Clases
+            </p>
+        </div>
+
+        <div class="container">
+            <h2>Jugador más joven:</h2>
+            <p>Nombre: <span th:text="${jugadorMasJoven.nombre}"></span></p>
+            <p>Edad: <span th:text="${jugadorMasJoven.edad}"></span></p>
+			</div>
+			
+			<div class="container">
+            <h2>Jugador más viejo:</h2>
+            <p>Nombre: <span th:text="${jugadorMasViejo.nombre}"></span></p>
+            <p>Edad: <span th:text="${jugadorMasViejo.edad}"></span></p>
+        </div>
+    </div>
+    <div class="container">
+        <h1 class="mt-5">Estadísticas de Equipos: </h1>
+
+		<div class="container">
+		    <h2>Equipo con más premios:</h2>
+		    <ul>
+		        <li th:each="equipo : ${equiposConMasPremios}">
+		            <span th:text="${equipo.nombre_equipo}"></span> - Premios: <span th:text="${equipo.Premios}"></span>
+		        </li>
+		    </ul>
+		</div>
+		
+		<div class="container">
+		    <h2>Equipo con más Jugadores:</h2>
+		    <ul>
+		        <li th:each="equipo : ${equiposConMasJugadores}">
+		            <span th:text="${equipo.nombre_equipo}"></span> - Jugadores: <span th:text="${#lists.size(equipo.jugadores)}"></span>
+		        </li>
+		    </ul>
+		</div>
+		
+		
+		
+
+
+
+
+			
+
+		
+
+    </div>
+
+</div>
+</body>
+</html>
+
+

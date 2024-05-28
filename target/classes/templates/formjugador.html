@@ -5,29 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear/Editar Jugador</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #007bff;
+            margin-top: 30px;
+        }
+        .form-label {
+            font-weight: bold;
+        }
+        .form-control {
+            border-radius: 10px;
+            border-color: #007bff;
+        }
+        .form-control:focus {
+            border-color: #0056b3;
+            box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+    </style>
 </head>
-  <div class="row" th:insert="~{menu :: menuSuperior}"></div>
 <body>
 <div class="container">
     <div class="row">
         <div class="col">
             <h1 class="mt-5">Crear/Editar Jugador</h1>
             <form th:action="@{/jugador/save}" th:object="${jugador}" method="post">
-				<input type="hidden" th:field="*{id}" />
+                <input type="hidden" th:field="*{id}" />
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre</label>
                     <input type="text" class="form-control" id="nombre" th:field="*{nombre}" required>
-                     <p th:if="${#fields.hasErrors('Nombre')}" th:errors="*{Nombre}">Introduzca una nombre valido</p>
+                    <p th:if="${#fields.hasErrors('Nombre')}" th:errors="*{Nombre}" class="text-danger">Introduzca un nombre válido</p>
                 </div>
                 <div class="mb-3">
                     <label for="edad" class="form-label">Edad</label>
                     <input type="number" class="form-control" id="edad" th:field="*{edad}" required>
-                     <p th:if="${#fields.hasErrors('Edad')}" th:errors="*{Edad}">Introduzca una edad valida</p>
+                    <p th:if="${#fields.hasErrors('Edad')}" th:errors="*{Edad}" class="text-danger">Introduzca una edad válida</p>
                 </div>
                 <div class="mb-3">
                     <label for="nivel" class="form-label">Nivel</label>
                     <input type="text" class="form-control" id="nivel" th:field="*{nivel}" required>
-                     <p th:if="${#fields.hasErrors('Nivel')}" th:errors="*{Nivel}">Introduzca un nivel valido</p>
+                    <p th:if="${#fields.hasErrors('Nivel')}" th:errors="*{Nivel}" class="text-danger">Introduzca un nivel válido</p>
                 </div>
                 <div class="mb-3">
                     <label for="equipo" class="form-label">Equipo</label>

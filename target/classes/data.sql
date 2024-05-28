@@ -6,7 +6,7 @@ insert into Torneo (Nombre,Fecha,Premio) values ('Torneo de Invierno','2026-8-22
 
 insert into Equipo (Premios, Nombre_equipo,FK_Torneo) values (2, 'Los Matados',1);
 insert into Equipo (Premios, Nombre_equipo) values (20, 'Los hechos polvo');
-insert into Equipo (Premios, Nombre_equipo) values (100, 'Los borrachos');
+insert into Equipo (Premios, Nombre_equipo) values (85, 'Los borrachos');
 
 insert into Jugador (Nombre, Edad, Nivel, FK_Equipo) values ('Alejandro', 34, 'Medio', 1);
 insert into Jugador (Nombre, Edad, Nivel, FK_Equipo) values ('Pablo', 15, 'Alto', 2);
