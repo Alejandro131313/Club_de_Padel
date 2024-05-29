@@ -33,10 +33,6 @@ public class JugadorController {
     EnmarcaDAO enmarcaDAO;
 
     
-
-
-    
-    
     @GetMapping("/jugadores")
     public ModelAndView jugadores(@RequestParam(value = "orden", required = false) String orden) {
         ModelAndView modelAndView = new ModelAndView();
@@ -57,7 +53,7 @@ public class JugadorController {
         }
 
         modelAndView.addObject("jugadores", jugadores);
-        modelAndView.setViewName("jugadores");
+        modelAndView.setViewName("Jugadores/jugadores");
 
         return modelAndView;
     }
@@ -71,7 +67,7 @@ public class JugadorController {
         String nombreUsuario = auth.getName();
         modelAndView.addObject("nombreUsuario", nombreUsuario);
         
-        modelAndView.setViewName("jugador");
+        modelAndView.setViewName("Jugadores/jugador");
 
         modelAndView.addObject("jugador", jugador);
         modelAndView.addObject("equipos", equipoDAO.findAll());
@@ -88,7 +84,7 @@ public class JugadorController {
         
         modelAndView.addObject("nombreUsuario", nombreUsuario);
         
-        modelAndView.setViewName("formjugador");
+        modelAndView.setViewName("Jugadores/formjugador");
         modelAndView.addObject("jugador", new Jugador());
         modelAndView.addObject("equipos", equipoDAO.findAll());
 
@@ -110,7 +106,7 @@ public class JugadorController {
             modelAndView.addObject("equipos", equipoDAO.findAll());
             modelAndView.addObject("equipoActual", jugador.getEquipo());
             
-            modelAndView.setViewName("formjugador");
+            modelAndView.setViewName("Jugadores/formjugador");
         } else {
             modelAndView.setViewName("redirect:/jugadores");
         }
@@ -128,7 +124,7 @@ public class JugadorController {
         
         if (bindingResult.hasErrors()) {
    
-            modelAndView.setViewName("formjugador");
+            modelAndView.setViewName("Jugadores/formjugador");
             modelAndView.addObject("equipos", equipoDAO.findAll());
             return modelAndView;
         }

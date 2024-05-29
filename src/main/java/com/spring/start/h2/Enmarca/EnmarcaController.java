@@ -41,7 +41,7 @@ public class EnmarcaController {
         
         modelAndView.addObject("nombreUsuario", nombreUsuario);
         modelAndView.addObject("enmarcaciones", enmarcaDAO.findAll());
-        modelAndView.setViewName("enmarcas");
+        modelAndView.setViewName("Enmarca/enmarcas");
         return modelAndView;
     }
 
@@ -61,7 +61,7 @@ public class EnmarcaController {
         modelAndView.addObject("enmarca", new Enmarca());
         modelAndView.addObject("jugador", jugadorDAO.findAll());
         modelAndView.addObject("clase", claseDAO.findAll());
-        modelAndView.setViewName("formEnmarca");
+        modelAndView.setViewName("Enmarca/formEnmarca");
         return modelAndView;
     }
 
@@ -110,7 +110,7 @@ public class EnmarcaController {
         modelAndView.addObject("nombreUsuario", nombreUsuario);
         modelAndView.addObject("jugador", jugadorDAO.findById(idJugador));
         modelAndView.addObject("clase", claseDAO.findById(idClase));
-        modelAndView.setViewName("datosEnmarca"); 
+        modelAndView.setViewName("Enmarca/datosEnmarca"); 
         return modelAndView;
     }
     

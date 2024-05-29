@@ -1,0 +1,28 @@
+ body {
+            background-color: #f8f9fa;
+            padding-top: 10%;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+         
+
+        }
+        .card {
+            border: none;
+        }
+        .card-title{
+			      background-color:rgb(23, 134, 255);
+			      color:white;
+		}
+        .list-group-item {
+            border: none;
+        }
+        input[type="submit"] {
+            margin-top: 20px;
+        }
+        .btn {
+            margin-top: 20px;
+            background-color: rgb(23, 134, 255);;
+            color:white;
+        }

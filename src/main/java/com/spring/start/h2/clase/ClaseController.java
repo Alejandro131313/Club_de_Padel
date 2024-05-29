@@ -38,7 +38,7 @@ public class ClaseController {
         String nombreUsuario = auth.getName();
         modelAndView.addObject("nombreUsuario", nombreUsuario);
         
-        modelAndView.setViewName("clases");
+        modelAndView.setViewName("Clases/clases");
 
         modelAndView.addObject("clases", claseDAO.findAll());
 
@@ -60,7 +60,7 @@ public class ClaseController {
         
         modelAndView.addObject("nombreUsuario", nombreUsuario);
         
-        modelAndView.setViewName("clase");
+        modelAndView.setViewName("Clases/clase");
 
         modelAndView.addObject("clase", clase);
         modelAndView.addObject("jugadores", jugadores);
@@ -72,7 +72,7 @@ public class ClaseController {
     @GetMapping("/clase/add")
     public ModelAndView addClase() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("formclase");
+        modelAndView.setViewName("Clases/formclase");
         modelAndView.addObject("clase", new Clase());
 
         return modelAndView;
@@ -91,7 +91,7 @@ public class ClaseController {
         if (claseOptional.isPresent()) {
             Clase clase = claseOptional.get();
             modelAndView.addObject("clase", clase);
-            modelAndView.setViewName("formclase");
+            modelAndView.setViewName("Clases/formclase");
         } else {
             modelAndView.setViewName("redirect:/clases");
         }
@@ -106,7 +106,7 @@ public class ClaseController {
       
         if (bindingResult.hasErrors()) {
    
-            modelAndView.setViewName("formclase");
+            modelAndView.setViewName("Clases/formclase");
             return modelAndView;
         }
         claseDAO.save(clase);

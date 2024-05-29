@@ -47,7 +47,7 @@ public class Jugador {
 	private Set<Enmarca> Enmarca;
 	
 	
-	 @OneToOne(mappedBy = "jugador", fetch = FetchType.EAGER)
+	 @OneToOne(mappedBy = "jugador", fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	    private Usuario usuario;
 
 
