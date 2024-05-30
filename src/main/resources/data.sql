@@ -13,8 +13,11 @@ insert into Jugador (Nombre, Edad, Nivel, FK_Equipo) values ('Pablo', 15, 'Alto'
 insert into Jugador (Nombre, Edad, Nivel, FK_Equipo) values ('David', 18, 'Alto', 1);
 insert into Jugador (Nombre, Edad, Nivel, FK_Equipo) values ('Alberto', 25, 'Alto', 2);
 insert into Jugador (Nombre, Edad, Nivel, FK_Equipo) values ('Maria', 25, 'Alto', 3);
-insert into Jugador (Nombre, Edad, Nivel, FK_Equipo) values ('AAAAAA', 25, 'Alto',3);
-insert into Jugador (Nombre, Edad, Nivel, FK_Equipo) values ('BBBBBBB', 25, 'Alto',1);
+insert into Jugador (Nombre, Edad, Nivel, FK_Equipo) values ('Mario', 25, 'Medio',3);
+insert into Jugador (Nombre, Edad, Nivel, FK_Equipo) values ('Isco', 25, 'Alto',1);
+insert into Jugador (Nombre, Edad, Nivel, FK_Equipo) values ('Saleta', 17, 'Medio',3);
+insert into Jugador (Nombre, Edad, Nivel, FK_Equipo) values ('Marcos', 16, 'Medio',1);
+insert into Jugador (Nombre, Edad, Nivel, FK_Equipo) values ('Cristina', 15, 'Bajo',1);
 
 insert into Clase (dia, hora) values ('Lunes', '16:30');
 insert into Clase (dia, hora) values ('Lunes', '18:30');
