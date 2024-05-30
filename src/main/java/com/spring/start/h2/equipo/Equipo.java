@@ -33,7 +33,7 @@ public class Equipo {
 	private String Nombre_equipo;
 
 
-	@OneToMany(targetEntity=Jugador.class,mappedBy="equipo",cascade = CascadeType.ALL)
+	@OneToMany(targetEntity=Jugador.class,mappedBy="equipo")
 	private List<Jugador> jugadores;
 
 	

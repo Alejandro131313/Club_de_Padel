@@ -31,7 +31,7 @@ public class UsuarioController {
         modelAndView.addObject("usuario", usuario);
         modelAndView.addObject("jugador", jugador);
         
-        modelAndView.setViewName("infoUsuario");
+        modelAndView.setViewName("Usuarios/infoUsuario");
         
         return modelAndView;
     }

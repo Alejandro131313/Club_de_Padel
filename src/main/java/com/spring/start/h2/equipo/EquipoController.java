@@ -45,7 +45,7 @@ public class EquipoController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String nombreUsuario = auth.getName();
         modelAndView.addObject("nombreUsuario", nombreUsuario);
-        modelAndView.setViewName("equipos");
+        modelAndView.setViewName("Equipos/equipos");
         modelAndView.addObject("equipos", equipoDAO.findAll());
         return modelAndView;
     }
@@ -57,9 +57,9 @@ public class EquipoController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String nombreUsuario = auth.getName();
         modelAndView.addObject("nombreUsuario", nombreUsuario);
-        modelAndView.setViewName("equipo");
+        modelAndView.setViewName("Equipos/equipo");
         modelAndView.addObject("equipo", equipo);
-        modelAndView.addObject("jugadores", equipo.getJugadores()); // Agregar la lista de jugadores al modelo
+        modelAndView.addObject("jugadores", equipo.getJugadores()); 
         return modelAndView;
     }
 
@@ -72,11 +72,24 @@ public class EquipoController {
 
     @GetMapping("/equipo/delete/{id}")
     public ModelAndView deleteEquipo(@PathVariable long id) {
-        equipoDAO.deleteById(id);
+        Optional<Equipo> equipoOptional = equipoDAO.findById(id);
+        if (equipoOptional.isPresent()) {
+            Equipo equipo = equipoOptional.get();
+            List<Jugador> jugadores = equipo.getJugadores();
+
+            for (Jugador jugador : jugadores) {
+                jugador.setEquipo(null);
+                jugadorDAO.save(jugador);
+            }
+
+            equipoDAO.deleteById(id);
+        }
+
         ModelAndView model = new ModelAndView();
         model.setViewName("redirect:/equipos");
         return model;
     }
+
     
 
 
@@ -89,7 +102,7 @@ public class EquipoController {
     public ModelAndView addEquipoNuevo() {
         ModelAndView modelAndView = new ModelAndView();
         
-        modelAndView.setViewName("crearequipo");
+        modelAndView.setViewName("Equipos/crearequipo");
         modelAndView.addObject("equipo", new Equipo());
         modelAndView.addObject("torneos", torneoDAO.findAll());
         
@@ -101,7 +114,7 @@ public class EquipoController {
     public ModelAndView saveEquipoNuevo(@ModelAttribute("equipo") @Valid Equipo equipo, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
         if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("crearequipo");
+            modelAndView.setViewName("Equipos/crearequipo");
             modelAndView.addObject("torneos", torneoDAO.findAll());
             return modelAndView;
         }
@@ -116,7 +129,7 @@ public class EquipoController {
     @GetMapping("/equipo/edit/{id}")
     public ModelAndView editEquipo(@PathVariable long id) {
     	   ModelAndView modelAndView = new ModelAndView();
-           modelAndView.setViewName("formequipo");
+           modelAndView.setViewName("Equipos/formequipo");
            modelAndView.addObject("equipo", equipoDAO.findById(id).orElse(null));
            Equipo equipo = equipoDAO.findById(id).orElse(null);
            modelAndView.addObject("torneos", torneoDAO.findAll());

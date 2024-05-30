@@ -25,7 +25,7 @@ public class Torneo {
 	private double Premio;
 	
 	
-	@OneToMany(targetEntity=Equipo.class,mappedBy="torneo",cascade = CascadeType.ALL)
+	@OneToMany(targetEntity=Equipo.class,mappedBy="torneo")
 	private List<Equipo> equipos;
 	
 	

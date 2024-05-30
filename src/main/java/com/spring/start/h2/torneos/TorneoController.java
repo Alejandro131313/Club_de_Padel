@@ -41,7 +41,7 @@ public class TorneoController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String nombreUsuario = auth.getName();
         modelAndView.addObject("nombreUsuario", nombreUsuario);
-        modelAndView.setViewName("torneos");
+        modelAndView.setViewName("Torneos/torneos");
         modelAndView.addObject("torneos", torneoDAO.findAll());
         return modelAndView;
     }
@@ -53,25 +53,40 @@ public class TorneoController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String nombreUsuario = auth.getName();
         modelAndView.addObject("nombreUsuario", nombreUsuario);
-        modelAndView.setViewName("torneo");
+        modelAndView.setViewName("Torneos/torneo");
         modelAndView.addObject("torneo", torneo);
         modelAndView.addObject("equipos", torneo.getEquipos()); 
         return modelAndView;
     }
+    
+    
 
     @GetMapping("/torneo/delete/{id}")
     public ModelAndView deleteTorneo(@PathVariable long id) {
-        torneoDAO.deleteById(id);
+        Optional<Torneo> torneoOptional = torneoDAO.findById(id);
+        if (torneoOptional.isPresent()) {
+            Torneo torneo = torneoOptional.get();
+            List<Equipo> equipos = torneo.getEquipos();
+
+            for (Equipo equipo : equipos) {
+                equipo.setTorneo(null);
+                equipoDAO.save(equipo);
+            }
+
+            torneoDAO.deleteById(id);
+        }
+
         ModelAndView model = new ModelAndView();
         model.setViewName("redirect:/torneos");
         return model;
     }
 
+
     
     @GetMapping("/torneo/add")
     public ModelAndView addTorneoNuevo() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("creartorneo");
+        modelAndView.setViewName("Torneos/creartorneo");
         modelAndView.addObject("torneo", new Torneo());
         return modelAndView;
     }
@@ -80,10 +95,10 @@ public class TorneoController {
     @PostMapping("/torneo/save")
     public ModelAndView guardarTorneoNuevo(@ModelAttribute("torneo") Torneo torneo, BindingResult result) {
     	  ModelAndView modelAndView = new ModelAndView();
-    	modelAndView.setViewName("formtorneo");
+    	modelAndView.setViewName("Torneos/formtorneo");
     	
     	if (result.hasErrors()) {
-    		modelAndView.setViewName("formtorneo");
+    		modelAndView.setViewName("Torneos/formtorneo");
     		   return modelAndView;
         }
         torneoDAO.save(torneo);
@@ -96,7 +111,7 @@ public class TorneoController {
     @GetMapping("/torneo/edit/{id}")
     public ModelAndView editTorneo(@PathVariable long id) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("formtorneos");
+        modelAndView.setViewName("Torneos/formtorneos");
         modelAndView.addObject("torneo", torneoDAO.findById(id).orElse(null));
         Torneo torneo = torneoDAO.findById(id).orElse(null);
         modelAndView.addObject("equipos",equipoDAO.findAll() ); 

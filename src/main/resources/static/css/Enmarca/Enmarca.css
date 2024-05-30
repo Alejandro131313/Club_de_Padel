@@ -11,12 +11,11 @@ body {
         }
         table {
             width: 100%;
-            border-collapse: collapse;
+
             margin-bottom: 20px;
         }
         th, td {
             padding: 8px;
-            text-align: left;
             border-bottom: 1px solid #ddd;
         }
         th {
@@ -43,7 +42,6 @@ body {
         }
         th, td {
             text-align: center;
-            vertical-align: middle !important;
         }
         th {
             background-color: rgb(23, 134, 255);;
