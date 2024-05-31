@@ -17,7 +17,11 @@ public class SecurityConfig  {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 			.requestMatchers("/InformacionUsuario").hasAuthority("USER")	
-			.requestMatchers("/menu").hasAuthority("ADMIN")
+			.requestMatchers("/menu",
+					"/clases","/jugadores","/equipos","/torneos","/usuarios",
+					"/enmarca/**","/clase/**","/jugador/**","/equipo/**","/torneo/**","/usuario/**",
+					"/estadisticas"
+					).hasAuthority("ADMIN")
 			.and()
 			.formLogin();
 	
