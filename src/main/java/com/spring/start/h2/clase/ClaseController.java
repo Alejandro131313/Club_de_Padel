@@ -54,12 +54,7 @@ public class ClaseController {
         }
         ModelAndView modelAndView = new ModelAndView();
         
-      //Agregar nombre usuario para mostrarlo
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String nombreUsuario = auth.getName();
-        
-        modelAndView.addObject("nombreUsuario", nombreUsuario);
-        
+     
         modelAndView.setViewName("Clases/clase");
 
         modelAndView.addObject("clase", clase);
@@ -82,11 +77,7 @@ public class ClaseController {
     public ModelAndView editClase(@PathVariable long id) {
         ModelAndView modelAndView = new ModelAndView();
         Optional<Clase> claseOptional = claseDAO.findById(id);
-      //Agregar nombre usuario para mostrarlo
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String nombreUsuario = auth.getName();
-        modelAndView.addObject("nombreUsuario", nombreUsuario);
-        
+    
         
         if (claseOptional.isPresent()) {
             Clase clase = claseOptional.get();

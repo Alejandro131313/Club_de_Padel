@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuario</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+            	<link rel="stylesheet" th:href="@{/css/UsuariosAdmin/Usuario.css}">
 </head>
 <body>
 <div class="container text-center">
@@ -17,7 +18,9 @@
                     <span th:text="${usuario.usuario}"></span>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">Jugador: <span th:text="${usuario.jugador.nombre}"></span></h5>
+                    <h5 class="card-title">Jugador: 
+                        <span th:text="${usuario.jugador != null ? usuario.jugador.nombre : 'Sin Jugador Relacionado'}"></span>
+                    </h5>
                     <p class="card-text">
                         Contraseña: <span th:text="${usuario.password}"></span>
                     </p>
@@ -25,7 +28,7 @@
             </div>
             <div class="col-12 text-center">
                 <p><a th:href="@{/usuarios}" class="btn btn-primary btn-sm">Volver</a></p>
-                <p><a th:href="@{/usuario/edit/{usuario}(usuario=${usuario.usuario})}" class="btn btn-outline-primary btn-sm">Editar</a></p>
+                <p><a th:href="@{/usuario/edit/{usuario}(usuario=${usuario.usuario})}" class="btn btn-primary btn-sm">Editar</a></p>
             </div>
         </div>
     </div>

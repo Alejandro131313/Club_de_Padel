@@ -41,7 +41,7 @@ public class EquipoController {
     @GetMapping("/equipos")
     public ModelAndView equipos() {
         ModelAndView modelAndView = new ModelAndView();
-        // Agregar nombre de usuario para mostrarlo
+
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String nombreUsuario = auth.getName();
         modelAndView.addObject("nombreUsuario", nombreUsuario);
@@ -54,21 +54,12 @@ public class EquipoController {
     public ModelAndView equipo(@PathVariable long id) {
         Equipo equipo = equipoDAO.findById(id).orElse(null);
         ModelAndView modelAndView = new ModelAndView();
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String nombreUsuario = auth.getName();
-        modelAndView.addObject("nombreUsuario", nombreUsuario);
+       
         modelAndView.setViewName("Equipos/equipo");
         modelAndView.addObject("equipo", equipo);
         modelAndView.addObject("jugadores", equipo.getJugadores()); 
         return modelAndView;
     }
-
-
-
-
-
-
-
 
     @GetMapping("/equipo/delete/{id}")
     public ModelAndView deleteEquipo(@PathVariable long id) {
@@ -90,14 +81,6 @@ public class EquipoController {
         return model;
     }
 
-    
-
-
-    
-    
-
-    
-    
     @GetMapping("/equipo/add")
     public ModelAndView addEquipoNuevo() {
         ModelAndView modelAndView = new ModelAndView();
@@ -176,7 +159,7 @@ public class EquipoController {
             long equipoId = jugador.getEquipo().getId_equipo();
             jugador.setEquipo(null);
             jugadorDAO.save(jugador);
-            // Redirigir al usuario de vuelta a la página del equipo con el ID del equipo
+
             return new ModelAndView("redirect:/equipo/" + equipoId);
         } else {
             return new ModelAndView("redirect:/equipos");

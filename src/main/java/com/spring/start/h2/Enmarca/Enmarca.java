@@ -15,7 +15,6 @@ import jakarta.persistence.MapsId;
 public class Enmarca {
 
 	@EmbeddedId
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private EnmarcaKey id;
 
 	@ManyToOne

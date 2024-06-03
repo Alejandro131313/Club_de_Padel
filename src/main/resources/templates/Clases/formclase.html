@@ -27,6 +27,13 @@
                     <input type="text" class="form-control" id="hora" th:field="*{hora}" required>
                     <p th:if="${#fields.hasErrors('Hora')}" th:errors="*{Hora}">Introduzca una hora valida</p>
                 </div>
+                
+                <div class="mb-3">
+                    <label for="nivel" class="form-label">Nivel</label>
+                    <input type="text" class="form-control" id="nivel" th:field="*{nivel}" required>
+                    <p th:if="${#fields.hasErrors('Nivel')}" th:errors="*{Nivel}" class="text-danger">Introduzca un nivel válido</p>
+                </div>
+                
                 <button type="submit" class="btn btn-primary">Guardar</button>
                 <a th:href="@{/clases}" class="btn btn-secondary">Cancelar</a>
             </form>

@@ -37,7 +37,7 @@ public class JugadorController {
     public ModelAndView jugadores(@RequestParam(value = "orden", required = false) String orden) {
         ModelAndView modelAndView = new ModelAndView();
 
-        // Obtener el nombre de usuario para mostrarlo
+
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String nombreUsuario = auth.getName();
         modelAndView.addObject("nombreUsuario", nombreUsuario);
@@ -62,11 +62,8 @@ public class JugadorController {
     public ModelAndView jugador(@PathVariable long id) {
         Jugador jugador = jugadorDAO.findById(id).orElse(null);
         ModelAndView modelAndView = new ModelAndView();
-      //Agregar nombre usuario para mostrarlo
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String nombreUsuario = auth.getName();
-        modelAndView.addObject("nombreUsuario", nombreUsuario);
-        
+
+      
         modelAndView.setViewName("Jugadores/jugador");
 
         modelAndView.addObject("jugador", jugador);
@@ -78,11 +75,8 @@ public class JugadorController {
     @GetMapping("/jugador/add")
     public ModelAndView addJugador() {
         ModelAndView modelAndView = new ModelAndView();
-        //Agregar nombre usuario para mostrarlo
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String nombreUsuario = auth.getName();
-        
-        modelAndView.addObject("nombreUsuario", nombreUsuario);
+
+      
         
         modelAndView.setViewName("Jugadores/formjugador");
         modelAndView.addObject("jugador", new Jugador());
@@ -95,10 +89,8 @@ public class JugadorController {
     public ModelAndView editJugador(@PathVariable long id) {
         ModelAndView modelAndView = new ModelAndView();
         Optional<Jugador> jugadorOptional = jugadorDAO.findById(id);
-      //Agregar nombre usuario para mostrarlo
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String nombreUsuario = auth.getName();
-        modelAndView.addObject("nombreUsuario", nombreUsuario);
+
+     
         
         if (jugadorOptional.isPresent()) {
             Jugador jugador = jugadorOptional.get();

@@ -19,15 +19,15 @@
         }
         th, td {
             text-align: center;
-            vertical-align: middle !important;
+            vertical-align: middle;
         }
-        th {
-            background-color: #007bff;
-            color: #fff;
-        }
+  
         th, td {
             border: 1px solid #dee2e6;
         }
         .btn {
             margin-right: 10px;
         }
+        
+
+

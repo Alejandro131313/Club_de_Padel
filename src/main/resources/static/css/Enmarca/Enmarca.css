@@ -53,3 +53,8 @@ body {
         .btn {
             margin-right: 10px;
         }
+        
+        .table th {
+    background-color: #007bff;
+    color: #fff;
+}

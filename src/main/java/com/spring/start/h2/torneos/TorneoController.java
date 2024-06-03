@@ -50,9 +50,7 @@ public class TorneoController {
     public ModelAndView torneo(@PathVariable long id) {
         Torneo torneo = torneoDAO.findById(id).orElse(null);
         ModelAndView modelAndView = new ModelAndView();
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String nombreUsuario = auth.getName();
-        modelAndView.addObject("nombreUsuario", nombreUsuario);
+       
         modelAndView.setViewName("Torneos/torneo");
         modelAndView.addObject("torneo", torneo);
         modelAndView.addObject("equipos", torneo.getEquipos()); 

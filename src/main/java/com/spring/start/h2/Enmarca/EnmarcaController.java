@@ -54,10 +54,7 @@ public class EnmarcaController {
     @GetMapping("/enmarca/add")
     public ModelAndView enmarcaAdd() {
         ModelAndView modelAndView = new ModelAndView();
-        //Agregar nombre usuario para mostrarlo
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String nombreUsuario = auth.getName();
-        modelAndView.addObject("nombreUsuario", nombreUsuario);
+
         modelAndView.addObject("enmarca", new Enmarca());
         modelAndView.addObject("jugador", jugadorDAO.findAll());
         modelAndView.addObject("clase", claseDAO.findAll());
@@ -104,10 +101,7 @@ public class EnmarcaController {
     @GetMapping("/enmarca/{idJugador}/{idClase}/datosenmarca")
     public ModelAndView obtenerDatosEnmarca(@PathVariable long idJugador, @PathVariable long idClase) {
         ModelAndView modelAndView = new ModelAndView();
-        //Agregar nombre usuario para mostrarlo
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String nombreUsuario = auth.getName();
-        modelAndView.addObject("nombreUsuario", nombreUsuario);
+
         modelAndView.addObject("jugador", jugadorDAO.findById(idJugador));
         modelAndView.addObject("clase", claseDAO.findById(idClase));
         modelAndView.setViewName("Enmarca/datosEnmarca"); 

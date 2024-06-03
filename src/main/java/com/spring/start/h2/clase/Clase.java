@@ -28,7 +28,9 @@ public class Clase {
 	
 	@Pattern(regexp = "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$", message = "La hora debe tener el formato 00:00")
 	String Hora;
-
+	
+	 @Pattern(regexp = "^(Alto|Medio|Principiante)$", message = "El nivel debe ser Alto, Medio o Principiante")
+    String Nivel;
 	
 	@OneToMany(mappedBy = "clase", targetEntity=Enmarca.class,cascade = CascadeType.ALL)
 	@JsonBackReference
@@ -67,10 +69,20 @@ public class Clase {
 		Enmarca = enmarca;
 	}
 
+	public String getNivel() {
+		return Nivel;
+	}
+
+	public void setNivel(String nivel) {
+		Nivel = nivel;
+	}
+
 	@Override
 	public String toString() {
-		return "Clase [id=" + id + ", dia=" + dia + ", Hora=" + Hora + ", Enmarca=" + Enmarca + "]";
+		return "Clase [id=" + id + ", dia=" + dia + ", Hora=" + Hora + ", Nivel=" + Nivel + "]";
 	}
+
+
 
 
 

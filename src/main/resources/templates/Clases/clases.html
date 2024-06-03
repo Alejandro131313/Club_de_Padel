@@ -20,6 +20,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Día</th>
                     <th scope="col">Hora</th>
+                        <th scope="col">Nivel</th>
                     <th scope="col">Acciones</th>
                 </tr>
                 </thead>
@@ -29,6 +30,7 @@
                     <th scope="row" th:text="${clase.id}">1</th>
                     <td th:text="${clase.dia}">Día Clase</td>
                     <td th:text="${clase.hora}">Hora Clase</td>
+                       <td th:text="${clase.nivel}">Nivel Clase</td>
                     <td>
                         <a th:href="@{/clase/{id}(id=${clase.id})}" class="btn btn-sm btn-primary">Ver detalles</a>
                         <a th:href="@{/clase/edit/{id}(id=${clase.id})}" class="btn btn-sm btn-warning">Editar</a>
