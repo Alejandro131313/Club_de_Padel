@@ -7,6 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,7 +18,11 @@ import com.spring.start.h2.Enmarca.EnmarcaDAO;
 import com.spring.start.h2.Enmarca.EnmarcaKey;
 import com.spring.start.h2.clase.Clase;
 import com.spring.start.h2.clase.ClaseDAO;
+import com.spring.start.h2.equipo.Equipo;
+import com.spring.start.h2.equipo.EquipoDAO;
 import com.spring.start.h2.jugador.Jugador;
+import com.spring.start.h2.jugador.JugadorDAO;
+import com.spring.start.h2.torneos.TorneoDAO;
 
 @Controller
 public class UsuarioController {
@@ -30,6 +35,15 @@ public class UsuarioController {
 
     @Autowired
     private EnmarcaDAO enmarcaDAO;
+    
+    @Autowired
+    private EquipoDAO equipoDAO;
+    
+    @Autowired
+    private TorneoDAO torneoDAO;
+    
+    @Autowired
+    private JugadorDAO jugadorDAO;
 
     @GetMapping("/InformacionUsuario")
     public ModelAndView mostrarInfoUsuario() {
@@ -107,5 +121,39 @@ public class UsuarioController {
 
         return "redirect:/InformacionUsuario";
     }
+    
+    @GetMapping("/InformacionClub/{id}")
+    public ModelAndView mostrarInfoClub(@PathVariable long id) {
+        ModelAndView modelAndView = new ModelAndView();
+        
+        // Obtener el equipo por su ID
+        Equipo equipo = equipoDAO.findById(id).orElseThrow(() -> new IllegalArgumentException("Equipo no encontrado"));
+        
+        // Agregar el equipo al modelo
+        modelAndView.addObject("equipo", equipo);
+        
+        // Obtener los jugadores del equipo
+        List<Jugador> jugadores = equipo.getJugadores();
+        modelAndView.addObject("jugadores", jugadores);
+        
+        modelAndView.setViewName("Usuarios/ClubUsuario");
+        
+        return modelAndView;
+    }
+
+//    @GetMapping("/crearEquipo")
+//    public String mostrarFormularioCrearEquipo() {
+//        ModelAndView model = new ModelAndView();
+//        model.addObject("equipo", new Equipo());
+//        model.addObject("torneos", torneoDAO.findAll());
+//        return "Usuarios/CrearEquipoUsuario";
+//    }
+    
+
+    
+    
+    
+    
+    
 
 }

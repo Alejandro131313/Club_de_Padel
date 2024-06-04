@@ -15,44 +15,47 @@
                 <p>Edad del jugador: <span th:text="${jugador.edad}"></span></p>
                 <p>Nivel del jugador: <span th:text="${jugador.nivel}"></span></p>
                 <p>Equipo del jugador:
-                    <span th:if="${jugador.equipo != null}" th:text="${jugador.equipo.Nombre_equipo}"></span>
+                    <span th:if="${jugador.equipo != null}">
+                        <a th:href="@{/InformacionClub/{id}(id=${jugador.equipo.id_equipo})}" th:text="${jugador.equipo.Nombre_equipo}"></a>
+                    </span>
                     <span th:if="${jugador.equipo == null}">Sin Equipo</span>
                 </p>
+                <div>
+                    <a th:href="@{/crearEquipo}" class="btn btn-success btn-sm">Crear Equipo</a>
+                    <a th:href="@{/cambiarEquipo}" class="btn btn-warning btn-sm">Cambiar Equipo</a>
+                </div>
             </div>
             <div class="card-header">Clases:</div>
             <div class="card-body">
-    <ul>
-        <th:block th:each="enmarca : ${jugador.enmarca}">
-            <li>
-                <span th:text="${enmarca.clase.dia}"></span> a las <span th:text="${enmarca.clase.hora}"></span>
-                <form th:action="@{/eliminarEnmarca/{idJugador}/{idClase}(idJugador=${jugador.id}, idClase=${enmarca.clase.id})}" method="get" class="d-inline">
-    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-</form>
-
-            </li>
-        </th:block>
-    </ul>
-</div>
-
-        
-        <div class="card mt-4">
-            <div class="card-header">Clases Disponibles</div>
-            <div class="card-body">
                 <ul>
-                    <th:block th:each="clase : ${clasesDisponibles}">
+                    <th:block th:each="enmarca : ${jugador.enmarca}">
                         <li>
-                            <span th:text="${clase.dia}"></span> a las <span th:text="${clase.hora}"></span>
-                            <form th:action="@{/inscribirEnClase}" method="post" class="d-inline">
-                                <input type="hidden" th:name="claseId" th:value="${clase.id}" />
-                                <button type="submit" class="btn btn-primary btn-sm">Inscribirse</button>
+                            <span th:text="${enmarca.clase.dia}"></span> a las <span th:text="${enmarca.clase.hora}"></span>
+                            <form th:action="@{/eliminarEnmarca/{idJugador}/{idClase}(idJugador=${jugador.id}, idClase=${enmarca.clase.id})}" method="get" class="d-inline">
+                                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                             </form>
                         </li>
                     </th:block>
                 </ul>
             </div>
+
+            <div class="card mt-4">
+                <div class="card-header">Clases Disponibles</div>
+                <div class="card-body">
+                    <ul>
+                        <th:block th:each="clase : ${clasesDisponibles}">
+                            <li>
+                                <span th:text="${clase.dia}"></span> a las <span th:text="${clase.hora}"></span>
+                                <form th:action="@{/inscribirEnClase}" method="post" class="d-inline">
+                                    <input type="hidden" th:name="claseId" th:value="${clase.id}" />
+                                    <button type="submit" class="btn btn-primary btn-sm">Inscribirse</button>
+                                </form>
+                            </li>
+                        </th:block>
+                    </ul>
+                </div>
+            </div>
         </div>
-
-
     </div>
 </body>
 </html>
