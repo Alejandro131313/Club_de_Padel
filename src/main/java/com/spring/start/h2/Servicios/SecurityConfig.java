@@ -16,7 +16,7 @@ public class SecurityConfig  {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.requestMatchers("/InformacionUsuario","/InformacionClub/**","/equipoUsuario/**","/crearEquipo").hasAuthority("USER")	
+			.requestMatchers("/InformacionUsuario","/InformacionClub/**","/equipoUsuario/**","/crearEquipo","/cambiarEquipo","/jugador/cambiarEquipo","/editarTorneo/**").hasAuthority("USER")	
 			.requestMatchers("/menu",
 					"/clases","/jugadores","/equipos","/torneos","/usuarios",
 					"/enmarca/**","/clase/**","/jugador/**","/equipo/**","/torneo/**","/usuario/**",

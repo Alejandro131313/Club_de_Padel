@@ -25,7 +25,7 @@ public class Equipo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id_equipo;
 	
-	 @Min(value = 1, message = "Los premios deben ser min 1")
+	 @Min(value = 0, message = "Los premios deben ser min 1")
 	 @Max(value = 100, message = "Los premios deben ser max 100")
 	private int Premios;
 	

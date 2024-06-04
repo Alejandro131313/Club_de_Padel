@@ -19,6 +19,11 @@
                     <input type="text" class="form-control" id="nombre_equipo" th:field="*{nombre_equipo}" required>
                     <p th:if="${#fields.hasErrors('Nombre_equipo')}" th:errors="*{Nombre_equipo}">Introduce un nombre válido</p>
                 </div>
+				<div class="mb-3">
+				                    <label for="premios" class="form-label">Premios</label>
+				                    <input type="number" class="form-control" id="premios" th:field="*{premios}" value="0" readonly>
+				                </div>
+							   
                 <div class="mb-3">
                     <label for="torneo" class="form-label">Torneo</label>
                     <select class="form-select" id="torneo" th:field="*{torneo}">
@@ -27,7 +32,7 @@
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Guardar</button>
-                <a th:href="@{/InfoUsuario}" class="btn btn-secondary">Cancelar</a>
+                <a th:href="@{/InformacionUsuario}" class="btn btn-secondary">Cancelar</a>
             </form>
         </div>
     </div>

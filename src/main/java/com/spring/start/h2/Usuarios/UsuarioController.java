@@ -22,6 +22,7 @@ import com.spring.start.h2.equipo.Equipo;
 import com.spring.start.h2.equipo.EquipoDAO;
 import com.spring.start.h2.jugador.Jugador;
 import com.spring.start.h2.jugador.JugadorDAO;
+import com.spring.start.h2.torneos.Torneo;
 import com.spring.start.h2.torneos.TorneoDAO;
 
 @Controller
@@ -141,19 +142,95 @@ public class UsuarioController {
         return modelAndView;
     }
 
-//    @GetMapping("/crearEquipo")
-//    public String mostrarFormularioCrearEquipo() {
-//        ModelAndView model = new ModelAndView();
-//        model.addObject("equipo", new Equipo());
-//        model.addObject("torneos", torneoDAO.findAll());
-//        return "Usuarios/CrearEquipoUsuario";
-//    }
+    @GetMapping("/crearEquipo")
+    public ModelAndView  mostrarFormularioCrearEquipo() {
+        ModelAndView model = new ModelAndView();
+        model.addObject("equipo", new Equipo());
+        model.addObject("torneos", torneoDAO.findAll());
+
+        
+        model.setViewName("Usuarios/CrearEquipoUsuario");
+        return model;
+    }
     
 
+    @PostMapping("/equipoUsuario/save")
+    public String guardarEquipoUsuario(@ModelAttribute Equipo equipo) {
+
+        // Guardar el equipo
+        equipoDAO.save(equipo);
+        
+        // Obtener el usuario autenticado
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String nombreUsuario = auth.getName();
+        Usuario usuario = usuarioDAO.findByUsuario(nombreUsuario);
+
+        // Obtener el jugador asociado al usuario
+        Jugador jugador = usuario.getJugador();
+        
+        // Asignar el equipo al jugador
+        jugador.setEquipo(equipo);
+        
+        // Guardar los cambios en el jugador
+        jugadorDAO.save(jugador);
+
+        return "redirect:/InformacionUsuario";
+    }
+
+
+    @GetMapping("/cambiarEquipo")
+    public ModelAndView mostrarFormularioCambiarEquipo() {
+    	ModelAndView model = new ModelAndView();
+        model.addObject("equipos", equipoDAO.findAll());
+        
+        model.setViewName("Usuarios/cambiarEquipoUsuario");
+        return model;
+    }
     
     
     
+
+    @PostMapping("/jugador/cambiarEquipo")
+    public String cambiarEquipo(@RequestParam("equipoId") Long equipoId) {
+        Equipo nuevoEquipo = equipoDAO.findById(equipoId).orElseThrow(() -> new IllegalArgumentException("Equipo no encontrado"));
     
+    	
+     // Obtener el usuario autenticado
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String nombreUsuario = auth.getName();
+        Usuario usuario = usuarioDAO.findByUsuario(nombreUsuario);
+        
+     // Obtener el jugador asociado al usuario
+        Jugador jugador = usuario.getJugador();
+        
+        
+        jugador.setEquipo(nuevoEquipo);
+        jugadorDAO.save(jugador);
+
+        return "redirect:/InformacionUsuario";
+    }
+    
+    
+    @GetMapping("/editarTorneo/{id}")
+    public ModelAndView mostrarFormularioEditarTorneo(@PathVariable Long id) {
+        ModelAndView model = new ModelAndView();
+        Equipo equipo = equipoDAO.findById(id).orElseThrow(() -> new IllegalArgumentException("Equipo no encontrado"));
+        model.addObject("equipo", equipo);
+        model.addObject("torneos", torneoDAO.findAll());
+        model.setViewName("Usuarios/CambiarTorneo");
+        return model;
+    }
+    
+
+    @PostMapping("/editarTorneo/save")
+    public String actualizarTorneo(@RequestParam Long equipoId, @RequestParam Long torneoId) {
+        Equipo equipo = equipoDAO.findById(equipoId).orElseThrow(() -> new IllegalArgumentException("Equipo no encontrado"));
+        Torneo torneo = torneoDAO.findById(torneoId).orElseThrow(() -> new IllegalArgumentException("Torneo no encontrado"));
+        equipo.setTorneo(torneo);
+        equipoDAO.save(equipo);
+
+        return "redirect:/InformacionClub/" + equipoId;
+    }
     
 
 }
