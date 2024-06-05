@@ -25,9 +25,12 @@ public class SecurityConfig  {
 			.requestMatchers("/").permitAll()
 			
 			.and()
-			.formLogin(form -> form
-                    .loginPage("/login")
-                    .permitAll());
+			.formLogin()
+                    .permitAll();
+		
+		
+//		.formLogin(form -> form
+//                .loginPage("/login")
 	
 		return http.build();
 	}
