@@ -78,6 +78,7 @@
 html {
     background-color: #040740;
     font-family: 'Kalnia', sans-serif;
+    color:#E0E724;
   }
   
 
@@ -109,7 +110,7 @@ html {
     padding: 1em;
     background-color: #141857;
     width: 20%;
-    height: 50%;
+    height: 45%;
     transform: translateX(1em);
     transition: 0.2s transform;
     color: #E0E724;
@@ -143,7 +144,7 @@ html {
   
   .icon-facebook {
     font-size: 20px;
-    margin-left: 12%;
+    margin-left: 16%;
   
   }
   
@@ -185,4 +186,108 @@ html {
 
 
     }
-  
+
+
+/* Estilos para el formulario */
+body {
+  font-family: 'Kalnia', sans-serif;
+  background-color: #040740;
+
+  font-weight: bold;
+}
+
+h1 {
+  text-align: center;
+  color: #E0E724;
+}
+
+form {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #151967;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.formulario {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+label {
+  flex: 1;
+
+padding: 10px;
+  font-size: 18px;
+  color: #E0E724;
+}
+
+select,input{
+  border-radius: 5px;
+  width: 80%;
+  height: 45px;
+  background-color:#040740;
+  color:#E0E724;
+
+}
+
+
+textarea {
+  flex: 2;
+  width: 100%;
+  padding: 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color:#040740;
+}
+
+textarea {
+  height: 100px;
+}
+
+input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+button[type="submit"] {
+  background-color: #E0E724;
+  color: #040740;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #040740;
+  color: #E0E724;
+}
+
+
+
+
+.Mensaje{
+margin-bottom: 20px;
+}
+
+/* Estilos para el footer */
+footer {
+  background-color: #040740;
+  padding: 20px;
+  text-align: center;
+  color: #E0E724;
+  margin-top: 40px;
+}
+
+footer a {
+  color: #E0E724;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}

@@ -78,6 +78,7 @@
 html {
     background-color: #040740;
     font-family: 'Kalnia';
+    color:#E0E724;
   }
   
 
@@ -109,7 +110,7 @@ html {
     padding: 1em;
     background-color: #141857;
     width: 20%;
-    height: 50%;
+    height: 45%;
     transform: translateX(1em);
     transition: 0.2s transform;
     color: #E0E724;
@@ -143,7 +144,7 @@ html {
   
   .icon-facebook {
     font-size: 20px;
-  margin-left: 12%;
+  margin-left: 16%;
   
   }
   

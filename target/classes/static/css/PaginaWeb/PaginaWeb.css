@@ -105,9 +105,9 @@ html {
     position: fixed;
     align-items: center;
     text-align: center;
-    right: 100%;
+    right: 99.5%;
     padding: 1em;
-    background-color: #141857;
+    background-color: #151967;
     width: 20%;
     height: 50%;
     transform: translateX(1em);
@@ -186,8 +186,20 @@ html {
 
     }
   
-  
-
+  .Sesion{
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    display: flex;
+    flex-direction: column;
+  }
+.BotonSesion{
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  margin-top: 20px;
+  margin-left: 12%;
+}
 
 
 
@@ -319,6 +331,8 @@ footer {
     text-align: center;
     color: #bfc439;
     margin-top: 40px;
+    font-family: 'Kalnia';
+    font-weight: bold;
   }
  
   a{

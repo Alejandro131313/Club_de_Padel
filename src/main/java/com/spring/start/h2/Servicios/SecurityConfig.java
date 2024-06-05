@@ -22,8 +22,12 @@ public class SecurityConfig  {
 					"/enmarca/**","/clase/**","/jugador/**","/equipo/**","/torneo/**","/usuario/**",
 					"/estadisticas"
 					).hasAuthority("ADMIN")
+			.requestMatchers("/").permitAll()
+			
 			.and()
-			.formLogin();
+			.formLogin(form -> form
+                    .loginPage("/login")
+                    .permitAll());
 	
 		return http.build();
 	}

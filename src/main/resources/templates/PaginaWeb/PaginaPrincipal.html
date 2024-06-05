@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/src/main/resources/static/css/PaginaWeb/PaginaWeb.css">
+  <link rel="stylesheet" th:href="@{/css/PaginaWeb/PaginaWeb.css}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kalnia:wght@200&family=Whisper&display=swap" rel="stylesheet">
@@ -24,7 +25,7 @@
 
     <br>
 
-    <div class="icon-user" class="BotonSesion"> <button id="boton" class="boton">Iniciar Sesion</button>  </div>
+    <div class="icon-user BotonSesion"> <button id="boton" class="boton">Iniciar Sesion</button>  </div>
  
     <br>
 
@@ -46,7 +47,10 @@
   <main>
     <div class="Titulo2"><h1>Sobre Nosotros</h1></div>
     <div class="Quien">
-      <img class="Img1" src="/src/main/resources/static/img/Img2.webp" alt="Img1" />
+	
+		
+		<img class="Img1" src="/src/main/resources/static/img/Img2.webp" alt="Img1" />
+	 <!--<img  th:src="@{/img/Img2.webp}"class="Img1"  alt="Img1" />-->
       <div class="Texto1">
         <h1>¿Quiénes Somos?</h1>
         <h2>Más que un simple club, Pádel Cidón es un centro deportivo y de ocio incomparable donde todos pueden disfrutar y sentirse parte de nuestra comunidad, sin necesidad de ser socios. Reconocido como el Mejor club de pádel del mundo en los Padel World Awards en 2018 y 2021.</h2>
