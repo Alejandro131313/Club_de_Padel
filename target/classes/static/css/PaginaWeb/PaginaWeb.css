@@ -75,9 +75,11 @@
   }
 
 
-html {
+
+  html {
     background-color: #040740;
-    font-family: 'Kalnia', sans-serif;
+    font-family: 'Kalnia';
+    color:#E0E724;
   }
   
 
@@ -105,15 +107,15 @@ html {
     position: fixed;
     align-items: center;
     text-align: center;
-    right: 99.5%;
+    right: 99.4%;
     padding: 1em;
-    background-color: #151967;
+    background-color: #141857;
     width: 20%;
-    height: 50%;
+    height: 45%;
     transform: translateX(1em);
     transition: 0.2s transform;
     color: #E0E724;
-
+    font-weight: bold;
     font-family: 'Kalnia', serif;
   }
   
@@ -186,20 +188,7 @@ html {
 
     }
   
-  .Sesion{
-    text-align: center;
-    align-items: center;
-    align-content: center;
-    display: flex;
-    flex-direction: column;
-  }
-.BotonSesion{
-  text-align: center;
-  align-items: center;
-  align-content: center;
-  margin-top: 20px;
-  margin-left: 12%;
-}
+
 
 
 

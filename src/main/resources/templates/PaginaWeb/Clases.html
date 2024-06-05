@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/src/main/resources/static/css/PaginaWeb/Clases.css">
-  <link rel="stylesheet" href="/src/main/resources/static/css/PaginaWeb/normalize.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kalnia:wght@200&family=Whisper&display=swap" rel="stylesheet">
@@ -29,9 +28,7 @@
  
     <br>
 
-   <div class="icon-ModoOscuro"> <button id="boton" class="boton">Modo Oscuro</button>
-    <script src="./scripts/script.js"></script>  </div>
-  </div>
+
 
 
 
@@ -41,23 +38,65 @@
 </head>
 <body>
   <header>
- <h1>Clases</h1>
+    <h1>Clases</h1>
 
-
-
- <h1>Escuela</h1>
- <h2>Tipos de clases</h2>
- <h1>Campus</h1>
- <h2>¿Tarifas?</h2>
- <h1>Profesores</h1>
- <h1>Preparadores Fisicos</h1>
   </header>
   <main>
+    <section >
+      <h4>Tipos de Clases</h4>
+      <div class="clases">
+      <div class="clase">
+        <h2>Principiante</h2>
+        <img src="/src/main/resources/static/img/Medio.jpg" alt="Clase Principiante">
+        <p>Nuestras clases para principiantes están diseñadas para introducir a los nuevos jugadores al emocionante mundo del pádel. Aprenderás las técnicas básicas y las reglas del juego de manera divertida y dinámica.</p>
+  
+      </div>
+      <div class="clase">
+        <h2>Intermedio</h2>
+        <img src="/src/main/resources/static/img/Medio2.jpg" alt="Clase Intermedia">
+        <p>Para aquellos con un conocimiento básico del pádel, ofrecemos clases de nivel intermedio donde podrás perfeccionar tus habilidades y estrategias de juego para competir a un nivel más alto.</p>
+   
+      </div>
+      <div class="clase">
+        <h2>Avanzado</h2>
+        <img src="/src/main/resources/static/img/Alto.webp" alt="Clase Avanzada">
+        <p>Nuestras clases avanzadas están dirigidas a jugadores experimentados que buscan llevar su juego al siguiente nivel. Trabajaremos en técnicas avanzadas y estrategias complejas para dominar el pádel.</p>
+     
+      </div>
+    </div>
+    </section>
+    <h1>Campus</h1>
+    <section class="campus">
+      <div class="Columna">
+      <h1>Campus de Verano</h1>
+      <p>Nuestro campus de verano es el lugar perfecto para que los jóvenes disfruten de unas vacaciones inolvidables mientras mejoran sus habilidades de pádel. Con entrenadores especializados, actividades recreativas y un ambiente de camaradería, cada día será una nueva aventura. ¡Únete a nosotros y vive el mejor verano de tu vida aprendiendo y divirtiéndote!</p>
+    </div>
+      <img src="/src/main/resources/static/img/Campamento.webp" alt="Campus de Verano">
+    </section>
+    <h1>Empleados</h1>
+    <section class="profesores">
+      <img src="/src/main/resources/static/img/Profesores.jpg" alt="Profesores">
+      <div class="Columna">
+      <h1>Profesores</h1>
+      <p>Contamos con un equipo de profesores altamente cualificados y apasionados por el pádel, comprometidos en ayudarte a mejorar y disfrutar del deporte.</p>
+    </div>
+   
+    </section>
 
+    <section class="preparadores-fisicos">
+      <div class="Columna">
+      <h1>Preparadores Físicos</h1>
+      <p>Nuestros preparadores físicos te ayudarán a mantenerte en la mejor forma posible para maximizar tu rendimiento en la pista.</p>
+    </div>
+      <img src="/src/main/resources/static/img/Fisico.jpg" alt="Preparadores Físicos">
+    </section>
   </main>
-</section>
   <footer>
-
+    <div class="footer-content">
+      <p>Copyright © 2024 | <a href="#">Aviso legal</a> | <a href="#">Política de privacidad y cookies</a></p>
+      <p>CONTACTO</p>
+      <p>999 999 999 | <a href="mailto:info@padelcidon.com">info@padelcidon.com</a></p>
+    </div>
   </footer>
 </body>
 </html>

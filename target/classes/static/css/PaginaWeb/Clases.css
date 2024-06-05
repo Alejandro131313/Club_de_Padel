@@ -78,6 +78,7 @@
 html {
     background-color: #040740;
     font-family: 'Kalnia';
+    color:#E0E724;
   }
   
 
@@ -107,13 +108,13 @@ html {
     text-align: center;
     right: 100%;
     padding: 1em;
-    background-color: #141857;
+    background-color: #151967;
     width: 20%;
-    height: 50%;
+    height: 45%;
     transform: translateX(1em);
     transition: 0.2s transform;
     color: #E0E724;
-
+    font-weight: bold;
     font-family: 'Kalnia', serif;
   }
   
@@ -165,24 +166,124 @@ html {
   }
   
 
-  
+
  
   
   
   .boton{
-  
   border-color: #E0E724;
   background-color: #040740;
   color:#E0E724;
-
   border-radius: 15%;
-
   cursor: pointer;
   }
   .boton:hover{
     background-color: #E0E724;
     color:#040740;
-
-
     }
+
+
+
+h1 {
+  text-align: center;
+font-size: 40px;
+}
+
+h1, h2 {
+  color:  #E0E724;
+}
+h4 {
+  font-size: 40px;
+  margin: 0;
+  margin-top: 10px;
+}
+
+main {
+  margin: 40px 10%;
+  font-weight: bold;
+}
+
+section {
+  background-color: #151967;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.clases{
+
+  display: flex;
+  flex-direction: row;
   
+
+}
+.clase{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  padding: 20px;
+  color:  #E0E724;
+
+flex: 1;
+}
+
+
+.clases .clase, .campus, .profesores, .preparadores-fisicos {
+  margin-bottom: 20px;
+}
+
+
+.clase img {
+  width: 320px;
+height: 200px;
+  border-radius: 10px;
+align-items: center;
+}
+.clase h2 {
+font-size: 30px;
+}
+.clase p {
+  font-size: 14px;
+  }
+
+.campus,.preparadores-fisicos,.profesores {
+  display: flex;
+  flex-direction: row;
+}
+.campus img,.preparadores-fisicos img{
+  width: 40%;
+  flex: 1;
+  border-radius: 10px;
+}
+.Columna{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.profesores img{
+  width: 300px;
+  border-radius: 10px;
+  flex: 1;
+margin: 20px;
+}
+
+footer {
+  background-color: #151967;
+  padding: 20px;
+  text-align: center;
+  color: #bfc439;
+  font-family: 'Kalnia';
+  font-weight: bold;
+}
+
+a {
+  color: #bfc439;
+  text-decoration: none;
+}
+
+h2{
+  font-size: 24px;
+}
+
