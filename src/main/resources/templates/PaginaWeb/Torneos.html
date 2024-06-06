@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/src/main/resources/static/css/PaginaWeb/Torneos.css">
+    <link rel="stylesheet" th:href="@{/css/PaginaWeb/Torneos.css}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kalnia:wght@200&family=Whisper&display=swap" rel="stylesheet">
@@ -15,12 +15,12 @@
       <div class="Hambur">
     <div class="TituloMenu">Club de Padel</div>
     <div class="Iconos"> <div class="icon-facebook"></div><div class="icon-instagram"></div><div class="icon-whatsapp"></div><div class="icon-telegram"></div></div>
-    <div class="icon-user"> <a href="/src/main/resources/templates/PaginaWeb/PaginaPrincipal.html">Inicio</a></div>
-   <div class="icon-users"> <a href="/src/main/resources/templates/PaginaWeb/Clases.html">Clases</a></div>
-    <div class="icon-camara"> <a href="/src/main/resources/templates/PaginaWeb/Instalaciones.html">Instalaciones</a></div>
+    <div class="icon-user"> <a href="/">Inicio</a></div>
+   <div class="icon-users"> <a href="/PaginaClases">Clases</a></div>
+    <div class="icon-camara"> <a href="/PaginaInstalaciones">Instalaciones</a></div>
 
  
-    <div class="icon-bubbles"> <a href="/src/main/resources/templates/PaginaWeb/Formulario.html">Contactanos</a></div>
+    <div class="icon-bubbles"> <a href="/PaginaFormulario">Contactanos</a></div>
 
     <br>
 
@@ -38,30 +38,28 @@
 </head>
 <body>
   <header>
- <h1>Torneos</h1>
+    <h1>Torneos</h1>
   </header>
   <main>
     <div class="Estandar">
-    <h1>Estandar</h1>
-   <div class="Imagenes"> 
-    <img src="/src/main/resources/static/img/Verano.jpg" alt="Clase Verano">
-    <img src="/src/main/resources/static/img/INVIERNO.jpg" alt="Clase INVIERNO">
-    <img src="/src/main/resources/static/img/Otoño.jpg" alt="Clase Otoño">
-    <img src="/src/main/resources/static/img/Primavera.jpg" alt="Clase Primavera">
-   </div>
-  </div>
-   <div class="Especiales">
-   <h1>Especiales</h1>
-   <div class="Imagenes"> 
-    <img src="/src/main/resources/static/img/Halloween.jpg" alt="Clase Halloween">
-    <img src="/src/main/resources/static/img/Carnaval.webp" alt="Clase Carnaval">
-    <img src="/src/main/resources/static/img/Navidad.jpg" alt="Clase Navidad">
-    <img src="/src/main/resources/static/img/Aniversario.jpg" alt="Clase Aniversario">
-
-   </div>
-  </div>
+      <h1>Estandar</h1>
+      <div class="Imagenes"> 
+        <img src="/img/Verano.jpg" alt="Clase Verano">
+        <img src="/img/INVIERNO.jpg" alt="Clase INVIERNO">
+        <img src="/img/Otoño.jpg" alt="Clase Otoño">
+        <img src="/img/Primavera.jpg" alt="Clase Primavera">
+      </div>
+    </div>
+    <div class="Especiales">
+      <h1>Especiales</h1>
+      <div class="Imagenes"> 
+        <img src="/img/Halloween.jpg" alt="Clase Halloween">
+        <img src="/img/Carnaval.webp" alt="Clase Carnaval">
+        <img src="/img/Navidad.jpg" alt="Clase Navidad">
+        <img src="/img/Aniversario.jpg" alt="Clase Aniversario">
+      </div>
+    </div>
   </main>
-
   <footer>
     <div class="footer-content">
       <p>Copyright © 2024 | <a href="#">Aviso legal</a> | <a href="#">Política de privacidad y cookies</a></p>

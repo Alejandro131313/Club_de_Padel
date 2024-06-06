@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/src/main/resources/static/css/PaginaWeb/PaginaWeb.css">
   <link rel="stylesheet" th:href="@{/css/PaginaWeb/PaginaWeb.css}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,16 +15,23 @@
       <div class="Hambur">
     <div class="TituloMenu">Club de Padel</div>
     <div class="Iconos"> <div class="icon-facebook"></div><div class="icon-instagram"></div><div class="icon-whatsapp"></div><div class="icon-telegram"></div></div>
-   <div class="icon-users"> <a href="/src/main/resources/templates/PaginaWeb/Clases.html">Clases</a></div>
-    <div class="icon-Copa"> <a href="/src/main/resources/templates/PaginaWeb/Torneos.html">Torneos</a></div>
-    <div class="icon-camara"> <a href="/src/main/resources/templates/PaginaWeb/Instalaciones.html">Instalaciones</a></div>
+       <div class="icon-user" href="#" sec:authorize="hasAuthority('USER')"> <a href="/InformacionUsuario">Perfil</a></div>
+          <div class="icon-user" href="#" sec:authorize="hasAuthority('ADMIN')"> <a href="/menu">Base de datos</a></div>
+   <div class="icon-users"> <a href="/PaginaClases">Clases</a></div>
+    <div class="icon-Copa"> <a href="/PaginaTorneos">Torneos</a></div>
+    <div class="icon-camara"> <a href="/PaginaInstalaciones">Instalaciones</a></div>
 
  
-    <div class="icon-bubbles"> <a href="/src/main/resources/templates/PaginaWeb/Formulario.html">Contactanos</a></div>
+    <div class="icon-bubbles"> <a href="/PaginaFormulario">Contactanos</a></div>
 
     <br>
 
-    <div class="icon-user BotonSesion"> 	<button id="botonIniciarSesion" class="boton">Iniciar Sesion</button>  </div>
+    <div class="icon-user BotonSesion">
+      
+    
+          <button id="botonIniciarSesion" class="boton">Iniciar Sesión</button>
+
+      </div>
  
     <br>
 
@@ -49,8 +55,7 @@
     <div class="Quien">
 	
 		
-		<img class="Img1" src="/src/main/resources/static/img/Img2.webp" alt="Img1" />
-	 <!--<img  th:src="@{/img/Img2.webp}"class="Img1"  alt="Img1" />-->
+		<img class="Img1" th:src="@{/img/Img2.webp}" alt="Img1" />
       <div class="Texto1">
         <h1>¿Quiénes Somos?</h1>
         <h2>Más que un simple club, Pádel Cidón es un centro deportivo y de ocio incomparable donde todos pueden disfrutar y sentirse parte de nuestra comunidad, sin necesidad de ser socios. Reconocido como el Mejor club de pádel del mundo en los Padel World Awards en 2018 y 2021.</h2>
@@ -62,13 +67,13 @@
         <h1>Normas de Convivencia</h1>
         <h2>Para garantizar una experiencia agradable para todos, solicitamos que los jugadores respeten los horarios de reserva, usen calzado adecuado en las pistas y mantengan una actitud deportiva en todo momento. El incumplimiento de estas normas puede resultar en la suspensión temporal del uso de las instalaciones.</h2>
       </div>
-      <img class="Img2" src="/src/main/resources/static/img/Normativa.jpg" alt="Img2" />
+      <img class="Img2" th:src="@{/img/Normativa.jpg}" alt="Img2" />
     </section>
     <div class="Titulo3"><h1>Nuestros Patrocinadores</h1></div>
     <section class="Normativa">
-      <img class="Img3" src="/src/main/resources/static/img/Adidas.jpg" alt="Img3" />
-      <img class="Img4" src="/src/main/resources/static/img/mahou.png" alt="Img4" />
-      <img class="Img5" src="/src/main/resources/static/img/BullPadel.png" alt="Img5" />
+      <img class="Img3" th:src="@{/img/Adidas.jpg}" alt="Img3" />
+      <img class="Img4" th:src="@{/img/mahou.png}" alt="Img4" />
+      <img class="Img5" th:src="@{/img/BullPadel.png}" alt="Img5" />
     </section>
 
 

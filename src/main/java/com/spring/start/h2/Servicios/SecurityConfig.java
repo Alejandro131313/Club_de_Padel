@@ -20,14 +20,20 @@ public class SecurityConfig  {
 				 .requestMatchers("/", "/login", "/loginUsuario", "/loginTrabajador").permitAll()
 			.requestMatchers("/InformacionUsuario","/InformacionClub/**","/equipoUsuario/**","/crearEquipo","/cambiarEquipo","/jugador/cambiarEquipo","/editarTorneo/**").hasAuthority("USER")	
 			.requestMatchers("/menu","/clases","/jugadores","/equipos","/torneos","/usuarios","/enmarca/**","/clase/**","/jugador/**","/equipo/**","/torneo/**","/usuario/**","/estadisticas").hasAuthority("ADMIN"))
-		.formLogin(form -> form
-                .loginPage("/login")
-                   .permitAll());
+			.formLogin()
+                 .permitAll();
+		 
+		 
 
 		return http.build();
 	}
-
-	  
+	
+	
+//	.formLogin(form -> form
+//  .loginPage("/login")
+//     .permitAll());
+	
+	
 	    @Bean
 	    BCryptPasswordEncoder bCryptPasswordEncoder() {
 	        return new BCryptPasswordEncoder();

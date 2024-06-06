@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/src/main/resources/static/css/PaginaWeb/Instalaciones.css">
+    <link rel="stylesheet" th:href="@{/css/PaginaWeb/Instalaciones.css}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kalnia:wght@200&family=Whisper&display=swap" rel="stylesheet">
@@ -19,10 +19,10 @@
         <div class="icon-whatsapp"></div>
         <div class="icon-telegram"></div>
       </div>
-      <div class="icon-user"> <a href="/src/main/resources/templates/PaginaWeb/PaginaPrincipal.html">Inicio</a></div>
-      <div class="icon-users"> <a href="/src/main/resources/templates/PaginaWeb/Clases.html">Clases</a></div>
-      <div class="icon-Copa"> <a href="/src/main/resources/templates/PaginaWeb/Torneos.html">Torneos</a></div>
-      <div class="icon-bubbles"> <a href="/src/main/resources/templates/PaginaWeb/Formulario.html">Contáctanos</a></div>
+      <div class="icon-user"> <a href="/">Inicio</a></div>
+   <div class="icon-users"> <a href="/PaginaClases">Clases</a></div>
+    <div class="icon-Copa"> <a href="/PaginaTorneos">Torneos</a></div>
+    <div class="icon-bubbles"> <a href="/PaginaFormulario">Contactanos</a></div>
       <br>
       <div class="icon-user BotonSesion">
         <button id="boton" class="boton">Iniciar Sesión</button>
@@ -38,43 +38,42 @@
 
 
   <main>
-    <h2> Área Deportiva</h2>
+    <h2>Área Deportiva</h2>
     <section class="instalaciones">
       <div class="clase">
-      <h3>Pistas</h3>
-      <p>Disponemos de varias pistas de pádel con superficie de última generación para garantizar el mejor juego.</p>
+        <h3>Pistas</h3>
+        <p>Disponemos de varias pistas de pádel con superficie de última generación para garantizar el mejor juego.</p>
       </div>
-      <img src="/src/main/resources/static/img/Pistas.webp" alt="Pistas de Pádel">
+      <img src="/img/Pistas.webp" alt="Pistas de Pádel">
     </section>
     <section class="instalaciones">
-      <img src="/src/main/resources/static/img/Gym.jpg" alt="Gimnasio">
+      <img src="/img/Gym.jpg" alt="Gimnasio">
       <div class="clase">
         <h3>Gimnasio</h3>
-      <p>Nuestro gimnasio está equipado con máquinas modernas y espacios para ejercicios de fuerza y cardio.</p>
-    </div>
+        <p>Nuestro gimnasio está equipado con máquinas modernas y espacios para ejercicios de fuerza y cardio.</p>
+      </div>
     </section>
     <section class="instalaciones">
       <div class="clase">
-      <h3>Sauna</h3>
-      <p>Relájate después de un intenso partido en nuestra sauna, diseñada para tu bienestar y recuperación.</p>
-    </div>
-      <img src="/src/main/resources/static/img/sauna.webp" alt="Sauna">
+        <h3>Sauna</h3>
+        <p>Relájate después de un intenso partido en nuestra sauna, diseñada para tu bienestar y recuperación.</p>
+      </div>
+      <img src="/img/sauna.webp" alt="Sauna">
     </section>
     <h2>Servicios Complementarios</h2>
     <section class="instalaciones">
-  
-      <img src="/src/main/resources/static/img/Parking.jpg" alt="Parking">
+      <img src="/img/Parking.jpg" alt="Parking">
       <div class="clase">
         <h3>Parking</h3>
-      <p>Contamos con un amplio parking para que puedas acceder cómodamente a nuestras instalaciones.</p>
-    </div>
+        <p>Contamos con un amplio parking para que puedas acceder cómodamente a nuestras instalaciones.</p>
+      </div>
     </section>
     <section class="instalaciones">
       <div class="clase">
-      <h3>Tienda</h3>
-      <p>Visita nuestra tienda de equipamiento donde encontrarás todo lo necesario para jugar al pádel: raquetas, pelotas, ropa deportiva y accesorios.</p>
-    </div>
-      <img src="/src/main/resources/static/img/Tienda.jpg" alt="Tienda de Equipamiento">
+        <h3>Tienda</h3>
+        <p>Visita nuestra tienda de equipamiento donde encontrarás todo lo necesario para jugar al pádel: raquetas, pelotas, ropa deportiva y accesorios.</p>
+      </div>
+      <img src="/img/Tienda.jpg" alt="Tienda de Equipamiento">
     </section>
   </main>
   <footer>
