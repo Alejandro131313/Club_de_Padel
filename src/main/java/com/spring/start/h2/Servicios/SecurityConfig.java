@@ -13,25 +13,17 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig  {
 
 	
+	@SuppressWarnings({ "deprecation", "removal" })
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
+		 http.csrf().disable().authorizeRequests(requests -> requests
+				 .requestMatchers("/", "/login", "/loginUsuario", "/loginTrabajador").permitAll()
 			.requestMatchers("/InformacionUsuario","/InformacionClub/**","/equipoUsuario/**","/crearEquipo","/cambiarEquipo","/jugador/cambiarEquipo","/editarTorneo/**").hasAuthority("USER")	
-			.requestMatchers("/menu",
-					"/clases","/jugadores","/equipos","/torneos","/usuarios",
-					"/enmarca/**","/clase/**","/jugador/**","/equipo/**","/torneo/**","/usuario/**",
-					"/estadisticas"
-					).hasAuthority("ADMIN")
-			.requestMatchers("/").permitAll()
-			
-			.and()
-			.formLogin()
-                    .permitAll();
-		
-		
-//		.formLogin(form -> form
-//                .loginPage("/login")
-	
+			.requestMatchers("/menu","/clases","/jugadores","/equipos","/torneos","/usuarios","/enmarca/**","/clase/**","/jugador/**","/equipo/**","/torneo/**","/usuario/**","/estadisticas").hasAuthority("ADMIN"))
+		.formLogin(form -> form
+                .loginPage("/login")
+                   .permitAll());
+
 		return http.build();
 	}
 

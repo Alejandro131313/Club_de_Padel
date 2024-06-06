@@ -2,344 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway|Ubuntu" rel="stylesheet">
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <style>
-		@font-face {
-		    font-family: 'icomoon';
-		    src: url('fonts/icomoon.eot?z5kivn');
-		    src: url('fonts/icomoon.eot?z5kivn#iefix') format('embedded-opentype'),
-		      url('fonts/icomoon.ttf?z5kivn') format('truetype'),
-		      url('fonts/icomoon.woff?z5kivn') format('woff'),
-		      url('fonts/icomoon.svg?z5kivn#icomoon') format('svg');
-		    font-weight: normal;
-		    font-style: normal;
-		    font-display: block;
-		}
-		
-		[class^="icon-"],
-		[class*=" icon-"] {
-		    /* use !important to prevent issues with browser extensions that change fonts */
-		    font-family: 'icomoon' !important;
-		    speak: never;
-		    font-style: normal;
-		    font-weight: normal;
-		    font-variant: normal;
-		    text-transform: none;
-		    line-height: 1;
-		  
-		    /* Better Font Rendering =========== */
-		    -webkit-font-smoothing: antialiased;
-		    -moz-osx-font-smoothing: grayscale;
-		}
-		
-		.icon-camara:before {
-		    content: "\e90f";
-		}
-		
-		.icon-location:before {
-		    content: "\e948";
-		}
-		
-		.icon-bubbles:before {
-		    content: "\e970";
-		}
-		
-		.icon-user:before {
-		    content: "\e971";
-		}
-		
-		.icon-users:before {
-		    content: "\e972";
-		}
-		
-		.icon-Copa:before {
-		    content: "\e99e";
-		}
-		
-		.icon-ModoOscuro:before {
-		    content: "\e9d6";
-		}
-		
-		.icon-facebook:before {
-		    content: "\ea91";
-		}
-		
-		.icon-instagram:before {
-		    content: "\ea92";
-		}
-		
-		.icon-whatsapp:before {
-		    content: "\ea93";
-		}
-		
-		.icon-telegram:before {
-		    content: "\ea95";
-		}
-		
-		.icon-twitter:before {
-		    content: "\ea96";
-		}
-		
-		html {
-		    background-color: #040740;
-		    font-family: 'Kalnia', sans-serif;
-		}
-		
-		body {
-		    margin: 0;
-		    padding: 0;
-		    display: flex;
-		    justify-content: center;
-		    align-items: center;
-		    min-height: 100vh;
-		}
-		
-		.contenedor-formularios {
-		    background: #151967;
-		    padding: 40px;
-		    max-width: 500px;
-		    width: 100%;
-		    border-radius: 10px;
-		    box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.1);
-		    color: #E0E724;
-		}
-		
-		.contenedor-tabs {
-		    list-style: none;
-		    padding: 0;
-		    margin: 0 0 20px 0;
-		    display: flex;
-		    justify-content: space-between;
-		}
-		
-		.contenedor-tabs .tab {
-		    flex: 1;
-		    text-align: center;
-		    cursor: pointer;
-		    padding: 10px 20px;
-		    background: #040740;
-		    border-radius: 5px;
-		    transition: background 0.3s ease-in-out;
-		}
-		
-		.contenedor-tabs .tab a {
-		    text-decoration: none;
-		    color: #E0E724;
-		    font-family: 'Kalnia', sans-serif;
-		    font-weight: bold;
-		}
-		
-		.contenedor-tabs .tab.active {
-		    background: #E0E724;
-		}
-		
-		.contenedor-tabs .tab.active a {
-		    color: #040740;
-		}
-		
-		.contenido-tab > div {
-		    display: none;
-		}
-		
-		.contenido-tab > div:first-child {
-		    display: block;
-		}
-		
-		h1 {
-		    margin: 0 0 20px;
-		    font-size: 24px;
-		    text-align: center;
-		    color: #bfc439;
-		}
-		
-		.contenedor-input {
-		    position: relative;
-		    margin-bottom: 25px;
-		}
-		
-		.contenedor-input label {
-		    position: absolute;
-		    top: 10px;
-		    left: 10px;
-		    color: #bfc439;
-		    transition: all 0.25s ease-in-out;
-		}
-		
-		.contenedor-input input {
-		    width: 100%;
-		    padding: 10px 10px 10px 30px;
-		    border: none;
-		    border-bottom: 2px solid #E0E724;
-		    background: #151967;
-		    color: #bfc439;
-		}
-		
-		.contenedor-input input:focus {
-		    outline: none;
-		    border-color: #bfc439;
-		}
-		
-		.contenedor-input input:focus + label,
-		.contenedor-input input:not(:placeholder-shown) + label {
-		    top: -20px;
-		    left: 10px;
-		    font-size: 12px;
-		}
-		
-		.forgot {
-		    text-align: right;
-		    margin-top: -10px;
-		}
-		
-		.forgot a {
-		    color: #bfc439;
-		    text-decoration: none;
-		}
-		
-		.forgot a:hover {
-		    text-decoration: underline;
-		}
-		
-		.button {
-		    display: block;
-		    width: 100%;
-		    padding: 10px;
-		    border: none;
-		    border-radius: 5px;
-		    background: #E0E724;
-		    color: #040740;
-		    font-size: 16px;
-		    cursor: pointer;
-		    transition: background 0.3s ease-in-out;
-		}
-		
-		.button:hover {
-		    background: #bfc439;
-		}
-
-    </style>
-
-    <title>Formulario Login de Usuarios y Trabajadores</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
 </head>
 <body>
-
-   <!-- Formularios -->
-    <div class="contenedor-formularios">
-        <!-- Links de los formularios -->
-        <ul class="contenedor-tabs">
-            <li class="tab tab-primera active"><a href="#login-usuarios">Iniciar Sesión Usuarios</a></li>
-            <li class="tab tab-segunda"><a href="#login-trabajadores">Iniciar Sesión Trabajadores</a></li>
-        </ul>
-
-        <!-- Contenido de los Formularios -->
-        <div class="contenido-tab">
-            <!-- Iniciar Sesión Usuarios -->
-            <div id="login-usuarios">
-                <h1>Iniciar Sesión Usuarios</h1>
-                <form id="form-usuarios" action="#" method="post">
-                    <div class="contenedor-input">
-                        <label>
-                            Usuario <span class="req">*</span>
-                        </label>
-                        <input type="text" required>
-                    </div>
-
-                    <div class="contenedor-input">
-                        <label>
-                            Contraseña <span class="req">*</span>
-                        </label>
-                        <input type="password" required>
-                    </div>
-  
-                    <input type="submit" class="button button-block" value="Iniciar Sesión">
-                </form>
-            </div>
-
-            <!-- Iniciar Sesión Trabajadores -->
-            <div id="login-trabajadores">
-                <h1>Iniciar Sesión Trabajadores</h1>
-                <form id="form-trabajadores" action="#" method="post">
-                    <div class="contenedor-input">
-                        <label>
-                            Usuario <span class="req">*</span>
-                        </label>
-                        <input type="text" required>
-                    </div>
-
-                    <div class="contenedor-input">
-                        <label>
-                            Contraseña <span class="req">*</span>
-                        </label>
-                        <input type="password" required>
-                    </div>
-
-                    <input type="submit" class="button button-block" value="Iniciar Sesión">
-                </form>
-            </div>
+    <h2>Login Usuario</h2>
+    <form action="/loginUsuario" method="post">
+        <div>
+            <label for="username">Usuario:</label>
+            <input type="text" id="username" name="usuario" required>
         </div>
-    </div>
-
-   <script>
-        $(document).ready(function () {
-            $(".contenedor-formularios")
-                .find("input, textarea")
-                .on("keyup blur focus", function (e) {
-                    var $this = $(this),
-                        label = $this.prev("label");
-
-                    if (e.type === "keyup") {
-                        if ($this.val() === "") {
-                            label.removeClass("active highlight");
-                        } else {
-                            label.addClass("active highlight");
-                        }
-                    } else if (e.type === "blur") {
-                        if ($this.val() === "") {
-                            label.removeClass("active highlight");
-                        } else {
-                            label.removeClass("highlight");
-                        }
-                    } else if (e.type === "focus") {
-                        if ($this.val() === "") {
-                            label.removeClass("highlight");
-                        } else if ($this.val() !== "") {
-                            label.addClass("highlight");
-                        }
-                    }
-                });
-
-            $(".tab a").on("click", function (e) {
-                e.preventDefault();
-
-                $(this).parent().addClass("active");
-                $(this).parent().siblings().removeClass("active");
-
-                var target = $(this).attr("href");
-
-                $(".contenido-tab > div").not(target).hide();
-
-                $(target).fadeIn(600);
-            });
-
-            // Manejar el envío del formulario y redirigir según el tipo de usuario
-            $('#form-usuarios').on('submit', function(e) {
-                e.preventDefault();
-                window.location.href = '/InformacionUsuario';
-            });
-
-            $('#form-trabajadores').on('submit', function(e) {
-                e.preventDefault();
-                window.location.href = '/menu';
-            });
-        });
-    </script>
-
+        <div>
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div>
+            <button type="submit">Iniciar sesión</button>
+        </div>
+    </form>
+    <h2>Login Trabajador</h2>
+    <form action="/loginTrabajador" method="post">
+        <div>
+            <label for="username">Usuario:</label>
+            <input type="text" id="username" name="usuario" required>
+        </div>
+        <div>
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div>
+            <button type="submit">Iniciar sesión</button>
+        </div>
+    </form>
 </body>
 </html>
+

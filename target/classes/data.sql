@@ -71,6 +71,6 @@ insert into Enmarca (jugador_id, clase_id) values (5, 3);
 
 
 
-insert into usuario (usuario,password) values ('marcos','$2a$12$3fP2T8dyuujgKtm9Qi.W7.zMN510cFRL0jAdtZkK9IfUr8SMMF6ia');
-insert into usuario (usuario,password,jugador_id) values ('alejandro','$2a$12$ULYuqubmC8lMaacQVs2YD.ChrGrHmfAqR.O3BO7dCB1yGim2ObTdO',1);
-insert into usuario (usuario,password,jugador_id) values ('pablo','$2a$12$0OKxG8N0xoGdUTsZYivAc.zf8kc5QfFlGnhMazrdrFKOoYc5YDHfi',2);
+insert into usuario (usuario,password) values ('marcos','$2a$12$pxkU//pg10V55CwNOh/52.tCKg7SE/Y5vx6Dgs3v0wA.FaSHojbuC');
+insert into usuario (usuario,password,jugador_id) values ('alejandro','$2a$12$rgiuFep5BGVMA3Y8.8XVAOZ28X1iORddXe/.QxTv742QQ2VXoxFkS',1);
+insert into usuario (usuario,password,jugador_id) values ('pablo','$2a$12$B2VWFKuxS1gnrgd0RgWcBOc92m7Zi6yiWP8N/Mt69yKALUE98.wZ.',2);

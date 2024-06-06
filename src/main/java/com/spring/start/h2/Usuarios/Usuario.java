@@ -94,6 +94,10 @@ public class Usuario implements UserDetails {
 	public void setJugador(Jugador jugador) {
 		this.jugador = jugador;
 	}
+	@Override
+	public String toString() {
+		return "Usuario [usuario=" + usuario + ", password=" + password + "]";
+	}
 
 
 
