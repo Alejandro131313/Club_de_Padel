@@ -275,7 +275,7 @@ html {
       }
       
       main {
-        margin: 40px 10%;
+        margin: 100px 14%;
         font-weight: bold;
       }
       
@@ -299,6 +299,9 @@ html {
      
       .clase{
         flex: 1;
+        margin-right: 80px;
+        margin-left: 80px;
+        text-align: center;
       }
    
      .instalaciones img{
