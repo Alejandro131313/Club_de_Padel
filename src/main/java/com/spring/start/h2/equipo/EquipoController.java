@@ -128,7 +128,7 @@ public class EquipoController {
         // Obtener la lista de jugadores seleccionados desde el formulario
         String[] jugadoresSeleccionados = request.getParameterValues("jugadoresSeleccionados");
 
-        // Si hay errores de validación, regresar al formulario
+        // Si hay errores regresa al formulario
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("Equipos/formequipo");
             modelAndView.addObject("torneos", torneoDAO.findAll());
@@ -136,7 +136,7 @@ public class EquipoController {
             return modelAndView;
         }
 
-        // Obtener el equipo original de la base de datos
+        // Obtener el equipo de la base de datos
         Optional<Equipo> equipoOriginalOptional = equipoDAO.findById(equipo.getId_equipo());
         if (equipoOriginalOptional.isPresent()) {
             Equipo equipoOriginal = equipoOriginalOptional.get();
@@ -159,7 +159,7 @@ public class EquipoController {
             // Obtener la lista de jugadores del equipo original
             List<Jugador> jugadoresOriginales = equipoOriginal.getJugadores();
 
-            // Remover los jugadores que ya no están seleccionados
+            // Eliminar los jugadores que ya no están seleccionados
             for (Jugador jugadorOriginal : jugadoresOriginales) {
                 if (!jugadoresSeleccionadosList.contains(jugadorOriginal)) {
                     jugadorOriginal.setEquipo(null);

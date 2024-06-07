@@ -120,31 +120,58 @@ public class TorneoController {
     @PostMapping("/torneo/saveEdit")
     public ModelAndView saveEditTorneo(@ModelAttribute("torneo") @Valid Torneo torneo, BindingResult bindingResult, HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
-        
-        
+
+        // Obtener la lista de equipos seleccionados desde el formulario
         String[] equiposSeleccionados = request.getParameterValues("equiposSeleccionados");
-        
-        if (equiposSeleccionados != null) {
-        	
+
+        // Si hay errores regresa al formulario
+        if (bindingResult.hasErrors()) {
+            modelAndView.setViewName("Torneos/formtorneos");
+            modelAndView.addObject("equipos", equipoDAO.findAll());
+            return modelAndView;
+        }
+
+        // Obtener el torneo de la base de datos
+        Optional<Torneo> torneoOriginalOptional = torneoDAO.findById(torneo.getId_torneo());
+        if (torneoOriginalOptional.isPresent()) {
+            Torneo torneoOriginal = torneoOriginalOptional.get();
+
+            // Crear una lista para los equipos seleccionados
             List<Equipo> equiposSeleccionadosList = new ArrayList<>();
-            
-            for (String equipoId : equiposSeleccionados) {
-            	
-                Long id = Long.valueOf(equipoId);
-                Optional<Equipo> equipoOptional = equipoDAO.findById(id);
-                equipoOptional.ifPresent(equipo -> {
-                    equipo.setTorneo(torneo);
-                    equiposSeleccionadosList.add(equipo);
-                });
+
+            // Si hay equipos seleccionados, actualizarlos
+            if (equiposSeleccionados != null) {
+                for (String equipoId : equiposSeleccionados) {
+                    Long id = Long.valueOf(equipoId);
+                    Optional<Equipo> equipoOptional = equipoDAO.findById(id);
+                    equipoOptional.ifPresent(equipo -> {
+                        equipo.setTorneo(torneo);
+                        equiposSeleccionadosList.add(equipo);
+                    });
+                }
             }
+
+            // Obtener la lista de equipos del torneo original
+            List<Equipo> equiposOriginales = torneoOriginal.getEquipos();
+
+            // Eliminar los equipos que ya no están seleccionados
+            for (Equipo equipoOriginal : equiposOriginales) {
+                if (!equiposSeleccionadosList.contains(equipoOriginal)) {
+                    equipoOriginal.setTorneo(null);
+                    equipoDAO.save(equipoOriginal);
+                }
+            }
+
+            // Actualizar la lista de equipos del torneo
             torneo.setEquipos(equiposSeleccionadosList);
         }
 
+        // Guardar el torneo actualizado
         torneoDAO.save(torneo);
         modelAndView.setViewName("redirect:/torneos");
         return modelAndView;
     }
-    
+
 
     
     
