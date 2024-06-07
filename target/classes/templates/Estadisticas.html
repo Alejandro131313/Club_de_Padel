@@ -13,81 +13,85 @@
     <h1 class="mt-5">Estadísticas</h1>
 
     <div class="container">
-        <h1 class="mt-5">Estadísticas de Jugadores:</h1>
-        <div class="container">
-            <h2>Jugador con más clases:</h2>
-            <p th:each="jugador : ${jugadoresConMasClases}">
-                <span th:text="${jugador.Nombre}"></span> -
-                <span th:text="${#lists.size(jugador.enmarca)}"></span> Clases
-            </p>
-        </div>
-  
-		<div class="container">
-		    <h2>Jugador más joven:</h2>
-			<p th:each="jugador : ${jugadorMasJoven}">
-				Nombre:  <span th:text="${jugador.Nombre}"></span> -
-				Edad:	<span th:text="${jugador.Edad}"></span>
-			     </p>
-		</div>
-
-		<div class="container">
-			    <h2>Jugador más viejo:</h2>
-				<p th:each="jugador : ${jugadorMasViejo}">
-					Nombre:  <span th:text="${jugador.Nombre}"></span> -
-					Edad:	<span th:text="${jugador.Edad}"></span>
-				     </p>
-			</div>
-
-		
-		
-		<div class="container">
-		    <h2 class="mt-5">Jugadores Menores de Edad:</h2>
-		    <ul>
-		        <li th:each="jugador : ${jugadoresMenoresDeEdad}">
-		            <span th:text="${jugador.Nombre}"></span> - Edad: <span th:text="${jugador.Edad}"></span>
-		        </li>
-		    </ul>
-		</div>
-
-		
-		
-		
-    </div>
-    <div class="container">
-        <h1 class="mt-5">Estadísticas de Equipos:</h1>
-        <div class="container">
-            <h2>Equipo con más premios:</h2>
-            <ul>
-                <li th:each="equipo : ${equiposConMasPremios}">
-                    <span th:text="${equipo.nombre_equipo}"></span> - Premios: <span th:text="${equipo.premios}"></span>
-                </li>
-            </ul>
-        </div>
-        <div class="container">
-            <h2>Equipo con más Jugadores:</h2>
-            <ul>
-                <li th:each="equipo : ${equiposConMasJugadores}">
-                    <span th:text="${equipo.nombre_equipo}"></span> - Jugadores: <span th:text="${#lists.size(equipo.jugadores)}"></span>
-                </li>
-            </ul>
-        </div>
-
-        <div class="container">
-			<h1 class="mt-5">Estadisticas de Clases</h1>
-			<div class="container">
-            <h2 class="mt-5">Clases por Día</h2>
-            <select id="diaSelect" class="form-select" aria-label="Selecciona el día">
-                <option selected>Selecciona el día</option>
-                <option value="Lunes">Lunes</option>
-                <option value="Martes">Martes</option>
-                <option value="Miércoles">Miércoles</option>
-                <option value="Jueves">Jueves</option>
-                <option value="Viernes">Viernes</option>
-            </select>
-            <div id="clasesDia" class="mt-3">
-                <!-- Aquí se mostrarán las clases -->
+        <button class="accordion"><h4 class="mt-3">Estadísticas de Jugadores:</h4></button>
+        <div class="panel">
+        
+            <div class="container">
+                <h2>Jugador con más clases:</h2>
+                <p>
+                    <span class="player-name" th:text="${jugadoresConMasClases[0].Nombre}"></span> -
+                    <span th:text="${#lists.size(jugadoresConMasClases[0].enmarca)}"></span> Clases
+                </p>
             </div>
-			</div>
+
+            <div class="container">
+                <h2>Jugador más joven:</h2>
+                <p>
+                    Nombre: <span class="player-name" th:text="${jugadorMasJoven[0].Nombre}"></span> -
+                    Edad: <span th:text="${jugadorMasJoven[0].Edad}"></span>
+                </p>
+            </div>
+
+            <div class="container">
+                <h2>Jugador más viejo:</h2>
+                <p>
+                    Nombre: <span class="player-name" th:text="${jugadorMasViejo[0].Nombre}"></span> -
+                    Edad: <span th:text="${jugadorMasViejo[0].Edad}"></span>
+                </p>
+            </div>
+
+            <div class="container">
+                <h2>Jugadores Menores de Edad:</h2>
+                <ul>
+                    <li th:each="jugador : ${jugadoresMenoresDeEdad}">
+                        <span class="player-name" th:text="${jugador.Nombre}"></span> - Edad: <span th:text="${jugador.Edad}"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <button class="accordion">		<h4 class="mt-3">Estadísticas de Equipos:</h4></button>
+        <div class="panel">
+
+            <div class="container">
+                <h2>Equipo con más premios:</h2>
+                <ul>
+                    <li th:each="equipo : ${equiposConMasPremios}">
+                        <span th:text="${equipo.nombre_equipo}"></span> - Premios: <span th:text="${equipo.premios}"></span>
+                    </li>
+                </ul>
+            </div>
+            <div class="container">
+                <h2>Equipo con más Jugadores:</h2>
+                <ul>
+                    <li th:each="equipo : ${equiposConMasJugadores}">
+                        <span th:text="${equipo.nombre_equipo}"></span> - Jugadores: <span th:text="${#lists.size(equipo.jugadores)}"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <button class="accordion">		<h4 class="mt-3">Estadisticas de Clases</h4></button>
+        <div class="panel">
+ 
+            <div class="container">
+                <h2>Clases por Día:</h2>
+                <select id="diaSelect" class="form-select" aria-label="Selecciona el día">
+                    <option selected>Selecciona el día</option>
+                    <option value="Lunes">Lunes</option>
+                    <option value="Martes">Martes</option>
+                    <option value="Miércoles">Miércoles</option>
+                    <option value="Jueves">Jueves</option>
+                    <option value="Viernes">Viernes</option>
+                </select>
+                <div id="clasesDia" class="mt-3">
+                    <!-- Aquí se mostrarán las clases -->
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -107,6 +111,20 @@ document.getElementById('diaSelect').addEventListener('change', function() {
             .catch(error => console.error('Error:', error));
     }
 });
+
+var acc = document.getElementsByClassName("accordion");
+
+for (var i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+            panel.style.display = "none";
+        } else {
+            panel.style.display = "block";
+        }
+    });
+}
 </script>
 
 </body>
