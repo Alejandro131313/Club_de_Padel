@@ -9,10 +9,9 @@
 </head>
 
 <body>
-
+<div class="Info">
 <div class="container">
-    <div class="row">
-        <div class="col-md-6">
+        <div class="col">
             <h2>Datos del Jugador</h2>
               <p th:if="${jugador.isPresent()}">
                 <strong>ID:</strong> <span th:text="${jugador.get().id}"></span>
@@ -27,7 +26,9 @@
                 <strong>Nivel:</strong> <span th:text="${jugador.get().nivel}"></span>
             </p>
         </div>
-        <div class="col-md-6">
+		</div>
+		<div class="container">
+        <div class="col">
             <h2>Datos de la Clase</h2>
                  <p th:if="${clase.isPresent()}">
                 <strong>ID:</strong> <span th:text="${clase.get().id}"></span>
@@ -40,7 +41,9 @@
             </p>
         </div>
     </div>
-</div>
-       <a th:href="@{~/enmarca}" class="btn btn-primary btn-sm">Volver</a>
+
+	</div>
+	<a th:href="@{~/enmarca}" class="btn btn-primary btn-sm">Volver</a>
 </body>
+
 </html>

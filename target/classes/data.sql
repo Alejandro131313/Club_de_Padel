@@ -19,6 +19,11 @@ insert into Jugador (Nombre, Edad, Nivel, FK_Equipo) values ('Saleta', 17, 'Medi
 insert into Jugador (Nombre, Edad, Nivel, FK_Equipo) values ('Marcos', 16, 'Medio',1);
 insert into Jugador (Nombre, Edad, Nivel, FK_Equipo) values ('Cristina', 15, 'Principiante',1);
 
+insert into Jugador (Nombre, Edad, Nivel) values ('Alejandro Menendez', 16, 'Medio');
+insert into Jugador (Nombre, Edad, Nivel) values ('Cristina Fernandez', 15, 'Principiante');
+insert into Jugador (Nombre, Edad, Nivel) values ('Marcos Pintos', 16, 'Medio');
+insert into Jugador (Nombre, Edad, Nivel) values ('Pedro Cuenca', 15, 'Principiante');
+
 insert into Clase (dia, hora, Nivel) values ('Lunes', '16:30','Medio');
 insert into Clase (dia, hora, Nivel) values ('Lunes', '16:30','Alto');
 insert into Clase (dia, hora, Nivel) values ('Lunes', '18:30','Alto');

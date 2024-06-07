@@ -125,26 +125,58 @@ public class EquipoController {
     public ModelAndView saveEditEquipo(@ModelAttribute("equipo") @Valid Equipo equipo, BindingResult bindingResult, HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
 
+        // Obtener la lista de jugadores seleccionados desde el formulario
         String[] jugadoresSeleccionados = request.getParameterValues("jugadoresSeleccionados");
 
-        if (jugadoresSeleccionados != null) {
+        // Si hay errores de validación, regresar al formulario
+        if (bindingResult.hasErrors()) {
+            modelAndView.setViewName("Equipos/formequipo");
+            modelAndView.addObject("torneos", torneoDAO.findAll());
+            modelAndView.addObject("jugadores", jugadorDAO.findAll());
+            return modelAndView;
+        }
+
+        // Obtener el equipo original de la base de datos
+        Optional<Equipo> equipoOriginalOptional = equipoDAO.findById(equipo.getId_equipo());
+        if (equipoOriginalOptional.isPresent()) {
+            Equipo equipoOriginal = equipoOriginalOptional.get();
+
+            // Crear una lista para los jugadores seleccionados
             List<Jugador> jugadoresSeleccionadosList = new ArrayList<>();
 
-            for (String jugadorId : jugadoresSeleccionados) {
-                Long id = Long.valueOf(jugadorId);
-                Optional<Jugador> jugadorOptional = jugadorDAO.findById(id);
-                jugadorOptional.ifPresent(jugador -> {
-                    jugador.setEquipo(equipo);
-                    jugadoresSeleccionadosList.add(jugador);
-                });
+            // Si hay jugadores seleccionados, actualizarlos
+            if (jugadoresSeleccionados != null) {
+                for (String jugadorId : jugadoresSeleccionados) {
+                    Long id = Long.valueOf(jugadorId);
+                    Optional<Jugador> jugadorOptional = jugadorDAO.findById(id);
+                    jugadorOptional.ifPresent(jugador -> {
+                        jugador.setEquipo(equipo);
+                        jugadoresSeleccionadosList.add(jugador);
+                    });
+                }
             }
+
+            // Obtener la lista de jugadores del equipo original
+            List<Jugador> jugadoresOriginales = equipoOriginal.getJugadores();
+
+            // Remover los jugadores que ya no están seleccionados
+            for (Jugador jugadorOriginal : jugadoresOriginales) {
+                if (!jugadoresSeleccionadosList.contains(jugadorOriginal)) {
+                    jugadorOriginal.setEquipo(null);
+                    jugadorDAO.save(jugadorOriginal);
+                }
+            }
+
+            // Actualizar la lista de jugadores del equipo
             equipo.setJugadores(jugadoresSeleccionadosList);
         }
 
+        // Guardar el equipo actualizado
         equipoDAO.save(equipo);
         modelAndView.setViewName("redirect:/equipos");
         return modelAndView;
     }
+
 
 
     

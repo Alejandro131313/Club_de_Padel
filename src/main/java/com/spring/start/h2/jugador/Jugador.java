@@ -28,10 +28,10 @@ public class Jugador {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	@Size(min = 4, max = 16, message = "El nombre debe tener entre 4 y 16 letras")
+	@Size(min = 4, max = 36, message = "El nombre debe tener entre 4 y 16 letras")
 	private String Nombre;
 	 @Min(value = 5, message = "Eres demasiado joven para apuntarte")
-	 @Max(value = 60, message = "Eres demasiado viejo para apuntarte")
+	 @Max(value = 70, message = "Eres demasiado viejo para apuntarte")
 	private int Edad;
 	 @Pattern(regexp = "^(Alto|Medio|Principiante)$", message = "El nivel debe ser Alto, Medio o Principiante")
 	private String Nivel;

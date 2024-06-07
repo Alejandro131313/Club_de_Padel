@@ -26,7 +26,6 @@
                     <p th:if="${#fields.hasErrors('Premios')}" th:errors="*{Premios}">Introduce una cantidad válida</p>
                 </div>
 			
-				
 				<div class="mb-3">
 				    <label for="torneo" class="form-label">Torneo</label>
 				    <select class="form-select" id="torneo" th:field="*{torneo}">
@@ -34,9 +33,6 @@
 				        <option th:each="torneo : ${torneos}" th:value="${torneo.id_torneo}" th:text="${torneo.nombre}"></option>
 				    </select>	
 				</div>
-
-				
-				
 				
 				<div class="mb-3">
 				    <label for="jugadoresSeleccionados" class="form-label">Jugadores Disponibles</label>
@@ -50,6 +46,7 @@
 				                        <th>Edad</th>
 				                        <th>Nivel</th>
 				                        <th>Seleccionar</th>
+				                        <th>En Un Equipo</th>
 				                    </tr>
 				                </thead>
 				                <tbody>
@@ -61,6 +58,8 @@
 				                            <td th:text="${jugador.nivel}"></td>
 				                            <!-- Marcar como seleccionado si el jugador está asociado al equipo -->
 				                            <td><input type="checkbox" th:id="'jugador' + ${jugadorIndex.index}" th:value="${jugador.id}" name="jugadoresSeleccionados" th:checked="${equipo.jugadores.contains(jugador)}"></td>
+				                            <!-- Indicar si el jugador está en otro equipo -->
+				                            <td th:text="${jugador.equipo != null ? '✓' : ''}"></td>
 				                        </tr>
 				                    </th:block>
 				                </tbody>
@@ -68,12 +67,6 @@
 				        </div>
 				    </div>
 				</div>
-
-				
-				
-				
-				
-				
 
                 <button type="submit" class="btn btn-primary">Guardar</button>
                 <a th:href="@{/equipos}" class="btn btn-secondary">Cancelar</a>
@@ -83,3 +76,4 @@
 </div>
 </body>
 </html>
+
