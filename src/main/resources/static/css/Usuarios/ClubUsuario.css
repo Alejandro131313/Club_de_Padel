@@ -1,0 +1,66 @@
+body {
+    background-color: #040740;
+    font-family: 'Kalnia', Arial, sans-serif;
+    color: #E0E724;
+}
+
+h1 {
+    color: #E0E724;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #151967;
+}
+
+.card-header {
+    background-color: #151967;
+    color: #E0E724;
+}
+
+.card-body {
+    padding: 20px;
+    background-color: #151967;
+}
+
+.card-title {
+    color: #E0E724;
+}
+
+.list-group-item {
+    border: none;
+    background-color: #040740;
+    color: #E0E724;
+    margin-bottom: 10px;
+}
+
+.list-group-item:last-child {
+    margin-bottom: 0;
+}
+
+.btn-primary,
+.btn-outline-primary {
+    background-color: #E0E724;
+    border-color: #E0E724;
+    color: #040740;
+    margin-top: 10px;
+}
+
+.btn-primary:hover,
+.btn-outline-primary:hover {
+    background-color: #bfc439;
+    border-color: #bfc439;
+}
+
+.btn-warning {
+    background-color: #E0E724;
+    border-color: #E0E724;
+    color: #040740;
+}
+
+.btn-warning:hover {
+    background-color: #bfc439;
+    border-color: #bfc439;
+}
+

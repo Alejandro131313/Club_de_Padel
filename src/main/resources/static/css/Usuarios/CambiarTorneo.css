@@ -1,0 +1,55 @@
+body {
+    background-color: #040740;
+    font-family: 'Kalnia', Arial, sans-serif;
+    color: #E0E724;
+}
+
+h1 {
+    color: #E0E724;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #151967;
+}
+
+.card-header {
+    background-color: #040740;
+    color: #E0E724;
+}
+
+.card-body {
+    padding: 20px;
+    background-color: #151967;
+}
+
+.form-label, .form-select {
+    color: #E0E724;
+}
+
+.btn-primary {
+    background-color: #E0E724;
+    border-color: #E0E724;
+    color: #040
+}
+.btn-secondary {
+    background-color: rgb(255, 0, 0);
+    border-color: rgb(255, 0, 0);
+   color: white
+}
+
+select.form-select {
+    background-color: #151967;
+    color: #E0E724;
+    border: 1px solid #E0E724;
+}
+select.form-select option {
+    background-color: #151967;
+    color: #E0E724;
+}
+
+select.form-select:focus {
+    background-color: #151967;
+    color: #E0E724;
+}

@@ -22,3 +22,8 @@
         .btn {
             margin-top: 20px;
         }
+        .list-group-item {
+    border: none;
+    background-color: #f0f0f0; 
+    margin-bottom: 10px; 
+}

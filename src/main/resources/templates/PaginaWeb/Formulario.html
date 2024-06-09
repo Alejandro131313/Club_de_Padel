@@ -15,6 +15,8 @@
       <div class="Hambur">
     <div class="TituloMenu">Club de Padel</div>
     <div class="Iconos"> <div class="icon-facebook"></div><div class="icon-instagram"></div><div class="icon-whatsapp"></div><div class="icon-telegram"></div></div>
+          <div class="icon-user" href="#" sec:authorize="hasAuthority('USER')"> <a href="/InformacionUsuario">Perfil</a></div>
+          <div class="icon-user" href="#" sec:authorize="hasAuthority('ADMIN')"> <a href="/menu">Base de datos</a></div>
     <div class="icon-user"> <a href="/">Inicio</a></div>
    <div class="icon-users"> <a href="/PaginaClases">Clases</a></div>
     <div class="icon-Copa"> <a href="/PaginaTorneos">Torneos</a></div>
@@ -23,7 +25,15 @@
 
     <br>
 
-    <div class="icon-user BotonSesion"> <button id="boton" class="boton">Iniciar Sesion</button>  </div>
+      <div class="icon-user BotonSesion" sec:authorize="isAnonymous()">
+        <button id="botonIniciarSesion" class="boton">Iniciar Sesión</button>
+      </div>
+      
+      <div class="BotonSesion" sec:authorize="isAuthenticated()">
+        <form action="/logout" method="post">
+          <button type="submit" class="  boton">Cerrar Sesión</button>
+        </form>
+      </div>
  
     <br>
 
@@ -69,7 +79,7 @@
       <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
     </div>
     
-    <button type="submit">Enviar Mensaje</button>
+    <button  class="boton2"type="submit">Enviar Mensaje</button>
   </form>
 
   <footer>
@@ -80,5 +90,10 @@
       
     </div>
   </footer>
+    <script>
+    document.getElementById("botonIniciarSesion").onclick = function() {
+      window.location.href = "/login";
+    };
+  </script>
 </body>
 </html>

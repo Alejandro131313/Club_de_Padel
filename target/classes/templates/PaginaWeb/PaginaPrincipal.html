@@ -26,11 +26,14 @@
 
     <br>
 
-    <div class="icon-user BotonSesion">
+   <div class="icon-user BotonSesion" sec:authorize="isAnonymous()">
+        <button id="botonIniciarSesion" class="boton">Iniciar Sesión</button>
+      </div>
       
-    
-          <button id="botonIniciarSesion" class="boton">Iniciar Sesión</button>
-
+      <div class="BotonSesion" sec:authorize="isAuthenticated()">
+        <form action="/logout" method="post">
+          <button type="submit" class="  boton">Cerrar Sesión</button>
+        </form>
       </div>
  
     <br>

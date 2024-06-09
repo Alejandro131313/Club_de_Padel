@@ -1,13 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Información del Usuario</title>
-    <link rel="stylesheet" href="/src/main/resources/static/css/Usuarios/InfoUsuario.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+      <link rel="stylesheet" th:href="@{/css/Usuarios/InfoUsuario.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kalnia:wght@200&family=Whisper&display=swap" rel="stylesheet">
+<nav class="Menu">
+
+    <input type="checkbox" id="BurgerButton" class="BurgerButton">
+      <label for="BurgerButton" class="Burger">&#9776;</label>
+      <div class="Hambur">
+    <div class="TituloMenu">Club de Padel</div>
+    <div class="Iconos"> <div class="icon-facebook"></div><div class="icon-instagram"></div><div class="icon-whatsapp"></div><div class="icon-telegram"></div></div>
+   <div class="icon-user"> <a href="/">Inicio</a></div>
+   <div class="icon-users"> <a href="/PaginaClases">Clases</a></div>
+    <div class="icon-Copa"> <a href="/PaginaTorneos">Torneos</a></div>
+    <div class="icon-camara"> <a href="/PaginaInstalaciones">Instalaciones</a></div>
+
+ 
+    <div class="icon-bubbles"> <a href="/PaginaFormulario">Contactanos</a></div>
+
+    <br>
+
+    <div class=" BotonSesion" sec:authorize="isAuthenticated()">
+        <form action="/logout" method="post">
+          <button type="submit" class="  boton">Cerrar Sesión</button>
+        </form>
+      </div>
+ 
+    <br>
+
+  
+
+
+
+ 
+
+  </nav>
 </head>
 <body>
-    <div class="container">
+
+    <div class="container2">
         <div class="card">
             <div class="card-header">Información del Usuario</div>
             <div class="card-body">
@@ -15,48 +51,63 @@
                 <p>Nombre del jugador: <span th:text="${jugador.nombre}"></span></p>
                 <p>Edad del jugador: <span th:text="${jugador.edad}"></span></p>
                 <p>Nivel del jugador: <span th:text="${jugador.nivel}"></span></p>
-                <p>Equipo del jugador:
+                <p class="EquipoA">Equipo del jugador:
                     <span th:if="${jugador.equipo != null}">
                         <a th:href="@{/InformacionClub/{id}(id=${jugador.equipo.id_equipo})}" th:text="${jugador.equipo.Nombre_equipo}"></a>
                     </span>
                     <span th:if="${jugador.equipo == null}">Sin Equipo</span>
                 </p>
                 <div>
-                    <a th:href="@{/crearEquipo}" class="btn btn-success btn-sm">Crear Equipo</a>
-                    <a th:href="@{/cambiarEquipo}" class="btn btn-warning btn-sm">Cambiar Equipo</a>
+                    <a th:href="@{/crearEquipo}" class="btn btn-success">Crear Equipo</a>
+                    <a th:href="@{/cambiarEquipo}" class="btn btn-warning">Cambiar Equipo</a>
                 </div>
             </div>
-            <div class="card-header">Clases:</div>
+            <div class="card-header">Clases</div>
             <div class="card-body">
                 <ul>
                     <th:block th:each="enmarca : ${jugador.enmarca}">
                         <li>
                             <span th:text="${enmarca.clase.dia}"></span> a las <span th:text="${enmarca.clase.hora}"></span>
                             <form th:action="@{/eliminarEnmarca/{idJugador}/{idClase}(idJugador=${jugador.id}, idClase=${enmarca.clase.id})}" method="get" class="d-inline">
-                                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
                             </form>
                         </li>
                     </th:block>
                 </ul>
             </div>
+        </div>
 
-            <div class="card mt-4">
-                <div class="card-header">Clases Disponibles</div>
-                <div class="card-body">
-                    <ul>
-                        <th:block th:each="clase : ${clasesDisponibles}">
-                            <li>
-                                <span th:text="${clase.dia}"></span> a las <span th:text="${clase.hora}"></span>
-                                <form th:action="@{/inscribirEnClase}" method="post" class="d-inline">
-                                    <input type="hidden" th:name="claseId" th:value="${clase.id}" />
-                                    <button type="submit" class="btn btn-primary btn-sm">Inscribirse</button>
-                                </form>
-                            </li>
-                        </th:block>
-                    </ul>
-                </div>
+        <div class="card">
+            <div class="card-header">Clases Disponibles</div>
+            <div class="card-body">
+                <ul>
+                    <th:block th:each="clase : ${clasesDisponibles}">
+                        <li>
+                            <span th:text="${clase.dia}"></span> a las <span th:text="${clase.hora}"></span>
+                            <form th:action="@{/inscribirEnClase}" method="post" class="d-inline">
+                                <input type="hidden" th:name="claseId" th:value="${clase.id}" />
+                                <button type="submit" class="btn btn-primary">Inscribirse</button>
+                            </form>
+                        </li>
+                    </th:block>
+                </ul>
             </div>
         </div>
     </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>Copyright © 2024 | <a href="#">Aviso legal</a> | <a href="#">Política de privacidad y cookies</a></p>
+            <p>CONTACTO</p>
+            <p>999 999 999 | <a href="mailto:info@padelcidon.com">info@padelcidon.com</a></p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("botonIniciarSesion").onclick = function() {
+            window.location.href = "/login";
+        };
+    </script>
 </body>
 </html>
+
