@@ -236,8 +236,8 @@ flex: 1;
 
 
 .clase img {
-  width: 320px;
-height: 200px;
+  width: 100%;
+height: 100%;
   border-radius: 10px;
 align-items: center;
 }
@@ -251,9 +251,13 @@ font-size: 30px;
 .campus,.preparadores-fisicos,.profesores {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  align-content: center;
+  text-align: center;
 }
 .campus img,.preparadores-fisicos img{
   width: 40%;
+  height: 100%;
   flex: 1;
   border-radius: 10px;
 }
@@ -290,3 +294,153 @@ h2{
   font-size: 24px;
 }
 
+
+
+
+  @media (min-width: 900px) and (max-width: 1200px) {
+.Menu{
+	text-align: center;
+	align-items: center;
+	align-content: center;
+}
+  .Hambur {
+
+    display: none;
+    width: 40%;
+
+  }
+
+  input:checked~.Hambur {
+    display: block;
+  background-color: #151967;
+
+  }
+
+  .Burger {
+    display: block;
+    text-align: center;
+    align-items: center;
+  }
+
+  nav {
+    align-items: start;
+    width: 100%;
+    height: 3%;
+    transform: translateX(100%);
+   background-color: #151967;
+margin-top:-50px ;
+  }
+  .icon-facebook {
+    margin-left: 25%;
+  }
+
+  .icon-instagram,
+  .icon-whatsapp,
+  .icon-telegram,
+  .icon-twitter {
+    margin-left: 10%;
+  }
+main {
+  margin: 40px 5%;
+}
+
+header{
+	margin-top: 40px;
+}
+
+
+.clase img {
+  width: 100%;
+height: 100%;
+
+}
+
+}
+  
+  
+  
+  
+@media (max-width: 900px) {
+	.Menu{
+	text-align: center;
+	align-items: center;
+	align-content: center;
+}
+  .Hambur {
+
+    display: none;
+    width: 45%;
+
+  }
+
+  input:checked~.Hambur {
+    display: block;
+  background-color: #151967;
+
+  }
+
+  .Burger {
+    display: block;
+  }
+
+  nav {
+    align-items: start;
+    width: 100%;
+    height: 3%;
+    transform: translateX(100%);
+margin-top:-48px ;
+  }
+
+
+.Iconos{
+	align-items: center;
+	align-content: center;
+	text-align: center;
+}
+
+main {
+  margin: 40px 1%;
+}
+
+.clases{
+
+  display: flex;
+  flex-direction: column;
+  
+
+}
+
+.campus,.preparadores-fisicos,.profesores {
+  display: flex;
+  flex-direction: column;
+
+}
+
+header{
+	margin-top: 45px;
+}
+
+.campus img{
+  width: 100%;
+  height: 100%;
+
+}
+
+.preparadores-fisicos img{
+  width: 100%;
+  height: 100%;
+
+}
+
+.profesores img{
+  width: 100%;
+  height: 100%;
+
+}
+}
+  
+  
+  
+  
+  
+  

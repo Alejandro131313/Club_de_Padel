@@ -295,3 +295,108 @@ footer {
   font-family: 'Kalnia';
   font-weight: bold;
 }
+
+
+
+
+
+
+  
+  @media (min-width: 900px) and (max-width: 1200px) {
+.Menu{
+	text-align: center;
+	align-items: center;
+	align-content: center;
+}
+  .Hambur {
+
+    display: none;
+    width: 40%;
+
+  }
+
+  input:checked~.Hambur {
+    display: block;
+  background-color: #151967;
+
+  }
+
+  .Burger {
+    display: block;
+    text-align: center;
+    align-items: center;
+  }
+
+  nav {
+    align-items: start;
+    width: 100%;
+    height: 3%;
+    transform: translateX(100%);
+  background-color: #151967;
+margin-top:-10px ;
+  }
+  .icon-facebook {
+    margin-left: 25%;
+  }
+
+  .icon-instagram,
+  .icon-whatsapp,
+  .icon-telegram,
+  .icon-twitter {
+    margin-left: 10%;
+  }
+
+header{
+	margin-top: 8%;
+}
+
+}
+  
+  
+  
+  
+@media (max-width: 900px) {
+	.Menu{
+	text-align: center;
+	align-items: center;
+	align-content: center;
+}
+  .Hambur {
+
+    display: none;
+    width: 45%;
+
+  }
+
+  input:checked~.Hambur {
+    display: block;
+  background-color: #151967;
+
+  }
+
+  .Burger {
+    display: block;
+  }
+
+  nav {
+    align-items: start;
+    width: 100%;
+    height: 3%;
+    transform: translateX(100%);
+margin-top:-10px ;
+  }
+
+
+.Iconos{
+	align-items: center;
+	align-content: center;
+	text-align: center;
+}
+header{
+	margin-top: 8%;
+}
+}
+  
+  
+  
+  
