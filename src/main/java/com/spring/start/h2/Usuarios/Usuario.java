@@ -23,14 +23,20 @@ public class Usuario implements UserDetails {
 	private String usuario;
 	private String password;
 	
-	
+	 private int rol;
 	
 	 @OneToOne(fetch = FetchType.EAGER)
 	    @JoinColumn(name = "jugador_id")
 	    private Jugador jugador;
 	 
 	 
-	 
+	 public int getRol() {
+	        return rol;
+	    }
+
+	    public void setRol(int rol) {
+	        this.rol = rol;
+	    }
 
 	public String getUsuario() {
 		return usuario;
@@ -46,21 +52,21 @@ public class Usuario implements UserDetails {
 	}
 
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
+	 @Override
+	    public Collection<? extends GrantedAuthority> getAuthorities() {
+	        ArrayList<SimpleGrantedAuthority> permisos = new ArrayList<>();
+	        SimpleGrantedAuthority permiso;
+	        if (rol == 1) {
+	            permiso = new SimpleGrantedAuthority("ADMIN");
+	        } else if (rol == 2) {
+	            permiso = new SimpleGrantedAuthority("USER");
+	        } else {
+	            permiso = new SimpleGrantedAuthority("GUEST");
+	        }
+	        permisos.add(permiso);
+	        return permisos;
+	    }
 
-		ArrayList<SimpleGrantedAuthority> permisos = new ArrayList<SimpleGrantedAuthority>();
-		SimpleGrantedAuthority permiso;
-		if(usuario.compareTo("marcos")==0) {
-			permiso = new SimpleGrantedAuthority("ADMIN");
-		}
-		else {
-			permiso = new SimpleGrantedAuthority("USER");
-		}
-		permisos.add(permiso);
-		
-		return permisos;
-	}
 	
 	
 	

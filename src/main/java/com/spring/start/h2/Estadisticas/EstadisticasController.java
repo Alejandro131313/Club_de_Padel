@@ -32,7 +32,9 @@ public class EstadisticasController {
     
     @GetMapping("/estadisticas")
     public String mostrarEstadisticas(Model model) {
-
+    	 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+         String nombreUsuario = auth.getName();
+         model.addAttribute("nombreUsuario", nombreUsuario);
 
         List<Jugador> jugadoresConMasClases = jugadorDao.findJugadoresConMasClases();
         model.addAttribute("jugadoresConMasClases", jugadoresConMasClases);
