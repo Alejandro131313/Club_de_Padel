@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.start.h2.jugador.Jugador;
 import com.spring.start.h2.jugador.JugadorDAO;
+import com.spring.start.h2.torneos.Torneo;
 import com.spring.start.h2.torneos.TorneoDAO;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -114,7 +115,6 @@ public class EquipoController {
     	   ModelAndView modelAndView = new ModelAndView();
            modelAndView.setViewName("Equipos/formequipo");
            modelAndView.addObject("equipo", equipoDAO.findById(id).orElse(null));
-           Equipo equipo = equipoDAO.findById(id).orElse(null);
            modelAndView.addObject("torneos", torneoDAO.findAll());
            modelAndView.addObject("jugadores",jugadorDAO.findAll() ); 
            return modelAndView;
@@ -124,18 +124,35 @@ public class EquipoController {
     @PostMapping("/equipo/saveEdit")
     public ModelAndView saveEditEquipo(@ModelAttribute("equipo") @Valid Equipo equipo, BindingResult bindingResult, HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
-
-        // Obtener la lista de jugadores seleccionados desde el formulario
-        String[] jugadoresSeleccionados = request.getParameterValues("jugadoresSeleccionados");
-
-        // Si hay errores regresa al formulario
+        long idEquipo = equipo.getId_equipo();   
+        Equipo EquipoBase = equipoDAO.findById(idEquipo).orElse(null);
+System.out.println(bindingResult.getFieldError());
+     // Si hay errores regresa al formulario
         if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("Equipos/formequipo");
+            modelAndView.addObject("equipo", EquipoBase);
             modelAndView.addObject("torneos", torneoDAO.findAll());
-            modelAndView.addObject("jugadores", jugadorDAO.findAll());
+            modelAndView.addObject("jugadores", jugadorDAO.findAll()); 
+            
+            if (bindingResult.getErrorCount() > 1) {
+                modelAndView.addObject("mensaje", "El nombre del equipo debe tener entre 4 y 20 caracteres");
+                modelAndView.addObject("mensaje2", "Los premios deben ser minio 1 y máximo de 100");
+            } else if (bindingResult.getFieldError().getField().equals("Premios")) {
+                modelAndView.addObject("mensaje2", "Los premios deben ser minio 1 y máximo de 100");
+            } else if (bindingResult.getFieldError().getField().equals("Nombre_equipo")) {
+                modelAndView.addObject("mensaje", "El nombre del equipo debe tener entre 4 y 20 caracteres");
+            }
+
+            modelAndView.setViewName("Equipos/formequipo");
+            
             return modelAndView;
         }
 
+
+       
+
+       // Obtener la lista de jugadores seleccionados desde el formulario
+       String[] jugadoresSeleccionados = request.getParameterValues("jugadoresSeleccionados");
+       
         // Obtener el equipo de la base de datos
         Optional<Equipo> equipoOriginalOptional = equipoDAO.findById(equipo.getId_equipo());
         if (equipoOriginalOptional.isPresent()) {

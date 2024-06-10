@@ -15,7 +15,7 @@
             <form th:action="@{/jugador/save}" th:object="${jugador}" method="post">
                 <input type="hidden" th:field="*{id}" />
                 <div class="mb-3">
-                    <label for="nombre" class="form-label">Nombre</label>
+                    <label for="nombre" class="form-label">Nombre y Apellidos</label>
                     <input type="text" class="form-control" id="nombre" th:field="*{nombre}" required>
                     <p th:if="${#fields.hasErrors('Nombre')}" th:errors="*{Nombre}" class="text-danger">Introduzca un nombre válido</p>
                 </div>

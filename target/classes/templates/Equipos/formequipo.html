@@ -18,12 +18,12 @@
                 <div class="mb-3">
                     <label for="nombre_equipo" class="form-label">Nombre del Equipo</label>
                     <input type="text" class="form-control" id="nombre_equipo" th:field="*{nombre_equipo}" required>
-                    <p th:if="${#fields.hasErrors('Nombre_equipo')}" th:errors="*{Nombre_equipo}">Introduce un nombre válido</p>
+					<p th:text="${mensaje}" th:if="${mensaje!= null}">Introduce un nombre válido</p>
                 </div>
                 <div class="mb-3">
                     <label for="premios" class="form-label">Premios</label>
                     <input type="number" class="form-control" id="premios" th:field="*{premios}" required>
-                    <p th:if="${#fields.hasErrors('Premios')}" th:errors="*{Premios}">Introduce una cantidad válida</p>
+					<p th:text="${mensaje2}" th:if="${mensaje2!= null}">Introduce un premio válido</p>
                 </div>
 			
 				<div class="mb-3">

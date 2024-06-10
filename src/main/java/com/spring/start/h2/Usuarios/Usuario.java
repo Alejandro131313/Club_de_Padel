@@ -15,12 +15,15 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Usuario implements UserDetails {
 
 	@Id
+	@Size(min = 4, max = 36, message = "El Usuario debe tener entre 4 y 36 letras")
 	private String usuario;
+	 @Size(min = 6, max = 100, message = "La contraseña debe tener entre 6 y 100 caracteres")
 	private String password;
 	
 	 private int rol;

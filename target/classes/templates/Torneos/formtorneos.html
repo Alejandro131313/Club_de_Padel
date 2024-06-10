@@ -18,7 +18,7 @@
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre del Torneo</label>
                     <input type="text" class="form-control" id="nombre" th:field="*{nombre}" required>
-                    <p th:if="${#fields.hasErrors('Nombre')}" th:errors="*{Nombre}">Introduce un nombre válido</p>
+                    <p th:text="${mensaje}" th:if="${mensaje!= null}">Introduce un nombre válido</p>
                 </div>
                 <div class="mb-3">
                     <label for="fecha" class="form-label">Fecha del Torneo</label>
@@ -28,7 +28,7 @@
                 <div class="mb-3">
                     <label for="premio" class="form-label">Premio</label>
                     <input type="number" class="form-control" id="premio" th:field="*{premio}" required>
-                    <p th:if="${#fields.hasErrors('Premio')}" th:errors="*{Premio}">Introduce una cantidad válida</p>
+					<p th:text="${mensaje2}" th:if="${mensaje2!= null}">Introduce un premio válido</p>
                 </div>
 				
 				

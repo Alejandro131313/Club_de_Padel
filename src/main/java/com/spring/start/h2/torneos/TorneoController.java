@@ -91,12 +91,12 @@ public class TorneoController {
 
 
     @PostMapping("/torneo/save")
-    public ModelAndView guardarTorneoNuevo(@ModelAttribute("torneo") Torneo torneo, BindingResult result) {
+    public ModelAndView guardarTorneoNuevo(@ModelAttribute("torneo") @Valid Torneo torneo, BindingResult result) {
     	  ModelAndView modelAndView = new ModelAndView();
-    	modelAndView.setViewName("Torneos/formtorneo");
+    	modelAndView.setViewName("Torneos/creartorneo");
     	
     	if (result.hasErrors()) {
-    		modelAndView.setViewName("Torneos/formtorneo");
+    		modelAndView.setViewName("Torneos/creartorneo");
     		   return modelAndView;
         }
         torneoDAO.save(torneo);
@@ -111,7 +111,6 @@ public class TorneoController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("Torneos/formtorneos");
         modelAndView.addObject("torneo", torneoDAO.findById(id).orElse(null));
-        Torneo torneo = torneoDAO.findById(id).orElse(null);
         modelAndView.addObject("equipos",equipoDAO.findAll() ); 
         return modelAndView;
     }
@@ -120,17 +119,33 @@ public class TorneoController {
     @PostMapping("/torneo/saveEdit")
     public ModelAndView saveEditTorneo(@ModelAttribute("torneo") @Valid Torneo torneo, BindingResult bindingResult, HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
+        long idTorneo = torneo.getId_torneo();   
+        Torneo torneoBase = torneoDAO.findById(idTorneo).orElse(null);
 
-        // Obtener la lista de equipos seleccionados desde el formulario
-        String[] equiposSeleccionados = request.getParameterValues("equiposSeleccionados");
 
-        // Si hay errores regresa al formulario
+          // Si hay errores regresa al formulario
         if (bindingResult.hasErrors()) {
+
+            modelAndView.addObject("torneo", torneoBase);
+            modelAndView.addObject("equipos",equipoDAO.findAll());
+            if(bindingResult.getErrorCount()>1) {
+            	modelAndView.addObject("mensaje", "El nombre del torneo tiene que tener entre 4 y 50");
+           	 	modelAndView.addObject("mensaje2", "El premio del torneo tiene que ser positivo");
+            }else if(bindingResult.getFieldError().getField().equals("Premio")) {
+            	 modelAndView.addObject("mensaje2", "El premio del torneo tiene que ser positivo");
+            }else if(bindingResult.getFieldError().getField().equals("Nombre")){
+            	modelAndView.addObject("mensaje", "El nombre del torneo tiene que tener entre 4 y 50");
+            }
+
             modelAndView.setViewName("Torneos/formtorneos");
-            modelAndView.addObject("equipos", equipoDAO.findAll());
+            
             return modelAndView;
         }
-
+        
+        
+     // Obtener la lista de equipos seleccionados desde el formulario
+        String[] equiposSeleccionados = request.getParameterValues("equiposSeleccionados");
+        
         // Obtener el torneo de la base de datos
         Optional<Torneo> torneoOriginalOptional = torneoDAO.findById(torneo.getId_torneo());
         if (torneoOriginalOptional.isPresent()) {

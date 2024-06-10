@@ -4,14 +4,14 @@ import java.sql.Date;
 import java.util.List;
 
 import com.spring.start.h2.equipo.Equipo;
-import com.spring.start.h2.jugador.Jugador;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Torneo {
@@ -20,8 +20,10 @@ public class Torneo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id_torneo;
 	
+	@Size(min = 4, max = 50, message = "El nombre  debe tener entre 4 y 50 letras")
 	private String Nombre;
 	private Date Fecha;
+	 @Min(value = 0, message = "El premio debe ser un valor positivo")
 	private double Premio;
 	
 	
