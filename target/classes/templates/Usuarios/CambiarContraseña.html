@@ -14,7 +14,7 @@
         <label for="confirmPassword">Confirmar Contraseña:</label>
         <input type="password" id="confirmPassword" name="confirmPassword" required minlength="6" maxlength="100"><br>
         <button type="submit">Cambiar Contraseña</button>
-        
+        <p th:text="${mensaje}" th:if="${mensaje!= null}">Contraseñas diferentes</p>
     </form>
     <p th:text="${error}"></p>
 </body>

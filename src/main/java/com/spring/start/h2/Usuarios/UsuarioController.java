@@ -274,12 +274,11 @@ public class UsuarioController {
                 usuarioDAO.save(usuarioExistente);
                 modelAndView.setViewName("redirect:/");
             } else {
-                modelAndView.setViewName("UsuariosAdmin/cambiarContraseña");
-                modelAndView.addObject("error", "Las contraseñas no coinciden. Inténtalo de nuevo.");
+                
+             modelAndView.addObject("mensaje", "Las contraseñas no coinciden");
+             modelAndView.setViewName("Usuarios/CambiarContraseña");
+             return modelAndView;
             }
-        } else {
-            modelAndView.setViewName("UsuariosAdmin/cambiarContraseña");
-            modelAndView.addObject("error", "No se pudo cambiar la contraseña. Inténtalo de nuevo.");
         }
 
         return modelAndView;
