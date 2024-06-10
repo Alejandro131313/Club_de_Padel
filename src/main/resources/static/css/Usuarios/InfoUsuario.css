@@ -197,6 +197,12 @@
     margin-bottom: 20px;
     overflow: hidden;
 }
+.card{
+	align-items: center;
+	align-content: center;
+	text-align: center;
+	
+}
 
 .card-header {
     background-color: #040740;
@@ -208,7 +214,7 @@
 
 .card-body {
     padding: 20px;
-
+    font-weight: bold;
 }
 
 footer {
@@ -327,4 +333,144 @@ footer p {
   button{
 	  margin-bottom: 10px;
   }
+  
+  
+  ul {
+    list-style-type: none;
+    padding-left: 0; 
+}
+  
+  
+
+  @media (min-width: 900px) and (max-width: 1200px) {
+.Menu{
+	text-align: center;
+	align-items: center;
+	align-content: center;
+}
+  .Hambur {
+
+    display: none;
+    width: 40%;
+
+  }
+
+  input:checked~.Hambur {
+    display: block;
+  background-color: #151967;
+
+  }
+
+  .Burger {
+    display: block;
+    text-align: center;
+    align-items: center;
+  }
+
+  nav {
+    align-items: start;
+    width: 100%;
+    height: 3%;
+    transform: translateX(100%);
+   background-color: #151967;
+margin-top:-77px ;
+  }
+  .icon-facebook {
+    margin-left: 25%;
+  }
+
+  .icon-instagram,
+  .icon-whatsapp,
+  .icon-telegram,
+  .icon-twitter {
+    margin-left: 10%;
+  }
+
+
+body{
+	margin-top: 70px;
+}
+
+
+.card{
+	align-items: center;
+	align-content: center;
+	text-align: center;
+	
+}
+  .container2{
+	  
+	  margin-left: 10%;
+	  margin-right: 10%;
+	  
+  }
+  
+}
+  
+  
+  
+  
+@media (max-width: 900px) {
+	.Menu{
+	text-align: center;
+	align-items: center;
+	align-content: center;
+}
+  .Hambur {
+
+    display: none;
+    width: 45%;
+
+  }
+
+  input:checked~.Hambur {
+    display: block;
+  background-color: #151967;
+
+  }
+
+  .Burger {
+    display: block;
+  }
+
+  nav {
+    align-items: start;
+    width: 100%;
+    height: 3%;
+    transform: translateX(100%);
+margin-top:-77px ;
+  }
+
+
+.Iconos{
+	align-items: center;
+	align-content: center;
+	text-align: center;
+}
+
+body{
+	margin-top: 70px;
+}
+
+.card{
+	align-items: center;
+	align-content: center;
+	text-align: center;
+	
+}
+
+  .container2{
+	  
+	  margin-left: 5%;
+	  margin-right: 5%;
+	  
+  }
+}
+  
+  
+  
+  
+  
+
+  
   
