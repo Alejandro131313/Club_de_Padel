@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +26,8 @@ import com.spring.start.h2.jugador.Jugador;
 import com.spring.start.h2.jugador.JugadorDAO;
 import com.spring.start.h2.torneos.Torneo;
 import com.spring.start.h2.torneos.TorneoDAO;
+
+import jakarta.validation.Valid;
 
 @Controller
 public class UsuarioController {
@@ -45,6 +49,9 @@ public class UsuarioController {
     
     @Autowired
     private JugadorDAO jugadorDAO;
+    
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @GetMapping("/InformacionUsuario")
     public ModelAndView mostrarInfoUsuario() {
@@ -232,5 +239,51 @@ public class UsuarioController {
         return "redirect:/InformacionClub/" + equipoId;
     }
     
+    @GetMapping("/cambiarContraseña")
+    public ModelAndView cambiarContraseña() {
+        ModelAndView modelAndView = new ModelAndView("Usuarios/CambiarContraseña");
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String nombreUsuario = auth.getName();
+        
+        // Obtener el usuario
+        Usuario usuario = usuarioDAO.findByUsuario(nombreUsuario);
+        modelAndView.addObject("usuario", usuario);
+        return modelAndView;
+    }
+
+    
+    
+    
+    
+    @PostMapping("/cambiarContraseña")
+    public ModelAndView cambiarContraseña(@ModelAttribute("usuario") @Valid Usuario usuario, BindingResult bindingResult, @RequestParam("confirmPassword") String confirmPassword) {
+        ModelAndView modelAndView = new ModelAndView();
+        if (bindingResult.hasErrors()) {
+            modelAndView.setViewName("UsuariosAdmin/cambiarContraseña");
+            return modelAndView;
+        }
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String nombreUsuario = auth.getName();
+        Usuario usuarioExistente = usuarioDAO.findByUsuario(nombreUsuario);
+
+        if (usuarioExistente != null) {
+            if (usuario.getPassword().equals(confirmPassword)) {
+                usuarioExistente.setPassword(bCryptPasswordEncoder.encode(usuario.getPassword()));
+                usuarioDAO.save(usuarioExistente);
+                modelAndView.setViewName("redirect:/");
+            } else {
+                modelAndView.setViewName("UsuariosAdmin/cambiarContraseña");
+                modelAndView.addObject("error", "Las contraseñas no coinciden. Inténtalo de nuevo.");
+            }
+        } else {
+            modelAndView.setViewName("UsuariosAdmin/cambiarContraseña");
+            modelAndView.addObject("error", "No se pudo cambiar la contraseña. Inténtalo de nuevo.");
+        }
+
+        return modelAndView;
+    }
 
 }
+

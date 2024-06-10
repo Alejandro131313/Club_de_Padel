@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel="stylesheet" th:href="@{/css/Usuarios/CambiarContraseña.css}">
+    <title>Cambiar Contraseña</title>
+</head>
+<body>
+    <h1>Cambiar Contraseña</h1>
+    <form action="/cambiarContraseña" method="post">
+        <label for="password">Nueva Contraseña:</label>
+        <input type="password" id="password" name="password" required minlength="6" maxlength="100"><br>
+        <label for="confirmPassword">Confirmar Contraseña:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required minlength="6" maxlength="100"><br>
+        <button type="submit">Cambiar Contraseña</button>
+        
+    </form>
+    <p th:text="${error}"></p>
+</body>
+</html>

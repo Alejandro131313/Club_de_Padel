@@ -172,11 +172,9 @@
   
   
   .boton{
-  
-  border-color: #E0E724;
   background-color: #040740;
   color:#E0E724;
-
+  border-color: #E0E724;
   border-radius: 15%;
 
   cursor: pointer;
@@ -331,9 +329,67 @@ footer {
   
   
   
-  
-  
-  
+  /* Estilo para el contenedor del botón de sesión */
+.BotonSesion {
+    position: relative;
+    display: inline-block;
+}
+
+/* Estilo para el contenido del menú desplegable */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #040740;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 8px;
+    padding: 10px 0;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+}
+
+/* Estilo para los botones dentro del menú desplegable */
+.dropdown-content .boton {
+    color: #E0E724;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-content .boton:hover {
+    background-color: #E0E724;
+    color: #040740;
+}
+
+/* Estilo para mostrar el menú desplegable */
+.BotonSesion:hover .dropdown-content {
+    display: block;
+}
+
+/* Estilo para el botón de sesión principal */
+#sesionButton {
+    background-color: #040740;
+    color: #bfc439;
+    border: 2px solid #E0E724;
+    border-radius: 8px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#sesionButton:hover {
+    background-color: #E0E724;
+    color: #040740;
+}
+
   
   
   

@@ -18,8 +18,8 @@ public class SecurityConfig  {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		 http.csrf().disable().authorizeRequests(requests -> requests
 				 .requestMatchers("/", "/login", "/loginUsuario", "/loginTrabajador").permitAll()
-			.requestMatchers("/InformacionUsuario","/InformacionClub/**","/equipoUsuario/**","/crearEquipo","/cambiarEquipo","/jugador/cambiarEquipo","/editarTorneo/**").hasAuthority("USER")	
-			.requestMatchers("/menu","/clases","/jugadores","/equipos","/torneos","/usuarios","/enmarca/**","/clase/**","/jugador/**","/equipo/**","/torneo/**","/usuario/**","/estadisticas").hasAuthority("ADMIN"))
+			.requestMatchers("/InformacionUsuario","/InformacionClub/**","/equipoUsuario/**","/crearEquipo","/cambiarEquipo","/jugador/cambiarEquipo","/editarTorneo/**","/cambiarContraseña").hasAuthority("USER")	
+			.requestMatchers("/menu","/clases","/jugadores","/equipos","/torneos","/usuarios","/enmarca/**","/clase/**","/jugador/**","/equipo/**","/torneo/**","/usuario/**","/estadisticas","/cambiarContraseña").hasAuthority("ADMIN"))
 			.formLogin()
                  .permitAll();
 		 

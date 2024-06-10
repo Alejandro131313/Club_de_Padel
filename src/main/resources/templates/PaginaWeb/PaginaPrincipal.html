@@ -30,11 +30,18 @@
         <button id="botonIniciarSesion" class="boton">Iniciar Sesión</button>
       </div>
       
-      <div class="BotonSesion" sec:authorize="isAuthenticated()">
+   <div class="BotonSesion" sec:authorize="isAuthenticated()">
+    <button class="boton" id="sesionButton">Sesión</button>
+    <div class="dropdown-content" id="dropdownContent">
         <form action="/logout" method="post">
-          <button type="submit" class="  boton">Cerrar Sesión</button>
+            <button type="submit" class="boton">Cerrar Sesión</button>
         </form>
-      </div>
+        <form action="/cambiarContraseña" method="get">
+            <button type="submit" class="boton">Cambiar Contraseña</button>
+        </form>
+    </div>
+</div>
+
  
     <br>
 
