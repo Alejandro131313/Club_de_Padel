@@ -54,22 +54,30 @@
     <div class="Estandar">
       <h1>Estandar</h1>
       <div class="Imagenes"> 
-        <img src="/img/Verano.jpg" alt="Clase Verano">
-        <img src="/img/INVIERNO.jpg" alt="Clase INVIERNO">
-        <img src="/img/Otoño.jpg" alt="Clase Otoño">
-        <img src="/img/Primavera.jpg" alt="Clase Primavera">
+        <img src="/img/Verano.jpg" alt="Verano" class="modal-image">
+        <img src="/img/INVIERNO.jpg" alt="INVIERNO" class="modal-image">
+        <img src="/img/Otoño.jpg" alt="Otoño" class="modal-image">
+        <img src="/img/Primavera.jpg" alt="Primavera" class="modal-image">
       </div>
     </div>
     <div class="Especiales">
       <h1>Especiales</h1>
       <div class="Imagenes"> 
-        <img src="/img/Halloween.jpg" alt="Clase Halloween">
-        <img src="/img/Carnaval.webp" alt="Clase Carnaval">
-        <img src="/img/Navidad.jpg" alt="Clase Navidad">
-        <img src="/img/Aniversario.jpg" alt="Clase Aniversario">
+        <img src="/img/Halloween.jpg" alt="Halloween" class="modal-image">
+        <img src="/img/Carnaval.webp" alt="Carnaval" class="modal-image">
+        <img src="/img/Navidad.jpg" alt="Navidad" class="modal-image">
+        <img src="/img/Aniversario.jpg" alt="Aniversario" class="modal-image">
       </div>
     </div>
   </main>
+
+  <!-- Modal -->
+  <div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="img01">
+    <div id="caption"></div>
+  </div>
+
   <footer>
     <div class="footer-content">
       <p>Copyright © 2024 | <a href="#">Aviso legal</a> | <a href="#">Política de privacidad y cookies</a></p>
@@ -82,6 +90,31 @@
     document.getElementById("botonIniciarSesion").onclick = function() {
       window.location.href = "/login";
     };
-  </script>
+
+      // Obtener el modal
+      var modal = document.getElementById("myModal");
+  
+      // Obtener la imagen y el modal
+      var modalImg = document.getElementById("img01");
+      var captionText = document.getElementById("caption");
+  
+      // Obtener todas las imágenes con la clase "modal-image"
+      var images = document.getElementsByClassName("modal-image");
+      for (var i = 0; i < images.length; i++) {
+        images[i].onclick = function(){
+          modal.style.display = "block";
+          modalImg.src = this.src;
+          captionText.innerHTML = this.alt;
+        }
+      }
+  
+      // Obtener el elemento <span> que cierra el modal
+      var span = document.getElementsByClassName("close")[0];
+  
+      // Cuando el usuario haga clic en <span> (x), cerrar el modal
+      span.onclick = function() { 
+        modal.style.display = "none";
+      }
+    </script>
 </body>
 </html>
