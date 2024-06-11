@@ -74,81 +74,7 @@
     content: "\ea96";
   }
 
-  @font-face {
-    font-family: 'icomoon';
-    src: url('fonts/icomoon.eot?z5kivn');
-    src: url('fonts/icomoon.eot?z5kivn#iefix') format('embedded-opentype'),
-      url('fonts/icomoon.ttf?z5kivn') format('truetype'),
-      url('fonts/icomoon.woff?z5kivn') format('woff'),
-      url('fonts/icomoon.svg?z5kivn#icomoon') format('svg');
-    font-weight: normal;
-    font-style: normal;
-    font-display: block;
-  }
-  
-  [class^="icon-"],
-  [class*=" icon-"] {
-    /* use !important to prevent issues with browser extensions that change fonts */
-    font-family: 'icomoon' !important;
-    speak: never;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-  
-    /* Better Font Rendering =========== */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  
-  .icon-camara:before {
-    content: "\e90f";
-  }
-  
-  .icon-location:before {
-    content: "\e948";
-  }
-  
-  .icon-bubbles:before {
-    content: "\e970";
-  }
-  
-  .icon-user:before {
-    content: "\e971";
-  }
-  
-  .icon-users:before {
-    content: "\e972";
-  }
-  
-  .icon-Copa:before {
-    content: "\e99e";
-  }
-  
-  .icon-ModoOscuro:before {
-    content: "\e9d6";
-  }
-  
-  .icon-facebook:before {
-    content: "\ea91";
-  }
-  
-  .icon-instagram:before {
-    content: "\ea92";
-  }
-  
-  .icon-whatsapp:before {
-    content: "\ea93";
-  }
-  
-  .icon-telegram:before {
-    content: "\ea95";
-  }
-  
-  .icon-twitter:before {
-    content: "\ea96";
-  }
+ 
 
 
 html {
@@ -266,6 +192,68 @@ html {
     a{text-decoration: none;
     color: #E0E724;}
 
+.BotonSesion {
+    position: relative;
+    display: inline-block;
+}
+
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #040740;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 8px;
+    padding: 10px 0;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+}
+
+
+.dropdown-content .boton {
+    color: #E0E724;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-content .boton:hover {
+    background-color: #E0E724;
+    color: #040740;
+}
+
+
+.BotonSesion:hover .dropdown-content {
+    display: block;
+}
+
+
+#sesionButton {
+    background-color: #040740;
+    color: #bfc439;
+    border: 2px solid #E0E724;
+    border-radius: 8px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#sesionButton:hover {
+    background-color: #E0E724;
+    color: #040740;
+}
+
+  
+  
 body{
   text-align: center;
   align-items: center;

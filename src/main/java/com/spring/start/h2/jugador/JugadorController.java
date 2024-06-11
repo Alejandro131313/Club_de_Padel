@@ -131,7 +131,6 @@ public class JugadorController {
             existingJugador.setEquipo(jugador.getEquipo());
             jugadorDAO.save(existingJugador);
         } else {
-            // Guardar el nuevo jugador
             jugadorDAO.save(jugador);
         }
 

@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
  
-    /*Este metodo es ultilizado para poder ver las imagenes en los html dinámicos*/
+    /*Este metodo se ultiliza para poder ver las imagenes*/
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**")

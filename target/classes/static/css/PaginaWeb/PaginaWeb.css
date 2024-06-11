@@ -329,13 +329,13 @@ footer {
   
   
   
-  /* Estilo para el contenedor del botón de sesión */
+
 .BotonSesion {
     position: relative;
     display: inline-block;
 }
 
-/* Estilo para el contenido del menú desplegable */
+
 .dropdown-content {
     display: none;
     position: absolute;
@@ -350,7 +350,7 @@ footer {
     align-content: center;
 }
 
-/* Estilo para los botones dentro del menú desplegable */
+
 .dropdown-content .boton {
     color: #E0E724;
     padding: 12px 16px;
@@ -369,12 +369,12 @@ footer {
     color: #040740;
 }
 
-/* Estilo para mostrar el menú desplegable */
+
 .BotonSesion:hover .dropdown-content {
     display: block;
 }
 
-/* Estilo para el botón de sesión principal */
+
 #sesionButton {
     background-color: #040740;
     color: #bfc439;
