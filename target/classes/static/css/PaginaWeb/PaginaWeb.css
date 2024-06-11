@@ -214,17 +214,19 @@ body{    margin-left: 10%;
   }
   
   .TextoA {
-    font-size: 30px;
-    margin-top: 20%;
-    margin-left: 7%;
+    font-size: 35px;
+    margin-top: 25%;
+    margin-left: 5%;
     margin-bottom: 5px;
-    color: #E0E724;
+    color: rgb(215, 220, 24);
+        font-weight: bold;
   }
   
   .Titulo {
-    margin-left: 7%;
-    font-size: 55px;
-    color: #E0E724;
+    margin-left: 5%;
+    font-size: 60px;
+    color:  rgb(215, 220, 24);
+        font-weight: bold;
   }
   
   main {

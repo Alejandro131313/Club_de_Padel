@@ -24,8 +24,10 @@ public interface ClaseDAO extends CrudRepository<Clase, Long> {
 	List<String> findClasesPorDia(@Param("dia") String dia);
 
 	
-	@Query("SELECT c FROM Clase c WHERE c.id NOT IN (SELECT e.clase.id FROM Enmarca e WHERE e.jugador.id = :jugadorId) and c.Nivel = :Nivel")
-    List<Clase> findClasesDispoJugador(@Param("jugadorId") long jugadorId,@Param("Nivel") String Nivel);
+	@Query("SELECT c FROM Clase c WHERE c.id NOT IN (SELECT e.clase.id FROM Enmarca e WHERE e.jugador.id = :jugadorId) " +
+		       "AND c.Nivel = :Nivel AND (SELECT COUNT(e2) FROM Enmarca e2 WHERE e2.clase.id = c.id) < 4")
+		List<Clase> findClasesDispoJugador(@Param("jugadorId") long jugadorId, @Param("Nivel") String Nivel);
+
 	
 	
 	

@@ -26,7 +26,7 @@ public class JugadorUsuarioDTO {
 
     private String email;
 
-    private int rol;
+    private int rol = 2;
 
 	public String getNombre() {
 		return nombre;

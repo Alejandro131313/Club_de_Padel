@@ -1,1 +1,45 @@
-
+ body {
+            background-color: #040740;
+            color: #E0E724;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .Formulario {
+			width: 60%;
+            background-color: #151967;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .form-label {
+            color: #E0E724;
+       
+        }
+        .form-control{
+			 background-color: #040740;
+            color: #E0E724;
+			    margin-bottom: 20px;
+		}
+		
+	.form-control:focus {
+    background-color: #040740; 
+}
+        .btn-primary {
+            background-color: #E0E724;
+            border-color: #E0E724;
+            color: #151967;
+        }
+        .btn-primary:hover {
+            background-color: #d4d51b;
+            border-color: #d4d51b;
+        }
+        .text-danger {
+            color: #ff4d4d;
+        }
+        
