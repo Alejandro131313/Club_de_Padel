@@ -186,7 +186,8 @@
 
     }
   
-
+.BotonesSesion{display: flex;
+flex-direction: column;}
 
 
 

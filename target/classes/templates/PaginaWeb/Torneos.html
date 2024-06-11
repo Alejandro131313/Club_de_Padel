@@ -31,7 +31,7 @@
 	        <button id="botonIniciarSesion" class="boton">Iniciar Sesión</button>
 	      </div>
 		  
-		  <div class="BotonSesion" 	  sec:authorize="isAnonymous()">
+		  <div class="BotonSesion 	  icon-users" 	  sec:authorize="isAnonymous()">
 		      <button id="botonRegistrarUsuario" class="boton">Registrarse</button>
 		  </div>
 		  </div>
@@ -127,6 +127,9 @@
       span.onclick = function() { 
         modal.style.display = "none";
       }
+	  document.getElementById("botonRegistrarUsuario").onclick = function() {
+	  	        window.location.href = "/registrarUsuario";
+	  	    };
     </script>
 </body>
 </html>

@@ -253,6 +253,10 @@ html {
 }
 
   
+    
+.BotonesSesion{display: flex;
+flex-direction: column;}
+  
   
 body{
   text-align: center;

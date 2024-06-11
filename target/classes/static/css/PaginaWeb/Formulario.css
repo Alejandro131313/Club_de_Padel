@@ -192,6 +192,9 @@ html {
     display: inline-block;
 }
 
+.BotonesSesion{display: flex;
+flex-direction: column;}
+
 
 .dropdown-content {
     display: none;

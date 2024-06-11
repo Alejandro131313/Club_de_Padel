@@ -31,10 +31,10 @@
 	          <button id="botonIniciarSesion" class="boton">Iniciar Sesión</button>
 	        </div>
 	  	  
-	  	  <div class="BotonSesion" 	  sec:authorize="isAnonymous()">
+	  	  <div class="BotonSesion 	  icon-users" 	  sec:authorize="isAnonymous()">
 	  	      <button id="botonRegistrarUsuario" class="boton">Registrarse</button>
 	  	  </div>
-	  	  </div>  
+	  	  </div>
 	       
 		
 	    <div class="BotonSesion" sec:authorize="isAuthenticated()">
@@ -108,5 +108,8 @@
     document.getElementById("botonIniciarSesion").onclick = function() {
       window.location.href = "/login";
     };
+	document.getElementById("botonRegistrarUsuario").onclick = function() {
+		        window.location.href = "/registrarUsuario";
+		    };
   </script>
 </body>

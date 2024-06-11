@@ -192,6 +192,9 @@ html {
       color: #E0E724;}
 
 
+.BotonesSesion{display: flex;
+flex-direction: column;}
+
 
 .BotonSesion {
     position: relative;
