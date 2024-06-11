@@ -22,6 +22,9 @@
                         <span th:text="${usuario.jugador != null ? usuario.jugador.nombre : 'Sin Jugador Relacionado'}"></span>
                     </h5>
                     <p class="card-text">
+                        Email: <span th:text="${usuario.email}"></span>
+                    </p>
+                    <p class="card-text">
                         Contraseña: <span th:text="${usuario.password}"></span>
                     </p>
                     <p class="card-text">

@@ -26,9 +26,15 @@
 
     <br>
 
-      <div class="icon-user BotonSesion" sec:authorize="isAnonymous()">
-        <button id="botonIniciarSesion" class="boton">Iniciar Sesión</button>
-      </div>
+	<div class="BotonesSesion">
+	   <div class="icon-user BotonSesion" sec:authorize="isAnonymous()">
+	        <button id="botonIniciarSesion" class="boton">Iniciar Sesión</button>
+	      </div>
+		  
+		  <div class="BotonSesion" 	  sec:authorize="isAnonymous()">
+		      <button id="botonRegistrarUsuario" class="boton">Registrarse</button>
+		  </div>
+		  </div>
       
 	  <div class="BotonSesion" sec:authorize="isAuthenticated()">
 	      <button class="boton" id="sesionButton">Sesión</button>

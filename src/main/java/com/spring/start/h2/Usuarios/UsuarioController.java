@@ -52,6 +52,8 @@ public class UsuarioController {
     
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+    
+    
 
     @GetMapping("/InformacionUsuario")
     public ModelAndView mostrarInfoUsuario() {
@@ -263,6 +265,9 @@ public class UsuarioController {
             modelAndView.setViewName("UsuariosAdmin/cambiarContraseña");
             return modelAndView;
         }
+        
+        
+        
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String nombreUsuario = auth.getName();
@@ -282,6 +287,48 @@ public class UsuarioController {
         }
 
         return modelAndView;
+    }
+    
+    @GetMapping("/registrarUsuario")
+    public ModelAndView mostrarFormulario() {
+        return new ModelAndView("Usuarios/RegistrarUsuarios", "jugadorUsuarioDTO", new JugadorUsuarioDTO());
+    }
+
+    @PostMapping("/registrarUsuario")
+    public ModelAndView registrarJugadorUsuario(@Valid @ModelAttribute("jugadorUsuarioDTO") JugadorUsuarioDTO dto, BindingResult result) {
+        if (result.hasErrors()) {
+            return new ModelAndView("Usuarios/RegistrarUsuarios");
+        }
+
+  Usuario nombreUsuario = usuarioDAO.findByUsuario(dto.getUsuario());
+        
+        if (nombreUsuario != null) {
+            ModelAndView modelAndView = new ModelAndView("Usuarios/RegistrarUsuarios");
+            modelAndView.addObject("mensaje", "El usuario ya está en uso");
+            return modelAndView;
+        }
+        
+        
+        // Crear y guardar Jugador
+        Jugador jugador = new Jugador();
+        jugador.setNombre(dto.getNombre());
+        jugador.setEdad(dto.getEdad());
+        jugador.setNivel(dto.getNivel());
+
+        // Crear y guardar Usuario
+        Usuario usuario = new Usuario();
+        usuario.setUsuario(dto.getUsuario());
+        usuario.setPassword(bCryptPasswordEncoder.encode(dto.getPassword()));
+        usuario.setEmail(dto.getEmail());
+        usuario.setRol(dto.getRol());
+
+        // Enlazar Jugador y Usuario
+        usuario.setJugador(jugador);
+
+        jugadorDAO.save(jugador);
+        usuarioDAO.save(usuario);
+
+        return new ModelAndView("redirect:/login");
     }
 
 }

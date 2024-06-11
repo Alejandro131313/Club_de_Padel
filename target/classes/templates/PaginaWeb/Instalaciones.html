@@ -26,9 +26,15 @@
     <div class="icon-Copa"> <a href="/PaginaTorneos">Torneos</a></div>
     <div class="icon-bubbles"> <a href="/PaginaFormulario">Contactanos</a></div>
       <br>
-       <div class="icon-user BotonSesion" sec:authorize="isAnonymous()">
-        <button id="botonIniciarSesion" class="boton">Iniciar Sesión</button>
-      </div>    
+	  <div class="BotonesSesion">
+	     <div class="icon-user BotonSesion" sec:authorize="isAnonymous()">
+	          <button id="botonIniciarSesion" class="boton">Iniciar Sesión</button>
+	        </div>
+	  	  
+	  	  <div class="BotonSesion" 	  sec:authorize="isAnonymous()">
+	  	      <button id="botonRegistrarUsuario" class="boton">Registrarse</button>
+	  	  </div>
+	  	  </div>  
 	       
 		
 	    <div class="BotonSesion" sec:authorize="isAuthenticated()">

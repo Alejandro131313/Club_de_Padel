@@ -25,13 +25,29 @@ public class Usuario implements UserDetails {
 	private String usuario;
 	 @Size(min = 6, max = 100, message = "La contraseña debe tener entre 6 y 100 caracteres")
 	private String password;
-	
+	 
+	 
+
+	private String email;
+	  
+	  
 	 private int rol;
 	
 	 @OneToOne(fetch = FetchType.EAGER)
 	    @JoinColumn(name = "jugador_id")
 	    private Jugador jugador;
 	 
+	 
+	 
+	  public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	
 	 
 	 public int getRol() {
 	        return rol;

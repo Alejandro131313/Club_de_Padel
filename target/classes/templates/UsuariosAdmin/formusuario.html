@@ -13,10 +13,25 @@
         <div class="col">
             <h1 class="mt-5">Crear/Editar Usuario</h1>
             <form th:action="@{/usuario/save}" th:object="${usuario}" method="post">
+							
+				
+				<div class="mb-3">
+				    <label for="usuario" class="form-label">Usuario:</label>
+				    
+				    <!-- Input editable cuando el usuario es nulo -->
+				    <input th:if="${usuario.usuario == null}" type="text" class="form-control" id="usuario" th:field="*{usuario}" required>
+				    
+				    <!-- Input de solo lectura cuando el usuario no es nulo -->
+				    <input th:if="${usuario.usuario != null}" type="text" class="form-control" id="usuario" th:field="*{usuario}" readonly>
+				    
+				    <p th:if="${#fields.hasErrors('usuario')}" th:errors="*{usuario}" class="text-danger">Introduzca un usuario válido</p>
+				</div>
+	
+				
                 <div class="mb-3">
-                    <label for="usuario" class="form-label">Usuario</label>
-                    <input type="text" class="form-control" id="usuario" th:field="*{usuario}" required>
-                    <p th:if="${#fields.hasErrors('usuario')}" th:errors="*{usuario}">Introduzca un usuario válido</p>
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" th:field="*{email}" required>
+                    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Introduzca un email válido</p>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Contraseña</label>

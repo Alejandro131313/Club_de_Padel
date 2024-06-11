@@ -25,10 +25,15 @@
     <div class="icon-bubbles"> <a href="/PaginaFormulario">Contactanos</a></div>
 
     <br>
-
+<div class="BotonesSesion">
    <div class="icon-user BotonSesion" sec:authorize="isAnonymous()">
         <button id="botonIniciarSesion" class="boton">Iniciar Sesión</button>
       </div>
+	  
+	  <div class="BotonSesion" 	  sec:authorize="isAnonymous()">
+	      <button id="botonRegistrarUsuario" class="boton">Registrarse</button>
+	  </div>
+	  </div>
       
    <div class="BotonSesion" sec:authorize="isAuthenticated()">
     <button class="boton" id="sesionButton">Sesión</button>
@@ -101,6 +106,9 @@
     document.getElementById("botonIniciarSesion").onclick = function() {
       window.location.href = "/login";
     };
+	document.getElementById("botonRegistrarUsuario").onclick = function() {
+	        window.location.href = "/registrarUsuario";
+	    };
   </script>
 </body>
 </html>
