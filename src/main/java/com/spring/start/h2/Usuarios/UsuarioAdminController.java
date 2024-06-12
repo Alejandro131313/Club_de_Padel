@@ -63,7 +63,7 @@ public class UsuarioAdminController {
 
     @GetMapping("/usuario/edit/{usuario}")
     public ModelAndView editUsuario(@PathVariable String usuario) {
-        ModelAndView modelAndView = new ModelAndView("UsuariosAdmin/formusuario");
+        ModelAndView modelAndView = new ModelAndView("UsuariosAdmin/editarUsuario");
         Optional<Usuario> usuarioOptional = usuarioDAO.findById(usuario);
         if (usuarioOptional.isPresent()) {
             modelAndView.addObject("usuario", usuarioOptional.get());
@@ -85,6 +85,18 @@ public class UsuarioAdminController {
             modelAndView.addObject("jugadores", jugadorDAO.findAll());
             return modelAndView;
         }
+        
+        
+           Usuario nombreUsuario = usuarioDAO.findByUsuario(usuario.getUsuario());
+        
+        if (nombreUsuario != null) {
+        	  modelAndView.setViewName("UsuariosAdmin/formusuario");
+            modelAndView.addObject("mensaje", "El usuario ya está en uso");
+            return modelAndView;
+        }
+        
+        
+        
         usuario.setPassword(bCryptPasswordEncoder.encode(usuario.getPassword()));
         usuarioDAO.save(usuario);
         modelAndView.setViewName("redirect:/usuarios");
