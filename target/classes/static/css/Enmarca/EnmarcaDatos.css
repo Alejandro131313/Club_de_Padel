@@ -13,6 +13,7 @@ h1, h2 {
 .card {
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+height: 100%;
 }
 
 .card-header {
@@ -29,6 +30,3 @@ h1, h2 {
     margin-top: 20px;
 }
 
-.clase{
-	margin-top: 3%;
-}

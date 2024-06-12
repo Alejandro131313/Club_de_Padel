@@ -133,7 +133,7 @@
   
   .TituloMenu {
     color: #E0E724;
-    font-size: 200%;
+    font-size: 150%;
     margin-bottom: 5%;
   }
   
@@ -215,7 +215,7 @@ body{    margin-left: 10%;
   
   .TextoA {
     font-size: 35px;
-    margin-top: 25%;
+
     margin-left: 5%;
     margin-bottom: 5px;
     color: rgb(215, 220, 24);
@@ -223,6 +223,7 @@ body{    margin-left: 10%;
   }
   
   .Titulo {
+	      margin-top: 8%;
     margin-left: 5%;
     font-size: 60px;
     color:  rgb(215, 220, 24);
@@ -494,9 +495,13 @@ margin-top:-10px ;
 
 
 .TextoA{
-	margin-top: 50%;
-}
+font-size: 25px;
 
+}
+.Titulo{
+	font-size: 44px;
+	margin-top: 20%;
+}
 
 
 
