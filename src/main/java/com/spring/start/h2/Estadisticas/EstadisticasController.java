@@ -51,6 +51,7 @@ public class EstadisticasController {
         model.addAttribute("jugadoresMenoresDeEdad", jugadoresMenoresDeEdad);
         
         
+        
        
         List<Equipo> equiposConMasPremios = equipoDao.findEquipoConMasPremios();
         model.addAttribute("equiposConMasPremios", equiposConMasPremios);
@@ -69,6 +70,13 @@ public class EstadisticasController {
     @ResponseBody
     public List<String> getClasesPorDia(@RequestParam String dia) {
     	 return claseDao.findClasesPorDia(dia);
+    }
+    
+    
+    @GetMapping("/JugadorPorEdad")
+    @ResponseBody
+    public List<String> getJugadorPorEdad(@RequestParam int edad) {
+    	 return jugadorDao.findJugadoresEdad(edad);
     }
 
     

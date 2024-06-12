@@ -38,6 +38,12 @@ public interface JugadorDAO extends CrudRepository<Jugador, Long> {
 
     @Query("SELECT j FROM Jugador j WHERE j.Edad < :edad")
     List<Jugador> findJugadoresMenores(@Param("edad") int edad);
+    
+    
+    
+    
+    @Query("SELECT j.Nombre FROM Jugador j WHERE j.Edad = :edad")
+    List<String> findJugadoresEdad(@Param("edad") int edad);
 
 
 
