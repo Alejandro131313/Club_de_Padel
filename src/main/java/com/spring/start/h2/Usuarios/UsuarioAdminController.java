@@ -67,6 +67,36 @@ public class UsuarioAdminController {
         return modelAndView;
     }
 
+ 
+
+    @PostMapping("/usuario/save")
+    public ModelAndView saveUsuario(@ModelAttribute("usuario") @Valid Usuario usuario, BindingResult bindingResult) {
+        ModelAndView modelAndView = new ModelAndView();
+        if (bindingResult.hasErrors()) {
+            modelAndView.setViewName("UsuariosAdmin/formusuario");
+
+            modelAndView.addObject("jugadores", jugadorDAO.findJugadoresSinUsuario());
+            return modelAndView;
+        }
+        
+        
+           Usuario nombreUsuario = usuarioDAO.findByUsuario(usuario.getUsuario());
+        
+        if (nombreUsuario != null) {
+        	  modelAndView.setViewName("UsuariosAdmin/formusuario");
+            modelAndView.addObject("mensaje", "El usuario ya está en uso");
+            modelAndView.addObject("jugadores", jugadorDAO.findJugadoresSinUsuario());
+            return modelAndView;
+        }
+        
+        
+        
+        usuario.setPassword(bCryptPasswordEncoder.encode(usuario.getPassword()));
+        usuarioDAO.save(usuario);
+        modelAndView.setViewName("redirect:/usuarios");
+        return modelAndView;
+    }
+    
     @GetMapping("/usuario/edit/{usuario}")
     public ModelAndView editUsuario(@PathVariable String usuario) {
         ModelAndView modelAndView = new ModelAndView("UsuariosAdmin/editarUsuario");
@@ -94,34 +124,6 @@ public class UsuarioAdminController {
         return modelAndView;
     }
 
-
-    @PostMapping("/usuario/save")
-    public ModelAndView saveUsuario(@ModelAttribute("usuario") @Valid Usuario usuario, BindingResult bindingResult) {
-        ModelAndView modelAndView = new ModelAndView();
-        if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("UsuariosAdmin/formusuario");
-
-            modelAndView.addObject("jugadores", jugadorDAO.findAll());
-            return modelAndView;
-        }
-        
-        
-           Usuario nombreUsuario = usuarioDAO.findByUsuario(usuario.getUsuario());
-        
-        if (nombreUsuario != null) {
-        	  modelAndView.setViewName("UsuariosAdmin/formusuario");
-            modelAndView.addObject("mensaje", "El usuario ya está en uso");
-            return modelAndView;
-        }
-        
-        
-        
-        usuario.setPassword(bCryptPasswordEncoder.encode(usuario.getPassword()));
-        usuarioDAO.save(usuario);
-        modelAndView.setViewName("redirect:/usuarios");
-        return modelAndView;
-    }
-    
     
     @PostMapping("/usuario/saveEdit")
     public ModelAndView saveEditUsuario(@ModelAttribute("usuario") @Valid Usuario usuario, BindingResult bindingResult) {
@@ -129,9 +131,22 @@ public class UsuarioAdminController {
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("UsuariosAdmin/formusuario");
 
-            modelAndView.addObject("jugadores", jugadorDAO.findAll());
+         // Obtener jugadores sin usuario
+            List<Jugador> jugadoresSinUsuario = jugadorDAO.findJugadoresSinUsuario();
+
+            // Obtener jugadores con el usuario actual
+            List<Jugador> jugadoresConUsuario = jugadorDAO.findJugadoresSinUsuario2(usuario.getUsuario());
+
+            //Fusionar las listas
+            Set<Jugador> jugadores = new HashSet<>(jugadoresSinUsuario);
+            jugadores.addAll(jugadoresConUsuario);
+
+            modelAndView.addObject("jugadores", jugadores);
             return modelAndView;
         }              
+        
+        
+        
         
         usuario.setPassword(bCryptPasswordEncoder.encode(usuario.getPassword()));
         usuarioDAO.save(usuario);
