@@ -110,6 +110,17 @@ public class Jugador {
 		Enmarca = enmarca;
 	}
 
+	
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 
 	@Override
 	public String toString() {

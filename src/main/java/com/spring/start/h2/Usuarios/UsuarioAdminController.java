@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.start.h2.jugador.Jugador;
 import com.spring.start.h2.jugador.JugadorDAO;
 
 import jakarta.transaction.Transactional;
@@ -105,15 +106,26 @@ public class UsuarioAdminController {
 
 
     @GetMapping("/usuario/delete/{usuarioId}")
-    @Transactional
     public ModelAndView deleteUsuario(@PathVariable String usuarioId) {
         Optional<Usuario> usuarioOptional = usuarioDAO.findById(usuarioId);
         
 
             Usuario usuario = usuarioOptional.get();
             
+         
+            
+            
+            Jugador jugador = usuario.getJugador();
+            
+            
+            if(jugador !=null) {
+            jugador.setUsuario(null);
+            jugadorDAO.save(jugador);
+            
+            }
+            
             usuario.setJugador(null);
-
+            usuarioDAO.save(usuario);
             usuarioDAO.delete(usuario);
    
 
