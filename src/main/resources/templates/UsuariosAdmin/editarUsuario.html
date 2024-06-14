@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col">
             <h1 class="mt-5">Editar Usuario</h1>
-            <form th:action="@{/usuario/save}" th:object="${usuario}" method="post">
+            <form th:action="@{/usuario/saveEdit}" th:object="${usuario}" method="post">
 							
 				<div class="mb-3">
 				    <label for="usuario" class="form-label">Usuario:</label>			   
@@ -21,7 +21,6 @@
 				    <input th:if="${usuario.usuario != null}" type="text" class="form-control" id="usuario" th:field="*{usuario}" readonly>
 				    
 				    <p th:if="${#fields.hasErrors('usuario')}" th:errors="*{usuario}" class="text-danger">Introduzca un usuario válido</p>
-					<div th:if="${mensaje}" th:text="${mensaje}" class="text-danger"></div>
 				</div>
 	
 				

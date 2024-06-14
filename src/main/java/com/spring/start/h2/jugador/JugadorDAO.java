@@ -7,8 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import com.spring.start.h2.equipo.Equipo;
-
 public interface JugadorDAO extends CrudRepository<Jugador, Long> {
 
 	@Query("SELECT j FROM Jugador j WHERE j.equipo IS NULL")
@@ -47,10 +45,12 @@ public interface JugadorDAO extends CrudRepository<Jugador, Long> {
 
 
 
+    @Query("SELECT j FROM Jugador j WHERE j.usuario IS NULL")
+    List<Jugador> findJugadoresSinUsuario();
 
 
-
-
+    @Query("SELECT j FROM Jugador j WHERE j.usuario.usuario = :usuario")
+    List<Jugador> findJugadoresSinUsuario2(@Param("usuario") String usuario);
     
     
 }

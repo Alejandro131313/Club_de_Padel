@@ -1,11 +1,15 @@
 package com.spring.start.h2.Usuarios;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +21,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.spring.start.h2.jugador.Jugador;
 import com.spring.start.h2.jugador.JugadorDAO;
 
-import jakarta.transaction.Transactional;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 
 @Controller
@@ -58,7 +63,7 @@ public class UsuarioAdminController {
     public ModelAndView addUsuario() {
         ModelAndView modelAndView = new ModelAndView("UsuariosAdmin/formusuario");
         modelAndView.addObject("usuario", new Usuario());
-        modelAndView.addObject("jugadores", jugadorDAO.findAll());
+        modelAndView.addObject("jugadores", jugadorDAO.findJugadoresSinUsuario());
         return modelAndView;
     }
 
@@ -66,13 +71,26 @@ public class UsuarioAdminController {
     public ModelAndView editUsuario(@PathVariable String usuario) {
         ModelAndView modelAndView = new ModelAndView("UsuariosAdmin/editarUsuario");
         Optional<Usuario> usuarioOptional = usuarioDAO.findById(usuario);
+
         if (usuarioOptional.isPresent()) {
-            modelAndView.addObject("usuario", usuarioOptional.get());
- 
-            modelAndView.addObject("jugadores", jugadorDAO.findAll());
+            Usuario usuarioObj = usuarioOptional.get();
+            modelAndView.addObject("usuario", usuarioObj);
+
+            // Obtener jugadores sin usuario
+            List<Jugador> jugadoresSinUsuario = jugadorDAO.findJugadoresSinUsuario();
+
+            // Obtener jugadores con el usuario actual
+            List<Jugador> jugadoresConUsuario = jugadorDAO.findJugadoresSinUsuario2(usuario);
+
+            //Fusionar las listas
+            Set<Jugador> jugadores = new HashSet<>(jugadoresSinUsuario);
+            jugadores.addAll(jugadoresConUsuario);
+
+            modelAndView.addObject("jugadores", jugadores);
         } else {
             modelAndView.setViewName("redirect:/usuarios");
         }
+
         return modelAndView;
     }
 
@@ -103,21 +121,39 @@ public class UsuarioAdminController {
         modelAndView.setViewName("redirect:/usuarios");
         return modelAndView;
     }
+    
+    
+    @PostMapping("/usuario/saveEdit")
+    public ModelAndView saveEditUsuario(@ModelAttribute("usuario") @Valid Usuario usuario, BindingResult bindingResult) {
+        ModelAndView modelAndView = new ModelAndView();
+        if (bindingResult.hasErrors()) {
+            modelAndView.setViewName("UsuariosAdmin/formusuario");
 
+            modelAndView.addObject("jugadores", jugadorDAO.findAll());
+            return modelAndView;
+        }              
+        
+        usuario.setPassword(bCryptPasswordEncoder.encode(usuario.getPassword()));
+        usuarioDAO.save(usuario);
+        modelAndView.setViewName("redirect:/usuarios");
+        return modelAndView;
+    }
+
+    
+    
 
     @GetMapping("/usuario/delete/{usuarioId}")
-    public ModelAndView deleteUsuario(@PathVariable String usuarioId) {
+    public ModelAndView deleteUsuario(@PathVariable String usuarioId, HttpServletRequest request, HttpServletResponse response) {
+    	
+    	 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+         String nombreUsuario = auth.getName();
+         
         Optional<Usuario> usuarioOptional = usuarioDAO.findById(usuarioId);
         
 
             Usuario usuario = usuarioOptional.get();
-            
-         
-            
-            
             Jugador jugador = usuario.getJugador();
-            
-            
+
             if(jugador !=null) {
             jugador.setUsuario(null);
             jugadorDAO.save(jugador);
@@ -127,6 +163,11 @@ public class UsuarioAdminController {
             usuario.setJugador(null);
             usuarioDAO.save(usuario);
             usuarioDAO.delete(usuario);
+            
+            // Si el usuario eliminado es el mismo que está autenticado, realizar logout
+            if (nombreUsuario.equals(usuarioId)) {
+                new SecurityContextLogoutHandler().logout(request, response, auth);
+            }
    
 
         return new ModelAndView("redirect:/usuarios");

@@ -76,6 +76,11 @@ insert into Enmarca (jugador_id, clase_id) values (5, 3);
 
 
 
-insert into usuario (usuario,password,rol,email) values ('marcos','$2a$12$pxkU//pg10V55CwNOh/52.tCKg7SE/Y5vx6Dgs3v0wA.FaSHojbuC',1,'alejandrocidon30@gmail.com');
+insert into usuario (usuario,password,rol,email) values ('marcos','$2a$12$pxkU//pg10V55CwNOh/52.tCKg7SE/Y5vx6Dgs3v0wA.FaSHojbuC',1,'marcos@gmail.com');
+insert into usuario (usuario,password,rol,email) values ('marcos2','$2a$12$SQhumBEqoOvk9rm2FCFSzuYIa3.NqR33mFLdQ5VI1xJJfG2BiVONi',1,'marcos2@gmail.com');
 insert into usuario (usuario,password,jugador_id,rol,email) values ('alejandro','$2a$12$rgiuFep5BGVMA3Y8.8XVAOZ28X1iORddXe/.QxTv742QQ2VXoxFkS',1,2,'alejandrocidon30@gmail.com');
 insert into usuario (usuario,password,jugador_id,rol,email) values ('pablo','$2a$12$B2VWFKuxS1gnrgd0RgWcBOc92m7Zi6yiWP8N/Mt69yKALUE98.wZ.',2,2,'alejandrocidon30@gmail.com');
+
+
+
+
