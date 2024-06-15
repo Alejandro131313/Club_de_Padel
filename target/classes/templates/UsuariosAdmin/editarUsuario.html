@@ -17,7 +17,7 @@
 				<div class="mb-3">
 				    <label for="usuario" class="form-label">Usuario:</label>			   
 				    
-				    <!-- Input de solo lectura cuando el usuario no es nulo -->
+				    <!-- Input de solo lectura  -->
 				    <input th:if="${usuario.usuario != null}" type="text" class="form-control" id="usuario" th:field="*{usuario}" readonly>
 				    
 				    <p th:if="${#fields.hasErrors('usuario')}" th:errors="*{usuario}" class="text-danger">Introduzca un usuario válido</p>

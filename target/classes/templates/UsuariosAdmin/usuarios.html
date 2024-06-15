@@ -16,7 +16,7 @@
         <thead>
             <tr>
                 <th scope="col">Usuario</th>
-                <th scope="col">Email</th> <!-- Nueva columna para el email -->
+                <th scope="col">Email</th>
                 <th scope="col">Jugador</th>
                 <th scope="col">Rol</th>
                 <th scope="col">Acciones</th>
@@ -25,7 +25,7 @@
         <tbody>
             <tr th:each="usuario : ${usuarios}">
                 <td th:text="${usuario.usuario}">Usuario</td>
-                <td th:text="${usuario.email}">Email</td> <!-- Mostrar el email del usuario -->
+                <td th:text="${usuario.email}">Email</td> 
                 <td>
                     <span th:text="${usuario.jugador != null ? usuario.jugador.id + '-' + usuario.jugador.nombre : 'Sin Jugador Relacionado'}"></span>
                 </td>
@@ -33,7 +33,7 @@
                 <td>
                     <a th:href="@{/usuario/{usuario}(usuario=${usuario.usuario})}" class="btn btn-sm btn-primary">Ver detalles</a>
                     <a th:href="@{/usuario/edit/{usuario}(usuario=${usuario.usuario})}" class="btn btn-sm btn-warning">Editar</a>
-                    <a th:href="@{/usuario/delete/{usuario}(usuario=${usuario.usuario})}" class="btn btn-sm btn-danger">Eliminar</a>
+                    <a th:href="@{/usuario/delete/{usuario}(usuario=${usuario.usuario})}" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de que quieres eliminar este usuario?')">Eliminar</a>
                 </td>
             </tr>
         </tbody>
